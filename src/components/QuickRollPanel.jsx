@@ -174,7 +174,7 @@ export function QuickRollPanel({ onQuickRoll, onLucky }) {
           Feeling lucky?
         </button>
         <p className="font-ui text-[11px] tracking-[0.18em] text-chrome/45 uppercase">
-          Pure random · 1 to 5 affixes
+          Pure random · 1 to 5 affixes, weighted toward fewer
         </p>
       </div>
     </section>

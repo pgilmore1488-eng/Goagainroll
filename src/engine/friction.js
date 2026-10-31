@@ -7,6 +7,40 @@ const BANDS = [
   { max: Infinity, label: 'Extreme' },
 ]
 
+export const RUN_RANKS = [
+  {
+    max: 30,
+    name: 'Hardcore is hard enough',
+    description:
+      'No Self Found, no affixes. Just spec, professions, and the fact that Hardcore already wants you dead.',
+  },
+  {
+    max: 68,
+    name: 'Making it interesting',
+    description: 'Self Found, or light restrictions. You turned a dial, not the whole machine.',
+  },
+  {
+    max: 140,
+    name: 'This was a choice',
+    description: 'You put in some real restrictions. Just remember, this was your choice.',
+  },
+  {
+    max: 240,
+    name: 'This was a bad choice',
+    description:
+      'A stack of affixes. Bad life choices open new opportunities, and Azeroth will take every one you handed her to end this run.',
+  },
+  {
+    max: Infinity,
+    name: 'Starter zone simulator',
+    description: 'Wow. You must really like starter zones, because you are never leaving them.',
+  },
+]
+
+export function runRank(total) {
+  return RUN_RANKS.find((rank) => total <= rank.max) ?? RUN_RANKS.at(-1)
+}
+
 const SELF_FOUND_ID = 'self-found'
 
 export function frictionBand(score) {
@@ -103,5 +137,6 @@ export function scoreRun(catalog, run) {
     count,
     averageLabel: frictionBand(average),
     totalLabel: frictionBand(Math.min(total, 100)),
+    rank: runRank(total),
   }
 }

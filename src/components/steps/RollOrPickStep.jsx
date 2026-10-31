@@ -7,6 +7,7 @@ export function RollOrPickStep({
   pool,
   preview,
   spinning,
+  reelSpinning = false,
   onRoll,
   onPick,
   groupBy,
@@ -37,7 +38,7 @@ export function RollOrPickStep({
 
       <div className="flex min-h-24 flex-col items-center justify-center gap-3">
         {preview ? (
-          <div className={`flex items-center gap-3 ${spinning ? 'reel-spinning' : ''}`}>
+          <div className={`flex items-center gap-3 ${reelSpinning ? 'reel-spinning' : 'place-in'}`}>
             <IconPlate icon={preview.icon} size="large" />
             <p className="font-display text-3xl font-black tracking-[0.1em] text-gold-bright uppercase">
               {preview.name}

@@ -1,3 +1,4 @@
+import { toBlob } from 'html-to-image'
 import { affixFriction, affixFrictionRange, scoreRun } from './friction.js'
 
 export const AFFIX_ALIASES = {
@@ -134,7 +135,7 @@ export function summarizeRun(run, catalog) {
     `Professions: ${run.profession.name}`,
     `Self Found: ${run.selfFound ? 'Yes' : 'No'}`,
     score
-      ? `Friction: ${score.total} (affixes ${score.base} + spec ${score.specScore} + professions ${score.professionScore} + self found ${score.selfFoundScore} + synergy ${score.synergyScore} + affix count ${score.stackingScore})`
+      ? `Friction: ${score.total} — ${score.rank.name} (affixes ${score.base} + spec ${score.specScore} + professions ${score.professionScore} + self found ${score.selfFoundScore} + synergy ${score.synergyScore} + affix count ${score.stackingScore})`
       : null,
     affixLines.length ? `Affixes:\n${affixLines.join('\n')}` : 'Affixes: none',
     synergyLines ? `Synergies:\n${synergyLines}` : null,
@@ -145,6 +146,75 @@ export function summarizeRun(run, catalog) {
 
 export function canNativeShare() {
   return typeof navigator !== 'undefined' && typeof navigator.share === 'function'
+}
+
+function downloadBlob(blob, name) {
+  const href = URL.createObjectURL(blob)
+  const anchor = document.createElement('a')
+  anchor.href = href
+  anchor.download = name
+  anchor.click()
+  URL.revokeObjectURL(href)
+}
+
+async function waitForImages(node) {
+  const images = [...node.querySelectorAll('img')]
+  await Promise.all(
+    images.map((image) => {
+      if (image.complete) return null
+      return new Promise((resolve) => {
+        image.addEventListener('load', resolve, { once: true })
+        image.addEventListener('error', resolve, { once: true })
+      })
+    }),
+  )
+}
+
+export async function captureShareCard(node) {
+  if (!node) throw new Error('share card missing')
+  await waitForImages(node)
+  const blob = await toBlob(node, {
+    pixelRatio: 2,
+    cacheBust: true,
+    backgroundColor: '#040b07',
+  })
+  if (!blob) throw new Error('share card capture failed')
+  return blob
+}
+
+export async function shareRun({ node, url }) {
+  const blob = await captureShareCard(node)
+  const file = new File([blob], 'goagainroll.png', { type: 'image/png' })
+  const title = 'GO AGAIN ROLL'
+  const fileShare = { title, text: url, files: [file] }
+  const fullShare = { title, text: url, url, files: [file] }
+
+  try {
+    if (navigator.canShare?.(fullShare)) {
+      await navigator.share(fullShare)
+      return 'shared'
+    }
+    if (navigator.canShare?.(fileShare)) {
+      await navigator.share(fileShare)
+      return 'shared'
+    }
+    if (typeof navigator.share === 'function') {
+      await navigator.share({ title, text: url, url })
+      downloadBlob(blob, 'goagainroll.png')
+      return 'shared-link'
+    }
+  } catch (error) {
+    if (error?.name === 'AbortError') return 'aborted'
+    throw error
+  }
+
+  downloadBlob(blob, 'goagainroll.png')
+  try {
+    await copyText(url)
+  } catch {
+    /* clipboard can be blocked; the image still downloaded */
+  }
+  return 'downloaded'
 }
 
 export async function copyText(value) {

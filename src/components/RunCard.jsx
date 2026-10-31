@@ -1,12 +1,13 @@
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import catalog from '../data/catalog.json'
 import { affixFrictionLabel, scoreRun } from '../engine/friction.js'
 import { SLOT_LABELS } from '../engine/quickRoll.js'
-import { canNativeShare, copyText, shareUrl, summarizeRun } from '../engine/share.js'
+import { copyText, shareRun, shareUrl, summarizeRun } from '../engine/share.js'
 import { AffixHeading } from './AffixHeading.jsx'
 import { GoldButton } from './ChoiceButton.jsx'
 import { FrictionScore } from './FrictionScore.jsx'
 import { IconPlate } from './IconPlate.jsx'
+import { ShareCard } from './ShareCard.jsx'
 
 function EmptyPlate() {
   return (
@@ -27,10 +28,13 @@ function IdentitySlot({ item, placing }) {
 
 export function RunCard({ run, center = null, placing = null, revealScore = false, onReset, onSkip }) {
   const [copied, setCopied] = useState('')
+  const [sharing, setSharing] = useState(false)
+  const shareCardRef = useRef(null)
   const complete = Boolean(run.faction && run.class && run.spec && run.race && run.profession && revealScore)
   const link = complete ? shareUrl(run) : ''
   const score = complete ? scoreRun(catalog, run) : null
   const titleReady = run.race || run.spec || run.class
+  const affixCount = Number.isFinite(run.plannedAffixCount) ? run.plannedAffixCount : run.affixes.length
 
   async function copy(kind) {
     const value = kind === 'link' ? link : summarizeRun(run, catalog)
@@ -43,14 +47,15 @@ export function RunCard({ run, center = null, placing = null, revealScore = fals
   }
 
   async function shareNative() {
+    if (sharing) return
+    setSharing(true)
     try {
-      await navigator.share({
-        title: 'GO AGAIN ROLL',
-        text: summarizeRun(run, catalog),
-        url: link,
-      })
-    } catch (error) {
-      if (error?.name !== 'AbortError') await copy('link')
+      const result = await shareRun({ node: shareCardRef.current, url: link })
+      if (result === 'downloaded') setCopied('link')
+    } catch {
+      setCopied('failed')
+    } finally {
+      setSharing(false)
     }
   }
 
@@ -109,12 +114,21 @@ export function RunCard({ run, center = null, placing = null, revealScore = fals
         </p>
       </div>
 
-      <div className="flex flex-wrap justify-center gap-3">
-        <IdentitySlot item={run.faction} placing={placing === 'faction'} />
-        <IdentitySlot item={run.class} placing={placing === 'class'} />
-        <IdentitySlot item={run.spec} placing={placing === 'spec'} />
-        <IdentitySlot item={run.race} placing={placing === 'race'} />
-        <IdentitySlot item={run.profession} placing={placing === 'profession'} />
+      <div className="flex flex-col items-center gap-2">
+        <div className="flex flex-wrap justify-center gap-3">
+          <IdentitySlot item={run.faction} placing={placing === 'faction'} />
+          <IdentitySlot item={run.class} placing={placing === 'class'} />
+          <IdentitySlot item={run.spec} placing={placing === 'spec'} />
+          <IdentitySlot item={run.race} placing={placing === 'race'} />
+          <IdentitySlot item={run.profession} placing={placing === 'profession'} />
+        </div>
+        <p
+          className={`font-ui text-[11px] tracking-[0.28em] uppercase ${
+            placing === 'affixCount' ? 'place-in text-gold' : 'text-gold/80'
+          }`}
+        >
+          {affixCount === 1 ? '1 affix' : `${affixCount} affixes`}
+        </p>
       </div>
 
       {revealScore && score ? (
@@ -128,17 +142,6 @@ export function RunCard({ run, center = null, placing = null, revealScore = fals
           <p className="mt-1 font-ui text-sm tracking-[0.22em] text-chrome/40 uppercase">Sealed until the last reel</p>
         </section>
       )}
-
-      {revealScore && score?.synergies.length ? (
-        <ul className="place-in flex flex-col gap-2 border border-gold/20 bg-black/30 p-4 text-left">
-          <li className="font-ui text-[11px] tracking-[0.28em] text-gold uppercase">Synergy adders</li>
-          {score.synergies.map((synergy) => (
-            <li key={synergy.id} className="text-sm leading-relaxed text-chrome/80">
-              <span className="font-mono text-gold-bright">+{synergy.friction}</span> {synergy.warning}
-            </li>
-          ))}
-        </ul>
-      ) : null}
 
       {run.affixes.length ? (
         <ul className="flex flex-col gap-3">
@@ -192,14 +195,16 @@ export function RunCard({ run, center = null, placing = null, revealScore = fals
             </button>
           </div>
 
+          {complete && score ? (
+            <div className="pointer-events-none fixed top-0 left-0 -z-10" style={{ transform: 'translateX(-200vw)' }} aria-hidden>
+              <ShareCard ref={shareCardRef} run={run} score={score} />
+            </div>
+          ) : null}
+
           <div className="flex flex-col items-stretch justify-center gap-3 sm:flex-row sm:flex-wrap sm:items-center">
-            {canNativeShare() ? (
-              <GoldButton onClick={shareNative}>Share</GoldButton>
-            ) : (
-              <GoldButton onClick={() => copy('link')}>
-                {copied === 'link' ? 'Link copied' : 'Copy share link'}
-              </GoldButton>
-            )}
+            <GoldButton onClick={shareNative} disabled={sharing}>
+              {sharing ? 'Preparing' : 'Share link'}
+            </GoldButton>
             <button
               type="button"
               onClick={() => copy('text')}

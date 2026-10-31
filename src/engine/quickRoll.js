@@ -106,8 +106,17 @@ export function resolveQuickRun(catalog, picks = {}, options = {}) {
 
   const selfFound = wanted.selfFound ? picks.selfFound === 'yes' : evenPick([true, false])
 
-  const countPool = lucky ? [1, 2, 3, 4, 5] : [0, 1, 2, 3, 4, 5]
-  const affixCount = wanted.affixCount ? Number(picks.affixCount) : evenPick(countPool)
+  const affixCount = wanted.affixCount
+    ? Number(picks.affixCount)
+    : lucky
+      ? weightedPick([
+          { count: 1, weight: 30 },
+          { count: 2, weight: 30 },
+          { count: 3, weight: 18 },
+          { count: 4, weight: 10 },
+          { count: 5, weight: 12 },
+        ]).count
+      : evenPick([0, 1, 2, 3, 4, 5])
 
   const locked = {
     selfFound: wanted.selfFound,
@@ -161,16 +170,15 @@ export function buildQuickSequence(catalog, resolved) {
     },
   ]
 
-  if (!locked.affixCount) {
-    const counts = requestedCount >= 1 && requestedCount <= 5 && run.affixes.length > 0 ? [1, 2, 3, 4, 5] : [0, 1, 2, 3, 4, 5]
-    sequence.push({
-      key: 'affixCount',
-      item: run.affixes.length,
-      display: affixCountDisplay(run.affixes.length),
-      locked: false,
-      pool: counts.map(affixCountDisplay),
-    })
-  }
+  const counts =
+    requestedCount >= 1 && requestedCount <= 5 && run.affixes.length > 0 ? [1, 2, 3, 4, 5] : [0, 1, 2, 3, 4, 5]
+  sequence.push({
+    key: 'affixCount',
+    item: run.affixes.length,
+    display: affixCountDisplay(run.affixes.length),
+    locked: locked.affixCount,
+    pool: counts.map(affixCountDisplay),
+  })
 
   for (const affix of run.affixes) {
     sequence.push({

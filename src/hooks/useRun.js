@@ -2,7 +2,6 @@ import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import {
   affixesFor,
   getProfession,
-  pickUntil,
   professionChoices,
   racesFor,
   remainingAffixes,
@@ -11,7 +10,7 @@ import {
   viableCategories,
   viableDifficulties,
 } from '../engine/lookups.js'
-import { buildQuickSequence, resolveQuickRun } from '../engine/quickRoll.js'
+import { buildQuickSequence, resolveQuickRun, selfFoundDisplay } from '../engine/quickRoll.js'
 import { decodeRun, encodeRun } from '../engine/share.js'
 import { evenPick, sleep, weightedPick } from '../engine/weighted.js'
 
@@ -32,11 +31,12 @@ const QUICK_SPIN_MS = 1100
 const QUICK_FLASH_MS = 70
 const QUICK_HOLD_MS = 1280
 const QUICK_PLACE_MS = 800
-const QUICK_LOCKED_STAGGER_MS = 120
+const WIZARD_SPIN_MS = 700
+const WIZARD_FLASH_MS = 55
 
 function applyQuickEvent(current, event) {
   if (event.key === 'selfFound') return { ...current, selfFound: event.item }
-  if (event.key === 'affixCount') return current
+  if (event.key === 'affixCount') return { ...current, plannedAffixCount: event.item }
   if (event.key === 'affix') return { ...current, affixes: [...current.affixes, event.item] }
   return { ...current, [event.key]: event.item }
 }
@@ -66,6 +66,7 @@ function emptyRun() {
     profession: null,
     selfFound: false,
     affixes: [],
+    plannedAffixCount: null,
     draft: emptyDraft,
     preview: null,
     shareNotice: null,
@@ -105,19 +106,56 @@ export function useRun(catalog) {
     }
   }, [run])
 
-  const spinThen = useCallback(async (pool, pick, previewKey, decorate = (item) => item) => {
+  const startAbort = () => {
     abortRef.current?.abort()
     const controller = new AbortController()
     abortRef.current = controller
     setSpinning(true)
+    return controller
+  }
+
+  const revealThen = useCallback(async (item, previewKey) => {
+    if (!item) return null
+    const controller = startAbort()
     try {
-      const started = Date.now()
-      while (Date.now() - started < 700) {
-        const flash = decorate(evenPick(pool))
-        setRun((current) => ({ ...current, preview: { key: previewKey, item: flash } }))
-        await sleep(55, controller.signal)
+      setRun((current) => ({
+        ...current,
+        preview: { key: previewKey, item, spinning: false },
+      }))
+      await sleep(QUICK_HOLD_MS, controller.signal)
+      setRun((current) => ({ ...current, preview: null }))
+      return item
+    } catch (error) {
+      if (error?.name === 'AbortError') return null
+      throw error
+    } finally {
+      setSpinning(false)
+    }
+  }, [])
+
+  const spinThen = useCallback(async (pool, pick, previewKey, decorate = (item) => item) => {
+    const options = (pool ?? []).filter(Boolean)
+    const controller = startAbort()
+    try {
+      if (options.length > 1) {
+        const started = Date.now()
+        while (Date.now() - started < WIZARD_SPIN_MS) {
+          const flash = decorate(evenPick(options))
+          setRun((current) => ({
+            ...current,
+            preview: { key: previewKey, item: flash, spinning: true },
+          }))
+          await sleep(WIZARD_FLASH_MS, controller.signal)
+        }
       }
-      const chosen = decorate(pick())
+      const raw = options.length <= 1 ? (options[0] ?? pick()) : pick()
+      const chosen = raw ? decorate(raw) : null
+      if (!chosen) return null
+      setRun((current) => ({
+        ...current,
+        preview: { key: previewKey, item: chosen, spinning: false },
+      }))
+      await sleep(QUICK_HOLD_MS, controller.signal)
       setRun((current) => ({ ...current, preview: null }))
       return chosen
     } catch (error) {
@@ -128,81 +166,98 @@ export function useRun(catalog) {
     }
   }, [])
 
-  const setFaction = useCallback((faction) => {
-    setRun((current) => ({ ...current, faction, step: STEPS.CLASS }))
-  }, [])
+  const setFaction = useCallback(
+    async (faction) => {
+      if (spinning) return
+      const shown = await revealThen(faction, 'faction')
+      if (!shown) return
+      setRun((current) => ({ ...current, faction: shown, preview: null, step: STEPS.CLASS }))
+    },
+    [revealThen, spinning],
+  )
+
+  const rollFaction = useCallback(async () => {
+    if (spinning) return
+    const pool = catalog.factions
+    const chosen = await spinThen(pool, () => evenPick(pool), 'faction')
+    if (!chosen) return
+    setRun((current) => ({ ...current, faction: chosen, preview: null, step: STEPS.CLASS }))
+  }, [catalog.factions, spinThen, spinning])
 
   const chooseClass = useCallback(
     async (classItem) => {
-      if (classItem) {
-        setRun((current) => ({ ...current, class: classItem, spec: null, step: STEPS.SPEC }))
-        return
-      }
-      const chosen = await spinThen(catalog.classes, () => evenPick(catalog.classes), 'class')
+      if (spinning) return
+      const chosen = classItem
+        ? await revealThen(classItem, 'class')
+        : await spinThen(catalog.classes, () => evenPick(catalog.classes), 'class')
       if (!chosen) return
-      setRun((current) => ({ ...current, class: chosen, spec: null, step: STEPS.SPEC }))
+      setRun((current) => ({ ...current, class: chosen, spec: null, preview: null, step: STEPS.SPEC }))
     },
-    [catalog.classes, spinThen],
+    [catalog.classes, revealThen, spinThen, spinning],
   )
 
   const chooseSpec = useCallback(
     async (specItem) => {
+      if (spinning) return
       const pool = specsFor(catalog, run.class)
-      if (specItem) {
-        setRun((current) => ({ ...current, spec: specItem, step: STEPS.RACE }))
-        return
-      }
-      const chosen = await spinThen(pool, () => evenPick(pool), 'spec')
+      const chosen = specItem ? await revealThen(specItem, 'spec') : await spinThen(pool, () => evenPick(pool), 'spec')
       if (!chosen) return
-      setRun((current) => ({ ...current, spec: chosen, step: STEPS.RACE }))
+      setRun((current) => ({ ...current, spec: chosen, preview: null, step: STEPS.RACE }))
     },
-    [catalog, run.class, spinThen],
+    [catalog, revealThen, run.class, spinThen, spinning],
   )
 
   const chooseRace = useCallback(
     async (raceItem) => {
+      if (spinning) return
       const pool = racesFor(catalog, run.class, run.faction.id)
-      if (raceItem) {
-        setRun((current) => ({ ...current, race: raceItem, step: STEPS.PROFESSIONS }))
-        return
-      }
-      const chosen = await spinThen(pool, () => evenPick(pool), 'race')
+      const chosen = raceItem ? await revealThen(raceItem, 'race') : await spinThen(pool, () => evenPick(pool), 'race')
       if (!chosen) return
-      setRun((current) => ({ ...current, race: chosen, step: STEPS.PROFESSIONS }))
+      setRun((current) => ({ ...current, race: chosen, preview: null, step: STEPS.PROFESSIONS }))
     },
-    [catalog, run.class, run.faction, spinThen],
+    [catalog, revealThen, run.class, run.faction, spinThen, spinning],
   )
 
   const chooseProfession = useCallback(
     async (pair) => {
+      if (spinning) return
       const pool = professionChoices(catalog, run.class)
-      if (pair) {
-        setRun((current) => ({
-          ...current,
-          profession: getProfession(catalog, pair.id) ?? pair,
-          step: remainingAffixes(catalog, { ...current, profession: getProfession(catalog, pair.id) ?? pair })
-            .length
-            ? STEPS.AFFIX_ASK
-            : STEPS.DONE,
-        }))
-        return
-      }
-      const chosen = await spinThen(pool, () => weightedPick(pool), 'profession')
+      const chosen = pair
+        ? await revealThen(getProfession(catalog, pair.id) ?? pair, 'profession')
+        : await spinThen(pool, () => weightedPick(pool), 'profession')
       if (!chosen) return
       setRun((current) => ({
         ...current,
         profession: chosen,
+        preview: null,
         step: remainingAffixes(catalog, { ...current, profession: chosen }).length
           ? STEPS.AFFIX_ASK
           : STEPS.DONE,
       }))
     },
-    [catalog, run.class, spinThen],
+    [catalog, revealThen, run.class, spinThen, spinning],
   )
 
-  const chooseSelfFound = useCallback((selfFound) => {
-    setRun((current) => ({ ...current, selfFound, step: STEPS.FACTION }))
-  }, [])
+  const chooseSelfFound = useCallback(
+    async (selfFound) => {
+      if (spinning) return
+      const shown = await revealThen(selfFoundDisplay(catalog, selfFound), 'selfFound')
+      if (!shown) return
+      setRun((current) => ({ ...current, selfFound, preview: null, step: STEPS.FACTION }))
+    },
+    [catalog, revealThen, spinning],
+  )
+
+  const rollSelfFound = useCallback(async () => {
+    if (spinning) return
+    const pool = [
+      { value: true, ...selfFoundDisplay(catalog, true) },
+      { value: false, ...selfFoundDisplay(catalog, false) },
+    ]
+    const chosen = await spinThen(pool, () => evenPick(pool), 'selfFound')
+    if (!chosen) return
+    setRun((current) => ({ ...current, selfFound: chosen.value, preview: null, step: STEPS.FACTION }))
+  }, [catalog, spinThen, spinning])
 
   const skipAffixes = useCallback(() => {
     setRun((current) => ({ ...current, step: STEPS.DONE, draft: emptyDraft }))
@@ -217,24 +272,18 @@ export function useRun(catalog) {
     const ctx = run
 
     if (!ctx.draft.difficulty) {
-      const pool = catalog.difficulties
       const viable = viableDifficulties(catalog, ctx)
-      const chosen = await spinThen(pool, () => weightedPick(viable.length ? viable : pool), 'difficulty')
+      const pool = viable.length ? viable : catalog.difficulties
+      const chosen = await spinThen(pool, () => weightedPick(pool), 'difficulty')
       if (!chosen) return
       setRun((current) => ({ ...current, draft: { ...emptyDraft, difficulty: chosen } }))
       return
     }
 
     if (!ctx.draft.category) {
-      const pool = catalog.affixCategories
-      const chosen = await spinThen(
-        pool,
-        () =>
-          pickUntil(pool, (item) =>
-            viableCategories(catalog, ctx, ctx.draft.difficulty.id).some((row) => row.id === item.id),
-          ),
-        'category',
-      )
+      const viable = viableCategories(catalog, ctx, ctx.draft.difficulty.id)
+      const pool = viable.length ? viable : catalog.affixCategories
+      const chosen = await spinThen(pool, () => evenPick(pool), 'category')
       if (!chosen) return
       setRun((current) => ({
         ...current,
@@ -324,45 +373,37 @@ export function useRun(catalog) {
       })
 
       try {
-        for (let index = 0; index < sequence.length; index += 1) {
-          const event = sequence[index]
-          const next = sequence[index + 1]
+        for (const event of sequence) {
+          const canSpin = !event.locked && (event.pool?.length ?? 0) > 1
 
-          if (!event.locked) {
+          if (canSpin) {
             const started = Date.now()
             while (Date.now() - started < QUICK_SPIN_MS) {
               if (!stillGoing()) return
               setRun((current) => ({
                 ...current,
-                quick: { ...current.quick, center: spinningCenter(event) },
+                quick: { center: spinningCenter(event), placing: null },
               }))
               await sleep(QUICK_FLASH_MS, controller.signal)
             }
-            if (!stillGoing()) return
-            setRun((current) => ({
-              ...current,
-              quick: {
-                ...current.quick,
-                center: { key: event.key, item: event.display, spinning: false },
-              },
-            }))
-            await sleep(QUICK_HOLD_MS, controller.signal)
           }
 
           if (!stillGoing()) return
           setRun((current) => ({
-            ...applyQuickEvent(current, event),
+            ...current,
             quick: {
-              center: next && !next.locked ? spinningCenter(next) : null,
-              placing: placingKey(event),
+              center: { key: event.key, item: event.display, spinning: false },
+              placing: null,
             },
           }))
+          await sleep(QUICK_HOLD_MS, controller.signal)
 
-          if (!next) {
-            await sleep(QUICK_PLACE_MS, controller.signal)
-          } else if (next.locked) {
-            await sleep(QUICK_LOCKED_STAGGER_MS, controller.signal)
-          }
+          if (!stillGoing()) return
+          setRun((current) => ({
+            ...applyQuickEvent(current, event),
+            quick: { center: null, placing: placingKey(event) },
+          }))
+          await sleep(QUICK_PLACE_MS, controller.signal)
         }
         if (!stillGoing()) return
         quickResolvedRef.current = null
@@ -400,11 +441,13 @@ export function useRun(catalog) {
     leftover,
     affixButton,
     setFaction,
+    rollFaction,
     chooseClass,
     chooseSpec,
     chooseRace,
     chooseProfession,
     chooseSelfFound,
+    rollSelfFound,
     skipAffixes,
     startAffix,
     rollAffixTier,

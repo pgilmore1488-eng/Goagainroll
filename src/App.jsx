@@ -27,7 +27,13 @@ export default function App() {
         <main className="rounded-sm bg-felt/80 p-4 sm:p-8 cabinet-frame">
           {run.step === STEPS.SELF_FOUND ? (
             <div className="flex flex-col">
-              <SelfFoundStep onChoose={machine.chooseSelfFound} />
+              <SelfFoundStep
+                onChoose={machine.chooseSelfFound}
+                onRoll={machine.rollSelfFound}
+                preview={run.preview?.key === 'selfFound' ? previewItem : null}
+                spinning={spinning}
+                reelSpinning={run.preview?.key === 'selfFound' && Boolean(run.preview.spinning)}
+              />
               <div className="mt-16 border-t border-gold/20 pt-12">
                 <QuickRollPanel onQuickRoll={machine.startQuickRoll} onLucky={machine.startLucky} />
               </div>
@@ -45,7 +51,14 @@ export default function App() {
           ) : null}
 
           {run.step === STEPS.FACTION ? (
-            <FactionStep factions={catalog.factions} onChoose={machine.setFaction} />
+            <FactionStep
+              factions={catalog.factions}
+              onChoose={machine.setFaction}
+              onRoll={machine.rollFaction}
+              preview={run.preview?.key === 'faction' ? previewItem : null}
+              spinning={spinning}
+              reelSpinning={run.preview?.key === 'faction' && Boolean(run.preview.spinning)}
+            />
           ) : null}
 
           {run.step === STEPS.CLASS ? (
@@ -55,6 +68,7 @@ export default function App() {
               pool={catalog.classes}
               preview={run.preview?.key === 'class' ? previewItem : null}
               spinning={spinning}
+              reelSpinning={run.preview?.key === 'class' && Boolean(run.preview.spinning)}
               onRoll={() => machine.chooseClass()}
               onPick={machine.chooseClass}
             />
@@ -67,6 +81,7 @@ export default function App() {
               pool={specsFor(catalog, run.class)}
               preview={run.preview?.key === 'spec' ? previewItem : null}
               spinning={spinning}
+              reelSpinning={run.preview?.key === 'spec' && Boolean(run.preview.spinning)}
               onRoll={() => machine.chooseSpec()}
               onPick={machine.chooseSpec}
             />
@@ -79,6 +94,7 @@ export default function App() {
               pool={racesFor(catalog, run.class, run.faction.id)}
               preview={run.preview?.key === 'race' ? previewItem : null}
               spinning={spinning}
+              reelSpinning={run.preview?.key === 'race' && Boolean(run.preview.spinning)}
               onRoll={() => machine.chooseRace()}
               onPick={machine.chooseRace}
             />
@@ -91,6 +107,7 @@ export default function App() {
               pool={professionChoices(catalog, run.class)}
               preview={run.preview?.key === 'profession' ? previewItem : null}
               spinning={spinning}
+              reelSpinning={run.preview?.key === 'profession' && Boolean(run.preview.spinning)}
               onRoll={() => machine.chooseProfession()}
               onPick={machine.chooseProfession}
               groupBy

@@ -1,6 +1,7 @@
 import { ChoiceButton } from '../ChoiceButton.jsx'
+import { IconPlate } from '../IconPlate.jsx'
 
-export function FactionStep({ factions, onChoose }) {
+export function FactionStep({ factions, onChoose, onRoll, preview, spinning, reelSpinning = false }) {
   return (
     <section className="flex flex-col items-center gap-8">
       <div className="text-center">
@@ -9,18 +10,38 @@ export function FactionStep({ factions, onChoose }) {
           Choose your faction
         </h2>
       </div>
-      <div className="grid w-full max-w-2xl gap-4 sm:grid-cols-2">
-        {factions.map((faction) => (
-          <ChoiceButton
-            key={faction.id}
-            icon={faction.icon}
-            title={faction.name}
-            subtitle={faction.tagline}
-            tone={faction.id}
-            onClick={() => onChoose(faction)}
-          />
-        ))}
-      </div>
+      {preview ? (
+        <div className={`flex items-center gap-3 ${reelSpinning ? 'reel-spinning' : 'place-in'}`}>
+          <IconPlate icon={preview.icon} size="large" />
+          <p className="font-display text-3xl font-black tracking-[0.1em] text-gold-bright uppercase">
+            {preview.name}
+          </p>
+        </div>
+      ) : (
+        <>
+          <div className="grid w-full max-w-2xl gap-4 sm:grid-cols-2">
+            {factions.map((faction) => (
+              <ChoiceButton
+                key={faction.id}
+                icon={faction.icon}
+                title={faction.name}
+                subtitle={faction.tagline}
+                tone={faction.id}
+                disabled={spinning}
+                onClick={() => onChoose(faction)}
+              />
+            ))}
+          </div>
+          <button
+            type="button"
+            disabled={spinning}
+            onClick={onRoll}
+            className="min-h-12 min-w-32 border-2 border-gold/40 bg-black/30 px-8 py-3 font-display text-xl font-black tracking-[0.22em] text-gold-bright uppercase hover:border-gold-bright hover:bg-gold/10 disabled:opacity-40"
+          >
+            Roll
+          </button>
+        </>
+      )}
     </section>
   )
 }

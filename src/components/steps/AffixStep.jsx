@@ -62,18 +62,18 @@ export function AffixStep({
         <Box
           label="Difficulty"
           item={previewKey === 'difficulty' ? preview.item : draft.difficulty}
-          spinning={spinning && previewKey === 'difficulty'}
+          spinning={Boolean(preview?.spinning && previewKey === 'difficulty')}
           accent={ACCENT[(previewKey === 'difficulty' ? preview.item : draft.difficulty)?.accent]}
         />
         <Box
           label="Category"
           item={previewKey === 'category' ? preview.item : draft.category}
-          spinning={spinning && previewKey === 'category'}
+          spinning={Boolean(preview?.spinning && previewKey === 'category')}
         />
         <Box
           label="Affix"
           item={previewKey === 'affix' ? preview.item : draft.affix}
-          spinning={spinning && previewKey === 'affix'}
+          spinning={Boolean(preview?.spinning && previewKey === 'affix')}
         />
       </div>
 
@@ -93,7 +93,7 @@ export function AffixStep({
         {buttonLabel ? (
           <div className="flex flex-col items-center gap-3">
             <GoldButton onClick={onRoll} disabled={spinning}>
-              {spinning ? 'Spinning' : buttonLabel}
+              {spinning && preview?.spinning ? 'Spinning' : spinning ? 'Locked' : buttonLabel}
             </GoldButton>
             {hasCommittedAffixes && !draft.difficulty ? (
               <button

@@ -12,6 +12,7 @@ export function IconPlate({ icon, size = 'large', className = '' }) {
       <img
         src={resolveIcon(icon, size === 'tiny' ? 'medium' : 'large')}
         alt=""
+        crossOrigin="anonymous"
         className="h-full w-full object-cover"
         onError={(event) => {
           if (event.currentTarget.src !== FALLBACK) event.currentTarget.src = FALLBACK
