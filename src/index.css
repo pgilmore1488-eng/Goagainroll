@@ -1,0 +1,127 @@
+@import 'tailwindcss';
+
+@theme {
+  --font-display: 'Cinzel', ui-serif, Georgia, serif;
+  --font-ui: 'Oswald', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+
+  --color-ink: #05060a;
+  --color-felt: #07140c;
+  --color-felt-deep: #040b07;
+  --color-gold: #e8c547;
+  --color-gold-bright: #ffe89a;
+  --color-gold-dim: #8a6d1f;
+  --color-blood: #c1121f;
+  --color-ember: #ff4d2e;
+  --color-easy: #3cff7a;
+  --color-medium: #ffd000;
+  --color-hard: #ff2a3a;
+  --color-insane: #c84dff;
+  --color-chrome: #d7dde8;
+  --color-alliance: #4aa3ff;
+  --color-horde: #ff4a4a;
+}
+
+html,
+body,
+#root {
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  background: #05060a;
+  color: #f4efe2;
+  font-family: var(--font-ui);
+}
+
+@keyframes reel-blur {
+  0%,
+  100% {
+    filter: blur(0);
+    transform: translateY(0);
+  }
+  40% {
+    filter: blur(1.4px);
+    transform: translateY(-6px);
+  }
+  70% {
+    filter: blur(0.6px);
+    transform: translateY(4px);
+  }
+}
+
+@keyframes gold-shine {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 200% 50%;
+  }
+}
+
+@keyframes pulse-ring {
+  0% {
+    box-shadow: 0 0 0 0 rgba(232, 197, 71, 0.45);
+  }
+  70% {
+    box-shadow: 0 0 0 16px rgba(232, 197, 71, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(232, 197, 71, 0);
+  }
+}
+
+.reel-spinning {
+  animation: reel-blur 90ms linear infinite;
+}
+
+.gold-shine {
+  background-size: 200% 200%;
+  animation: gold-shine 2.4s linear infinite;
+}
+
+.roll-pulse {
+  animation: pulse-ring 1.8s ease-out infinite;
+}
+
+.cabinet-grain {
+  background-image:
+    radial-gradient(ellipse at 50% 0%, rgba(232, 197, 71, 0.12), transparent 42%),
+    radial-gradient(ellipse at 50% 120%, rgba(193, 18, 31, 0.18), transparent 50%),
+    linear-gradient(180deg, #0b120e 0%, #05060a 45%, #07080c 100%);
+}
+
+.cabinet-frame {
+  box-shadow:
+    inset 0 0 0 1px rgba(232, 197, 71, 0.35),
+    inset 0 0 0 8px rgba(12, 10, 6, 0.9),
+    inset 0 0 0 9px rgba(232, 197, 71, 0.18),
+    0 24px 80px rgba(0, 0, 0, 0.65);
+}
+
+@keyframes place-in {
+  0% {
+    opacity: 0.9;
+    transform: translateY(-56px) scale(1.35);
+    filter: brightness(1.25);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: none;
+  }
+}
+
+.place-in {
+  animation: place-in 800ms cubic-bezier(0.22, 0.78, 0.2, 1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reel-spinning,
+  .gold-shine,
+  .roll-pulse,
+  .place-in {
+    animation: none;
+  }
+}

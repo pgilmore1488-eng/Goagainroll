@@ -1,0 +1,5116 @@
+{
+  "version": 3,
+  "factions": [
+    {
+      "id": "alliance",
+      "name": "Alliance",
+      "tagline": "For the Alliance.",
+      "icon": {
+        "source": "blizzard",
+        "id": "inv_bannerpvp_02"
+      }
+    },
+    {
+      "id": "horde",
+      "name": "Horde",
+      "tagline": "For the Horde.",
+      "icon": {
+        "source": "blizzard",
+        "id": "inv_bannerpvp_01"
+      }
+    }
+  ],
+  "difficulties": [
+    {
+      "id": "easy",
+      "name": "Easy",
+      "label": "Easy",
+      "accent": "easy",
+      "weight": 42,
+      "icon": {
+        "source": "blizzard",
+        "id": "inv_misc_qirajicrystal_03"
+      }
+    },
+    {
+      "id": "medium",
+      "name": "Medium",
+      "label": "Medium",
+      "accent": "medium",
+      "weight": 32,
+      "icon": {
+        "source": "blizzard",
+        "id": "inv_misc_qirajicrystal_01"
+      }
+    },
+    {
+      "id": "hard",
+      "name": "Hard",
+      "label": "Hard",
+      "accent": "hard",
+      "weight": 18,
+      "icon": {
+        "source": "blizzard",
+        "id": "inv_misc_qirajicrystal_02"
+      }
+    },
+    {
+      "id": "insane",
+      "name": "Insane",
+      "label": "Insane",
+      "accent": "insane",
+      "weight": 8,
+      "icon": {
+        "source": "blizzard",
+        "id": "inv_misc_qirajicrystal_05"
+      }
+    }
+  ],
+  "friction": {
+    "profession": {
+      "related": 8,
+      "alchemy": 8,
+      "engineering": 0,
+      "unrelated": 15
+    },
+    "ignoreProfessionIds": [
+      "unprofessional-conduct"
+    ],
+    "selfFound": 38,
+    "stackingByCount": [
+      0,
+      0,
+      4,
+      10,
+      18,
+      28,
+      40,
+      54,
+      70
+    ],
+    "synergies": [
+      {
+        "id": "self-found-thanks-but-no-thanks",
+        "requires": [
+          "self-found",
+          "thanks-but-no-thanks"
+        ],
+        "friction": 18,
+        "warning": "No AH, no trades, and no crafts from other players. Every upgrade is yours alone."
+      },
+      {
+        "id": "self-found-common-courtesy",
+        "requires": [
+          "self-found",
+          "common-courtesy"
+        ],
+        "friction": 16,
+        "warning": "White-quality gear with no auction house to replace what you cannot wear."
+      },
+      {
+        "id": "self-found-poor-taste",
+        "requires": [
+          "self-found",
+          "poor-taste"
+        ],
+        "friction": 18,
+        "warning": "Grey gear only and no market to replace what breaks."
+      },
+      {
+        "id": "self-found-unprofessional-conduct",
+        "requires": [
+          "self-found",
+          "unprofessional-conduct"
+        ],
+        "friction": 14,
+        "warning": "No professions and no auction house. You cannot craft or buy the gap closed."
+      },
+      {
+        "id": "self-found-nudist",
+        "requires": [
+          "self-found",
+          "nudist"
+        ],
+        "friction": 12,
+        "warning": "No armour and no market to buy a workaround."
+      },
+      {
+        "id": "self-found-fasting-and-furious",
+        "requires": [
+          "self-found",
+          "fasting-and-furious"
+        ],
+        "friction": 10,
+        "warning": "No food and no buying replacements when you cannot cook."
+      },
+      {
+        "id": "self-found-consume-responsibly",
+        "requires": [
+          "self-found",
+          "consume-responsibly"
+        ],
+        "friction": 8,
+        "warning": "Consumable limits with no auction house to restock."
+      },
+      {
+        "id": "self-found-potion-commotion",
+        "requires": [
+          "self-found",
+          "potion-commotion"
+        ],
+        "friction": 6,
+        "warning": "Potion limits with no auction house to restock."
+      },
+      {
+        "id": "self-found-weaponised-incompetence",
+        "requires": [
+          "self-found",
+          "weaponised-incompetence"
+        ],
+        "friction": 14,
+        "warning": "No weapons and no market to replace what you cannot swing."
+      },
+      {
+        "id": "self-found-arms-race",
+        "requires": [
+          "self-found",
+          "arms-race"
+        ],
+        "friction": 12,
+        "warning": "Weapon-skill gates with no auction house to buy cheap skill-ups."
+      },
+      {
+        "id": "self-found-pack-light",
+        "requires": [
+          "self-found",
+          "pack-light"
+        ],
+        "friction": 10,
+        "warning": "Tiny bags and no auction house. Every slot is a route decision."
+      },
+      {
+        "id": "self-found-naturally-untalented",
+        "requires": [
+          "self-found",
+          "naturally-untalented"
+        ],
+        "friction": 10,
+        "warning": "No talents and no market to paper over a weaker kit."
+      },
+      {
+        "id": "self-found-closed-for-business",
+        "requires": [
+          "self-found",
+          "closed-for-business"
+        ],
+        "friction": 20,
+        "warning": "Self Found and no vendors. There is no shop, no AH, and no repair counter."
+      },
+      {
+        "id": "self-found-never-graduated",
+        "requires": [
+          "self-found",
+          "never-graduated"
+        ],
+        "friction": 16,
+        "warning": "No trainers and no AH. Skills and gear both have to come from the world."
+      },
+      {
+        "id": "self-found-side-quest-aversion",
+        "requires": [
+          "self-found",
+          "side-quest-aversion"
+        ],
+        "friction": 12,
+        "warning": "No quest rewards and Self Found. The world drop table is the whole game."
+      },
+      {
+        "id": "self-found-bank-holiday",
+        "requires": [
+          "self-found",
+          "bank-holiday"
+        ],
+        "friction": 8,
+        "warning": "No bank and no AH. If it does not fit, it is gone."
+      },
+      {
+        "id": "self-found-restless",
+        "requires": [
+          "self-found",
+          "restless"
+        ],
+        "friction": 6,
+        "warning": "No rested XP and no market to speed the grind."
+      },
+      {
+        "id": "self-found-conan-the-barebarian",
+        "requires": [
+          "self-found",
+          "conan-the-barebarian"
+        ],
+        "friction": 10,
+        "warning": "An empty chest slot and no vendor or AH to fill it."
+      },
+      {
+        "id": "self-found-bow-out",
+        "requires": [
+          "self-found",
+          "bow-out"
+        ],
+        "friction": 10,
+        "warning": "Melee-only hunter with no auction house for replacement weapons."
+      },
+      {
+        "id": "self-found-featherweight",
+        "requires": [
+          "self-found",
+          "featherweight"
+        ],
+        "friction": 8,
+        "warning": "Cloth-only leather wearer with no market for replacements."
+      },
+      {
+        "id": "self-found-table-for-none",
+        "requires": [
+          "self-found",
+          "table-for-none"
+        ],
+        "friction": 8,
+        "warning": "No conjured food or water and no auction house to restock."
+      },
+      {
+        "id": "self-found-poison-control",
+        "requires": [
+          "self-found",
+          "poison-control"
+        ],
+        "friction": 8,
+        "warning": "No poisons and no market to buy them."
+      },
+      {
+        "id": "self-found-stone-cold",
+        "requires": [
+          "self-found",
+          "stone-cold"
+        ],
+        "friction": 10,
+        "warning": "No Soulstone or Healthstone and no auction house for potions."
+      },
+      {
+        "id": "self-found-evocation-eviction",
+        "requires": [
+          "self-found",
+          "evocation-eviction"
+        ],
+        "friction": 8,
+        "warning": "No Evocation or mana gems and no auction house for drinks."
+      },
+      {
+        "id": "self-found-left-hand-free",
+        "requires": [
+          "self-found",
+          "left-hand-free"
+        ],
+        "friction": 8,
+        "warning": "No shield and no market for a workaround."
+      },
+      {
+        "id": "self-found-one-hand-clapping",
+        "requires": [
+          "self-found",
+          "one-hand-clapping"
+        ],
+        "friction": 8,
+        "warning": "No dual wield and weapon drops have to come from the world."
+      },
+      {
+        "id": "self-found-hands-to-yourself",
+        "requires": [
+          "self-found",
+          "hands-to-yourself"
+        ],
+        "friction": 6,
+        "warning": "No Lay on Hands and no auction house to restock emergency heals."
+      },
+      {
+        "id": "self-found-healing-touch-y-subject",
+        "requires": [
+          "self-found",
+          "healing-touch-y-subject"
+        ],
+        "friction": 8,
+        "warning": "Main heal gone and no market to cover the recovery gap."
+      },
+      {
+        "id": "self-found-lights-out",
+        "requires": [
+          "self-found",
+          "lights-out"
+        ],
+        "friction": 8,
+        "warning": "Main heal gone and no market to cover the recovery gap."
+      },
+      {
+        "id": "self-found-wave-goodbye",
+        "requires": [
+          "self-found",
+          "wave-goodbye"
+        ],
+        "friction": 8,
+        "warning": "Main heal gone and no market to cover the recovery gap."
+      },
+      {
+        "id": "self-found-out-of-bolts",
+        "requires": [
+          "self-found",
+          "out-of-bolts"
+        ],
+        "friction": 6,
+        "warning": "Main filler gone and Self Found cannot buy a kit to compensate."
+      },
+      {
+        "id": "self-found-storm-warning",
+        "requires": [
+          "self-found",
+          "storm-warning"
+        ],
+        "friction": 6,
+        "warning": "Main filler gone and Self Found cannot buy a kit to compensate."
+      },
+      {
+        "id": "self-found-barkless",
+        "requires": [
+          "self-found",
+          "barkless"
+        ],
+        "friction": 6,
+        "warning": "No Barkskin or Frenzied Regeneration and no potions from the AH."
+      },
+      {
+        "id": "self-found-unwarded",
+        "requires": [
+          "self-found",
+          "unwarded"
+        ],
+        "friction": 6,
+        "warning": "No mage armours and no auction house for extra safety."
+      },
+      {
+        "id": "self-found-wall-not-included",
+        "requires": [
+          "self-found",
+          "wall-not-included"
+        ],
+        "friction": 6,
+        "warning": "No Shield Wall or Last Stand and no AH potions to fake them."
+      },
+      {
+        "id": "self-found-feign-disbelief",
+        "requires": [
+          "self-found",
+          "feign-disbelief"
+        ],
+        "friction": 6,
+        "warning": "No Feign Death and no market for extra escape tools."
+      },
+      {
+        "id": "self-found-ankh-ious",
+        "requires": [
+          "self-found",
+          "ankh-ious"
+        ],
+        "friction": 8,
+        "warning": "No Reincarnation and Self Found cannot buy extra lives."
+      },
+      {
+        "id": "self-found-cold-shoulder",
+        "requires": [
+          "self-found",
+          "cold-shoulder"
+        ],
+        "friction": 6,
+        "warning": "No Ice Block and no auction house for emergency tools."
+      },
+      {
+        "id": "self-found-reel-progress",
+        "requires": [
+          "self-found",
+          "reel-progress"
+        ],
+        "friction": 6,
+        "warning": "Fishing gates with no auction house for poles, lures, or food."
+      },
+      {
+        "id": "pack-light-fasting-and-furious",
+        "requires": [
+          "pack-light",
+          "fasting-and-furious"
+        ],
+        "friction": 8,
+        "warning": "Tiny bags and no food. You cannot carry a pantry even if you could eat."
+      },
+      {
+        "id": "pack-light-consume-responsibly",
+        "requires": [
+          "pack-light",
+          "consume-responsibly"
+        ],
+        "friction": 6,
+        "warning": "Tiny bags and no consumables. Inventory pressure with nothing to stash."
+      },
+      {
+        "id": "pack-light-unprofessional-conduct",
+        "requires": [
+          "pack-light",
+          "unprofessional-conduct"
+        ],
+        "friction": 8,
+        "warning": "No crafted bags and a six-slot limit on everything else."
+      },
+      {
+        "id": "pack-light-bank-holiday",
+        "requires": [
+          "pack-light",
+          "bank-holiday"
+        ],
+        "friction": 8,
+        "warning": "Tiny bags and no bank. Overflow is a delete key."
+      },
+      {
+        "id": "closed-for-business-unprofessional-conduct",
+        "requires": [
+          "closed-for-business",
+          "unprofessional-conduct"
+        ],
+        "friction": 12,
+        "warning": "No vendors and no professions. You cannot buy, repair, or craft the gap closed."
+      },
+      {
+        "id": "closed-for-business-nudist",
+        "requires": [
+          "closed-for-business",
+          "nudist"
+        ],
+        "friction": 12,
+        "warning": "No armour and no vendor repairs. Everything that breaks stays broken."
+      },
+      {
+        "id": "never-graduated-naturally-untalented",
+        "requires": [
+          "never-graduated",
+          "naturally-untalented"
+        ],
+        "friction": 12,
+        "warning": "No new spells and no talents. Your level 1 kit has to last."
+      },
+      {
+        "id": "party-pooper-no-instance-left-behind",
+        "requires": [
+          "party-pooper",
+          "no-instance-left-behind"
+        ],
+        "friction": 10,
+        "warning": "Every dungeon is required and you cannot group. That is a lot of solo instances."
+      },
+      {
+        "id": "party-pooper-point-blank",
+        "requires": [
+          "party-pooper",
+          "point-blank"
+        ],
+        "friction": 8,
+        "warning": "Always at range and you cannot group. Every pull is a solo kite."
+      },
+      {
+        "id": "red-flag-party-pooper",
+        "requires": [
+          "red-flag",
+          "party-pooper"
+        ],
+        "friction": 8,
+        "warning": "Always PvP flagged and you cannot group. Every stranger is a problem."
+      },
+      {
+        "id": "mounting-problems-howl-no",
+        "requires": [
+          "mounting-problems",
+          "howl-no"
+        ],
+        "friction": 8,
+        "warning": "No mounts and no Ghost Wolf. The whole map is on foot."
+      },
+      {
+        "id": "mounting-problems-pacing-yourself",
+        "requires": [
+          "mounting-problems",
+          "pacing-yourself"
+        ],
+        "friction": 6,
+        "warning": "No mounts and no Cheetah. Travel is slow and stays slow."
+      },
+      {
+        "id": "mounting-problems-last-in-the-race",
+        "requires": [
+          "mounting-problems",
+          "last-in-the-race"
+        ],
+        "friction": 6,
+        "warning": "No mounts and no Sprint. Rogues walk the whole run."
+      },
+      {
+        "id": "mounting-problems-uncharged",
+        "requires": [
+          "mounting-problems",
+          "uncharged"
+        ],
+        "friction": 6,
+        "warning": "No mounts and no Charge. Warriors close every gap the hard way."
+      },
+      {
+        "id": "frequent-flyer-denied-howl-no",
+        "requires": [
+          "frequent-flyer-denied",
+          "howl-no"
+        ],
+        "friction": 6,
+        "warning": "No flight paths and no Ghost Wolf. Zones are a hike."
+      },
+      {
+        "id": "frequent-flyer-denied-travel-ban",
+        "requires": [
+          "frequent-flyer-denied",
+          "travel-ban"
+        ],
+        "friction": 8,
+        "warning": "No flight paths and no Travel Form. Druids walk like everyone else."
+      },
+      {
+        "id": "frequent-flyer-denied-stuck-in-the-office",
+        "requires": [
+          "frequent-flyer-denied",
+          "stuck-in-the-office"
+        ],
+        "friction": 8,
+        "warning": "No flight paths and no forms. Druid travel is boots only."
+      },
+      {
+        "id": "bubble-trouble-hands-to-yourself",
+        "requires": [
+          "bubble-trouble",
+          "hands-to-yourself"
+        ],
+        "friction": 8,
+        "warning": "No Divine Shield and no Lay on Hands. Paladin panic buttons are both gone."
+      },
+      {
+        "id": "healing-touch-y-subject-inner-hate",
+        "requires": [
+          "healing-touch-y-subject",
+          "inner-hate"
+        ],
+        "friction": 8,
+        "warning": "No Healing Touch and no Innervate or Tranquility. Restoration has almost no big buttons."
+      },
+      {
+        "id": "wave-goodbye-ankh-ious",
+        "requires": [
+          "wave-goodbye",
+          "ankh-ious"
+        ],
+        "friction": 8,
+        "warning": "No Healing Wave and no Reincarnation. Restoration shaman has no big heal and no extra life."
+      },
+      {
+        "id": "out-of-bolts-rain-check",
+        "requires": [
+          "out-of-bolts",
+          "rain-check"
+        ],
+        "friction": 6,
+        "warning": "No Shadow Bolt and no Rain of Fire. Destruction is missing its filler and its AoE."
+      },
+      {
+        "id": "pain-free-zone-formless",
+        "requires": [
+          "pain-free-zone",
+          "formless"
+        ],
+        "friction": 8,
+        "warning": "No Shadowform and no Pain or Mind Flay. Shadow is missing its shape and its filler."
+      },
+      {
+        "id": "claws-for-concern-cat-got-your-tongue",
+        "requires": [
+          "claws-for-concern",
+          "cat-got-your-tongue"
+        ],
+        "friction": 6,
+        "warning": "No opener and no finishers. Feral cat is missing both ends of the combo."
+      },
+      {
+        "id": "aimless-unmarked",
+        "requires": [
+          "aimless",
+          "unmarked"
+        ],
+        "friction": 6,
+        "warning": "No Aimed Shot and no Hunter’s Mark. Marksmanship is missing its identity and its damage amp."
+      },
+      {
+        "id": "sinister-misunderstanding-flurry-cancelled",
+        "requires": [
+          "sinister-misunderstanding",
+          "flurry-cancelled"
+        ],
+        "friction": 6,
+        "warning": "No Sinister Strike and no Blade Flurry. Combat rogue is missing filler and AoE."
+      },
+      {
+        "id": "backstabber-s-honesty-sliced-out",
+        "requires": [
+          "backstabber-s-honesty",
+          "sliced-out"
+        ],
+        "friction": 6,
+        "warning": "No Backstab and no Slice and Dice. Assassination is missing opener and uptime."
+      },
+      {
+        "id": "mortal-strike-out-bleeding-heart",
+        "requires": [
+          "mortal-strike-out",
+          "bleeding-heart"
+        ],
+        "friction": 6,
+        "warning": "No Mortal Strike and no Rend. Arms is missing its signature and its DoT."
+      },
+      {
+        "id": "mortal-strike-out-sweeping-generalisations",
+        "requires": [
+          "mortal-strike-out",
+          "sweeping-generalisations"
+        ],
+        "friction": 6,
+        "warning": "No Mortal Strike and no Sweeping Strikes. Arms is missing single-target and cleave tools."
+      },
+      {
+        "id": "bloodthirst-quenched-calm-down-dear",
+        "requires": [
+          "bloodthirst-quenched",
+          "calm-down-dear"
+        ],
+        "friction": 6,
+        "warning": "No Bloodthirst and no Recklessness. Fury is missing damage and its panic button."
+      },
+      {
+        "id": "unprovoked-wall-not-included",
+        "requires": [
+          "unprovoked",
+          "wall-not-included"
+        ],
+        "friction": 8,
+        "warning": "No Taunt and no Shield Wall. Protection cannot hold or survive the hold."
+      },
+      {
+        "id": "passive-aggressive-fed-up",
+        "requires": [
+          "passive-aggressive",
+          "fed-up"
+        ],
+        "friction": 8,
+        "warning": "Passive pet and no Mend Pet. Beast Mastery cannot keep the pet alive or in the fight."
+      },
+      {
+        "id": "moon-landing-denied-moonkin-out-of-order",
+        "requires": [
+          "moon-landing-denied",
+          "moonkin-out-of-order"
+        ],
+        "friction": 8,
+        "warning": "No Moonkin Form and no Moonfire or Starfire. Balance is missing form and filler."
+      },
+      {
+        "id": "self-found-shattered-expectations",
+        "requires": [
+          "self-found",
+          "shattered-expectations"
+        ],
+        "friction": 8,
+        "warning": "You can only hit chilled targets and Self Found cannot buy extra frost tools."
+      },
+      {
+        "id": "self-found-house-call",
+        "requires": [
+          "self-found",
+          "house-call"
+        ],
+        "friction": 6,
+        "warning": "Heals only work at 10 yards and Self Found cannot buy range or safety."
+      },
+      {
+        "id": "lights-out-house-call",
+        "requires": [
+          "lights-out",
+          "house-call"
+        ],
+        "friction": 8,
+        "warning": "No Holy Light, and the heals you still have only work in melee."
+      },
+      {
+        "id": "shattered-expectations-cold-spell",
+        "requires": [
+          "shattered-expectations",
+          "cold-spell"
+        ],
+        "friction": 8,
+        "warning": "Frost damage only, and you may only hit targets that are already chilled."
+      },
+      {
+        "id": "playing-with-fire-rain-check",
+        "requires": [
+          "playing-with-fire",
+          "rain-check"
+        ],
+        "friction": 6,
+        "warning": "Fire damage only, and Rain of Fire, Hellfire, and Shadowburn are gone."
+      },
+      {
+        "id": "creature-of-habit-furwell-friend",
+        "requires": [
+          "creature-of-habit",
+          "furwell-friend"
+        ],
+        "friction": 6,
+        "warning": "If the pet dies you must tame again, but only from the same family."
+      }
+    ]
+  },
+  "affixCategories": [
+    {
+      "id": "universal",
+      "name": "UNIVERSAL",
+      "label": "Any class",
+      "icon": {
+        "source": "blizzard",
+        "id": "inv_misc_groupneedmore"
+      }
+    },
+    {
+      "id": "class",
+      "name": "CLASS",
+      "label": "Class-specific",
+      "icon": {
+        "source": "blizzard",
+        "id": "inv_misc_book_07"
+      }
+    },
+    {
+      "id": "spec",
+      "name": "SPEC",
+      "label": "Spec-specific",
+      "icon": {
+        "source": "blizzard",
+        "id": "spell_holy_weaponmastery"
+      }
+    }
+  ],
+  "classes": [
+    {
+      "id": "druid",
+      "name": "Druid",
+      "icon": {
+        "source": "blizzard",
+        "id": "classicon_druid"
+      },
+      "races": {
+        "alliance": [
+          "Night Elf",
+          "Skyborne"
+        ],
+        "horde": [
+          "Tauren",
+          "Skyborne"
+        ]
+      },
+      "specs": [
+        "Feral",
+        "Restoration",
+        "Balance"
+      ],
+      "presetProfessionId": "lw-skin"
+    },
+    {
+      "id": "hunter",
+      "name": "Hunter",
+      "icon": {
+        "source": "blizzard",
+        "id": "classicon_hunter"
+      },
+      "races": {
+        "alliance": [
+          "Human",
+          "Dwarf",
+          "Night Elf",
+          "Skyborne"
+        ],
+        "horde": [
+          "Orc",
+          "Tauren",
+          "Troll",
+          "Skyborne"
+        ]
+      },
+      "specs": [
+        "Beast Mastery",
+        "Survival",
+        "Marksmanship"
+      ],
+      "presetProfessionId": "lw-skin"
+    },
+    {
+      "id": "mage",
+      "name": "Mage",
+      "icon": {
+        "source": "blizzard",
+        "id": "classicon_mage"
+      },
+      "races": {
+        "alliance": [
+          "Human",
+          "Gnome",
+          "Skyborne"
+        ],
+        "horde": [
+          "Orc",
+          "Undead",
+          "Troll"
+        ]
+      },
+      "specs": [
+        "Arcane",
+        "Fire",
+        "Frost"
+      ],
+      "presetProfessionId": "tail-ench"
+    },
+    {
+      "id": "paladin",
+      "name": "Paladin",
+      "icon": {
+        "source": "blizzard",
+        "id": "classicon_paladin"
+      },
+      "races": {
+        "alliance": [
+          "Human",
+          "Dwarf"
+        ],
+        "horde": [
+          "Undead"
+        ]
+      },
+      "specs": [
+        "Protection",
+        "Retribution",
+        "Holy"
+      ],
+      "presetProfessionId": "bs-mine"
+    },
+    {
+      "id": "priest",
+      "name": "Priest",
+      "icon": {
+        "source": "blizzard",
+        "id": "classicon_priest"
+      },
+      "races": {
+        "alliance": [
+          "Human",
+          "Dwarf",
+          "Night Elf",
+          "Gnome"
+        ],
+        "horde": [
+          "Undead",
+          "Troll"
+        ]
+      },
+      "specs": [
+        "Discipline",
+        "Holy",
+        "Shadow"
+      ],
+      "presetProfessionId": "tail-ench"
+    },
+    {
+      "id": "rogue",
+      "name": "Rogue",
+      "icon": {
+        "source": "blizzard",
+        "id": "classicon_rogue"
+      },
+      "races": {
+        "alliance": [
+          "Human",
+          "Dwarf",
+          "Night Elf",
+          "Gnome",
+          "Skyborne"
+        ],
+        "horde": [
+          "Orc",
+          "Undead",
+          "Troll",
+          "Skyborne"
+        ]
+      },
+      "specs": [
+        "Assassination",
+        "Combat",
+        "Subtlety"
+      ],
+      "presetProfessionId": "lw-skin"
+    },
+    {
+      "id": "shaman",
+      "name": "Shaman",
+      "icon": {
+        "source": "blizzard",
+        "id": "classicon_shaman"
+      },
+      "races": {
+        "alliance": [
+          "Dwarf"
+        ],
+        "horde": [
+          "Orc",
+          "Tauren",
+          "Troll",
+          "Skyborne"
+        ]
+      },
+      "specs": [
+        "Enhancement",
+        "Elemental",
+        "Restoration"
+      ],
+      "presetProfessionId": "lw-skin"
+    },
+    {
+      "id": "warlock",
+      "name": "Warlock",
+      "icon": {
+        "source": "blizzard",
+        "id": "classicon_warlock"
+      },
+      "races": {
+        "alliance": [
+          "Human",
+          "Gnome"
+        ],
+        "horde": [
+          "Orc",
+          "Undead",
+          "Troll"
+        ]
+      },
+      "specs": [
+        "Affliction",
+        "Demonology",
+        "Destruction"
+      ],
+      "presetProfessionId": "tail-ench"
+    },
+    {
+      "id": "warrior",
+      "name": "Warrior",
+      "icon": {
+        "source": "blizzard",
+        "id": "classicon_warrior"
+      },
+      "races": {
+        "alliance": [
+          "Human",
+          "Dwarf",
+          "Night Elf",
+          "Gnome",
+          "Skyborne"
+        ],
+        "horde": [
+          "Orc",
+          "Undead",
+          "Tauren",
+          "Troll",
+          "Skyborne"
+        ]
+      },
+      "specs": [
+        "Protection",
+        "Arms",
+        "Fury"
+      ],
+      "presetProfessionId": "bs-mine"
+    }
+  ],
+  "races": [
+    {
+      "id": "human",
+      "name": "Human",
+      "icon": {
+        "source": "blizzard",
+        "id": "race_human_male"
+      }
+    },
+    {
+      "id": "dwarf",
+      "name": "Dwarf",
+      "icon": {
+        "source": "blizzard",
+        "id": "race_dwarf_male"
+      }
+    },
+    {
+      "id": "night-elf",
+      "name": "Night Elf",
+      "icon": {
+        "source": "blizzard",
+        "id": "race_nightelf_male"
+      }
+    },
+    {
+      "id": "gnome",
+      "name": "Gnome",
+      "icon": {
+        "source": "blizzard",
+        "id": "race_gnome_male"
+      }
+    },
+    {
+      "id": "orc",
+      "name": "Orc",
+      "icon": {
+        "source": "blizzard",
+        "id": "race_orc_male"
+      }
+    },
+    {
+      "id": "undead",
+      "name": "Undead",
+      "icon": {
+        "source": "blizzard",
+        "id": "race_scourge_male"
+      }
+    },
+    {
+      "id": "tauren",
+      "name": "Tauren",
+      "icon": {
+        "source": "blizzard",
+        "id": "race_tauren_male"
+      }
+    },
+    {
+      "id": "troll",
+      "name": "Troll",
+      "icon": {
+        "source": "blizzard",
+        "id": "race_troll_male"
+      }
+    },
+    {
+      "id": "skyborne",
+      "name": "Skyborne",
+      "icon": {
+        "source": "blizzard",
+        "id": "race_skyborne_male"
+      }
+    }
+  ],
+  "specs": [
+    {
+      "id": "druid-feral",
+      "classId": "druid",
+      "name": "Feral",
+      "frictionScore": 0,
+      "icon": {
+        "source": "blizzard",
+        "id": "ability_druid_catform"
+      }
+    },
+    {
+      "id": "druid-restoration",
+      "classId": "druid",
+      "name": "Restoration",
+      "frictionScore": 15,
+      "icon": {
+        "source": "blizzard",
+        "id": "spell_nature_healingtouch"
+      }
+    },
+    {
+      "id": "druid-balance",
+      "classId": "druid",
+      "name": "Balance",
+      "frictionScore": 6,
+      "icon": {
+        "source": "blizzard",
+        "id": "spell_nature_starfall"
+      }
+    },
+    {
+      "id": "hunter-beast-mastery",
+      "classId": "hunter",
+      "name": "Beast Mastery",
+      "frictionScore": 0,
+      "icon": {
+        "source": "blizzard",
+        "id": "ability_hunter_beasttaming"
+      }
+    },
+    {
+      "id": "hunter-survival",
+      "classId": "hunter",
+      "name": "Survival",
+      "frictionScore": 8,
+      "icon": {
+        "source": "blizzard",
+        "id": "ability_hunter_swiftstrike"
+      }
+    },
+    {
+      "id": "hunter-marksmanship",
+      "classId": "hunter",
+      "name": "Marksmanship",
+      "frictionScore": 6,
+      "icon": {
+        "source": "blizzard",
+        "id": "ability_marksmanship"
+      }
+    },
+    {
+      "id": "mage-arcane",
+      "classId": "mage",
+      "name": "Arcane",
+      "frictionScore": 8,
+      "icon": {
+        "source": "blizzard",
+        "id": "spell_holy_magicalsentry"
+      }
+    },
+    {
+      "id": "mage-fire",
+      "classId": "mage",
+      "name": "Fire",
+      "frictionScore": 10,
+      "icon": {
+        "source": "blizzard",
+        "id": "spell_fire_firebolt02"
+      }
+    },
+    {
+      "id": "mage-frost",
+      "classId": "mage",
+      "name": "Frost",
+      "frictionScore": 0,
+      "icon": {
+        "source": "blizzard",
+        "id": "spell_frost_frostbolt02"
+      }
+    },
+    {
+      "id": "paladin-protection",
+      "classId": "paladin",
+      "name": "Protection",
+      "frictionScore": 8,
+      "icon": {
+        "source": "blizzard",
+        "id": "spell_holy_devotionaura"
+      }
+    },
+    {
+      "id": "paladin-retribution",
+      "classId": "paladin",
+      "name": "Retribution",
+      "frictionScore": 0,
+      "icon": {
+        "source": "blizzard",
+        "id": "spell_holy_auraoflight"
+      }
+    },
+    {
+      "id": "paladin-holy",
+      "classId": "paladin",
+      "name": "Holy",
+      "frictionScore": 15,
+      "icon": {
+        "source": "blizzard",
+        "id": "spell_holy_holybolt"
+      }
+    },
+    {
+      "id": "priest-discipline",
+      "classId": "priest",
+      "name": "Discipline",
+      "frictionScore": 12,
+      "icon": {
+        "source": "blizzard",
+        "id": "spell_holy_wordfortitude"
+      }
+    },
+    {
+      "id": "priest-holy",
+      "classId": "priest",
+      "name": "Holy",
+      "frictionScore": 15,
+      "icon": {
+        "source": "blizzard",
+        "id": "spell_holy_holybolt"
+      }
+    },
+    {
+      "id": "priest-shadow",
+      "classId": "priest",
+      "name": "Shadow",
+      "frictionScore": 0,
+      "icon": {
+        "source": "blizzard",
+        "id": "spell_shadow_shadowwordpain"
+      }
+    },
+    {
+      "id": "rogue-assassination",
+      "classId": "rogue",
+      "name": "Assassination",
+      "frictionScore": 6,
+      "icon": {
+        "source": "blizzard",
+        "id": "ability_rogue_eviscerate"
+      }
+    },
+    {
+      "id": "rogue-combat",
+      "classId": "rogue",
+      "name": "Combat",
+      "frictionScore": 4,
+      "icon": {
+        "source": "blizzard",
+        "id": "ability_backstab"
+      }
+    },
+    {
+      "id": "rogue-subtlety",
+      "classId": "rogue",
+      "name": "Subtlety",
+      "frictionScore": 8,
+      "icon": {
+        "source": "blizzard",
+        "id": "ability_stealth"
+      }
+    },
+    {
+      "id": "shaman-enhancement",
+      "classId": "shaman",
+      "name": "Enhancement",
+      "frictionScore": 0,
+      "icon": {
+        "source": "blizzard",
+        "id": "spell_nature_lightningshield"
+      }
+    },
+    {
+      "id": "shaman-elemental",
+      "classId": "shaman",
+      "name": "Elemental",
+      "frictionScore": 6,
+      "icon": {
+        "source": "blizzard",
+        "id": "spell_nature_lightning"
+      }
+    },
+    {
+      "id": "shaman-restoration",
+      "classId": "shaman",
+      "name": "Restoration",
+      "frictionScore": 15,
+      "icon": {
+        "source": "blizzard",
+        "id": "spell_nature_magicimmunity"
+      }
+    },
+    {
+      "id": "warlock-affliction",
+      "classId": "warlock",
+      "name": "Affliction",
+      "frictionScore": 6,
+      "icon": {
+        "source": "blizzard",
+        "id": "spell_shadow_deathcoil"
+      }
+    },
+    {
+      "id": "warlock-demonology",
+      "classId": "warlock",
+      "name": "Demonology",
+      "frictionScore": 0,
+      "icon": {
+        "source": "blizzard",
+        "id": "spell_shadow_metamorphosis"
+      }
+    },
+    {
+      "id": "warlock-destruction",
+      "classId": "warlock",
+      "name": "Destruction",
+      "frictionScore": 8,
+      "icon": {
+        "source": "blizzard",
+        "id": "spell_shadow_rainoffire"
+      }
+    },
+    {
+      "id": "warrior-protection",
+      "classId": "warrior",
+      "name": "Protection",
+      "frictionScore": 8,
+      "icon": {
+        "source": "blizzard",
+        "id": "ability_warrior_defensivestance"
+      }
+    },
+    {
+      "id": "warrior-arms",
+      "classId": "warrior",
+      "name": "Arms",
+      "frictionScore": 6,
+      "icon": {
+        "source": "blizzard",
+        "id": "ability_warrior_savageblow"
+      }
+    },
+    {
+      "id": "warrior-fury",
+      "classId": "warrior",
+      "name": "Fury",
+      "frictionScore": 8,
+      "icon": {
+        "source": "blizzard",
+        "id": "ability_warrior_innerrage"
+      }
+    }
+  ],
+  "professionPairs": [
+    {
+      "id": "lw-skin",
+      "name": "Leatherworking and Skinning",
+      "professions": [
+        "Leatherworking",
+        "Skinning"
+      ],
+      "icon": {
+        "source": "blizzard",
+        "id": "inv_misc_armorkit_17"
+      }
+    },
+    {
+      "id": "eng-mine",
+      "name": "Engineering and Mining",
+      "professions": [
+        "Engineering",
+        "Mining"
+      ],
+      "icon": {
+        "source": "blizzard",
+        "id": "trade_engineering"
+      }
+    },
+    {
+      "id": "alch-herb",
+      "name": "Alchemy and Herbalism",
+      "professions": [
+        "Alchemy",
+        "Herbalism"
+      ],
+      "icon": {
+        "source": "blizzard",
+        "id": "trade_alchemy"
+      }
+    },
+    {
+      "id": "bs-mine",
+      "name": "Blacksmithing and Mining",
+      "professions": [
+        "Blacksmithing",
+        "Mining"
+      ],
+      "icon": {
+        "source": "blizzard",
+        "id": "trade_blacksmithing"
+      }
+    },
+    {
+      "id": "tail-ench",
+      "name": "Tailoring and Enchanting",
+      "professions": [
+        "Tailoring",
+        "Enchanting"
+      ],
+      "icon": {
+        "source": "blizzard",
+        "id": "trade_tailoring"
+      }
+    },
+    {
+      "id": "alchemy-blacksmithing",
+      "name": "Alchemy and Blacksmithing",
+      "professions": [
+        "Alchemy",
+        "Blacksmithing"
+      ],
+      "icon": {
+        "source": "blizzard",
+        "id": "trade_alchemy"
+      }
+    },
+    {
+      "id": "alchemy-enchanting",
+      "name": "Alchemy and Enchanting",
+      "professions": [
+        "Alchemy",
+        "Enchanting"
+      ],
+      "icon": {
+        "source": "blizzard",
+        "id": "trade_alchemy"
+      }
+    },
+    {
+      "id": "alchemy-engineering",
+      "name": "Alchemy and Engineering",
+      "professions": [
+        "Alchemy",
+        "Engineering"
+      ],
+      "icon": {
+        "source": "blizzard",
+        "id": "trade_alchemy"
+      }
+    },
+    {
+      "id": "alchemy-leatherworking",
+      "name": "Alchemy and Leatherworking",
+      "professions": [
+        "Alchemy",
+        "Leatherworking"
+      ],
+      "icon": {
+        "source": "blizzard",
+        "id": "trade_alchemy"
+      }
+    },
+    {
+      "id": "alchemy-mining",
+      "name": "Alchemy and Mining",
+      "professions": [
+        "Alchemy",
+        "Mining"
+      ],
+      "icon": {
+        "source": "blizzard",
+        "id": "trade_alchemy"
+      }
+    },
+    {
+      "id": "alchemy-skinning",
+      "name": "Alchemy and Skinning",
+      "professions": [
+        "Alchemy",
+        "Skinning"
+      ],
+      "icon": {
+        "source": "blizzard",
+        "id": "trade_alchemy"
+      }
+    },
+    {
+      "id": "alchemy-tailoring",
+      "name": "Alchemy and Tailoring",
+      "professions": [
+        "Alchemy",
+        "Tailoring"
+      ],
+      "icon": {
+        "source": "blizzard",
+        "id": "trade_alchemy"
+      }
+    },
+    {
+      "id": "blacksmithing-enchanting",
+      "name": "Blacksmithing and Enchanting",
+      "professions": [
+        "Blacksmithing",
+        "Enchanting"
+      ],
+      "icon": {
+        "source": "blizzard",
+        "id": "trade_blacksmithing"
+      }
+    },
+    {
+      "id": "blacksmithing-engineering",
+      "name": "Blacksmithing and Engineering",
+      "professions": [
+        "Blacksmithing",
+        "Engineering"
+      ],
+      "icon": {
+        "source": "blizzard",
+        "id": "trade_blacksmithing"
+      }
+    },
+    {
+      "id": "blacksmithing-herbalism",
+      "name": "Blacksmithing and Herbalism",
+      "professions": [
+        "Blacksmithing",
+        "Herbalism"
+      ],
+      "icon": {
+        "source": "blizzard",
+        "id": "trade_blacksmithing"
+      }
+    },
+    {
+      "id": "blacksmithing-leatherworking",
+      "name": "Blacksmithing and Leatherworking",
+      "professions": [
+        "Blacksmithing",
+        "Leatherworking"
+      ],
+      "icon": {
+        "source": "blizzard",
+        "id": "trade_blacksmithing"
+      }
+    },
+    {
+      "id": "blacksmithing-skinning",
+      "name": "Blacksmithing and Skinning",
+      "professions": [
+        "Blacksmithing",
+        "Skinning"
+      ],
+      "icon": {
+        "source": "blizzard",
+        "id": "trade_blacksmithing"
+      }
+    },
+    {
+      "id": "blacksmithing-tailoring",
+      "name": "Blacksmithing and Tailoring",
+      "professions": [
+        "Blacksmithing",
+        "Tailoring"
+      ],
+      "icon": {
+        "source": "blizzard",
+        "id": "trade_blacksmithing"
+      }
+    },
+    {
+      "id": "enchanting-engineering",
+      "name": "Enchanting and Engineering",
+      "professions": [
+        "Enchanting",
+        "Engineering"
+      ],
+      "icon": {
+        "source": "blizzard",
+        "id": "trade_engraving"
+      }
+    },
+    {
+      "id": "enchanting-herbalism",
+      "name": "Enchanting and Herbalism",
+      "professions": [
+        "Enchanting",
+        "Herbalism"
+      ],
+      "icon": {
+        "source": "blizzard",
+        "id": "trade_engraving"
+      }
+    },
+    {
+      "id": "enchanting-leatherworking",
+      "name": "Enchanting and Leatherworking",
+      "professions": [
+        "Enchanting",
+        "Leatherworking"
+      ],
+      "icon": {
+        "source": "blizzard",
+        "id": "trade_engraving"
+      }
+    },
+    {
+      "id": "enchanting-mining",
+      "name": "Enchanting and Mining",
+      "professions": [
+        "Enchanting",
+        "Mining"
+      ],
+      "icon": {
+        "source": "blizzard",
+        "id": "trade_engraving"
+      }
+    },
+    {
+      "id": "enchanting-skinning",
+      "name": "Enchanting and Skinning",
+      "professions": [
+        "Enchanting",
+        "Skinning"
+      ],
+      "icon": {
+        "source": "blizzard",
+        "id": "trade_engraving"
+      }
+    },
+    {
+      "id": "engineering-herbalism",
+      "name": "Engineering and Herbalism",
+      "professions": [
+        "Engineering",
+        "Herbalism"
+      ],
+      "icon": {
+        "source": "blizzard",
+        "id": "trade_engineering"
+      }
+    },
+    {
+      "id": "engineering-leatherworking",
+      "name": "Engineering and Leatherworking",
+      "professions": [
+        "Engineering",
+        "Leatherworking"
+      ],
+      "icon": {
+        "source": "blizzard",
+        "id": "trade_engineering"
+      }
+    },
+    {
+      "id": "engineering-skinning",
+      "name": "Engineering and Skinning",
+      "professions": [
+        "Engineering",
+        "Skinning"
+      ],
+      "icon": {
+        "source": "blizzard",
+        "id": "trade_engineering"
+      }
+    },
+    {
+      "id": "engineering-tailoring",
+      "name": "Engineering and Tailoring",
+      "professions": [
+        "Engineering",
+        "Tailoring"
+      ],
+      "icon": {
+        "source": "blizzard",
+        "id": "trade_engineering"
+      }
+    },
+    {
+      "id": "herbalism-leatherworking",
+      "name": "Herbalism and Leatherworking",
+      "professions": [
+        "Herbalism",
+        "Leatherworking"
+      ],
+      "icon": {
+        "source": "blizzard",
+        "id": "trade_herbalism"
+      }
+    },
+    {
+      "id": "herbalism-mining",
+      "name": "Herbalism and Mining",
+      "professions": [
+        "Herbalism",
+        "Mining"
+      ],
+      "icon": {
+        "source": "blizzard",
+        "id": "trade_herbalism"
+      }
+    },
+    {
+      "id": "herbalism-skinning",
+      "name": "Herbalism and Skinning",
+      "professions": [
+        "Herbalism",
+        "Skinning"
+      ],
+      "icon": {
+        "source": "blizzard",
+        "id": "trade_herbalism"
+      }
+    },
+    {
+      "id": "herbalism-tailoring",
+      "name": "Herbalism and Tailoring",
+      "professions": [
+        "Herbalism",
+        "Tailoring"
+      ],
+      "icon": {
+        "source": "blizzard",
+        "id": "trade_herbalism"
+      }
+    },
+    {
+      "id": "leatherworking-mining",
+      "name": "Leatherworking and Mining",
+      "professions": [
+        "Leatherworking",
+        "Mining"
+      ],
+      "icon": {
+        "source": "blizzard",
+        "id": "inv_misc_armorkit_17"
+      }
+    },
+    {
+      "id": "leatherworking-tailoring",
+      "name": "Leatherworking and Tailoring",
+      "professions": [
+        "Leatherworking",
+        "Tailoring"
+      ],
+      "icon": {
+        "source": "blizzard",
+        "id": "inv_misc_armorkit_17"
+      }
+    },
+    {
+      "id": "mining-skinning",
+      "name": "Mining and Skinning",
+      "professions": [
+        "Mining",
+        "Skinning"
+      ],
+      "icon": {
+        "source": "blizzard",
+        "id": "trade_mining"
+      }
+    },
+    {
+      "id": "mining-tailoring",
+      "name": "Mining and Tailoring",
+      "professions": [
+        "Mining",
+        "Tailoring"
+      ],
+      "icon": {
+        "source": "blizzard",
+        "id": "trade_mining"
+      }
+    },
+    {
+      "id": "skinning-tailoring",
+      "name": "Skinning and Tailoring",
+      "professions": [
+        "Skinning",
+        "Tailoring"
+      ],
+      "icon": {
+        "source": "blizzard",
+        "id": "inv_misc_pelt_wolf_01"
+      }
+    }
+  ],
+  "professionWeights": {
+    "Druid": {
+      "lw-skin": 70,
+      "eng-mine": 12,
+      "alch-herb": 12,
+      "bs-mine": 0.2,
+      "tail-ench": 0.2,
+      "alchemy-blacksmithing": 0.2,
+      "alchemy-enchanting": 0.2,
+      "alchemy-engineering": 0.2,
+      "alchemy-leatherworking": 0.2,
+      "alchemy-mining": 0.2,
+      "alchemy-skinning": 0.2,
+      "alchemy-tailoring": 0.2,
+      "blacksmithing-enchanting": 0.2,
+      "blacksmithing-engineering": 0.2,
+      "blacksmithing-herbalism": 0.2,
+      "blacksmithing-leatherworking": 0.2,
+      "blacksmithing-skinning": 0.2,
+      "blacksmithing-tailoring": 0.2,
+      "enchanting-engineering": 0.2,
+      "enchanting-herbalism": 0.2,
+      "enchanting-leatherworking": 0.2,
+      "enchanting-mining": 0.2,
+      "enchanting-skinning": 0.2,
+      "engineering-herbalism": 0.2,
+      "engineering-leatherworking": 0.2,
+      "engineering-skinning": 0.2,
+      "engineering-tailoring": 0.2,
+      "herbalism-leatherworking": 0.2,
+      "herbalism-mining": 0.2,
+      "herbalism-skinning": 0.2,
+      "herbalism-tailoring": 0.2,
+      "leatherworking-mining": 0.2,
+      "leatherworking-tailoring": 0.2,
+      "mining-skinning": 0.2,
+      "mining-tailoring": 0.2,
+      "skinning-tailoring": 0.2
+    },
+    "Hunter": {
+      "lw-skin": 70,
+      "eng-mine": 12,
+      "alch-herb": 12,
+      "bs-mine": 0.2,
+      "tail-ench": 0.2,
+      "alchemy-blacksmithing": 0.2,
+      "alchemy-enchanting": 0.2,
+      "alchemy-engineering": 0.2,
+      "alchemy-leatherworking": 0.2,
+      "alchemy-mining": 0.2,
+      "alchemy-skinning": 0.2,
+      "alchemy-tailoring": 0.2,
+      "blacksmithing-enchanting": 0.2,
+      "blacksmithing-engineering": 0.2,
+      "blacksmithing-herbalism": 0.2,
+      "blacksmithing-leatherworking": 0.2,
+      "blacksmithing-skinning": 0.2,
+      "blacksmithing-tailoring": 0.2,
+      "enchanting-engineering": 0.2,
+      "enchanting-herbalism": 0.2,
+      "enchanting-leatherworking": 0.2,
+      "enchanting-mining": 0.2,
+      "enchanting-skinning": 0.2,
+      "engineering-herbalism": 0.2,
+      "engineering-leatherworking": 0.2,
+      "engineering-skinning": 0.2,
+      "engineering-tailoring": 0.2,
+      "herbalism-leatherworking": 0.2,
+      "herbalism-mining": 0.2,
+      "herbalism-skinning": 0.2,
+      "herbalism-tailoring": 0.2,
+      "leatherworking-mining": 0.2,
+      "leatherworking-tailoring": 0.2,
+      "mining-skinning": 0.2,
+      "mining-tailoring": 0.2,
+      "skinning-tailoring": 0.2
+    },
+    "Mage": {
+      "lw-skin": 0.2,
+      "eng-mine": 12,
+      "alch-herb": 12,
+      "bs-mine": 0.2,
+      "tail-ench": 70,
+      "alchemy-blacksmithing": 0.2,
+      "alchemy-enchanting": 0.2,
+      "alchemy-engineering": 0.2,
+      "alchemy-leatherworking": 0.2,
+      "alchemy-mining": 0.2,
+      "alchemy-skinning": 0.2,
+      "alchemy-tailoring": 0.2,
+      "blacksmithing-enchanting": 0.2,
+      "blacksmithing-engineering": 0.2,
+      "blacksmithing-herbalism": 0.2,
+      "blacksmithing-leatherworking": 0.2,
+      "blacksmithing-skinning": 0.2,
+      "blacksmithing-tailoring": 0.2,
+      "enchanting-engineering": 0.2,
+      "enchanting-herbalism": 0.2,
+      "enchanting-leatherworking": 0.2,
+      "enchanting-mining": 0.2,
+      "enchanting-skinning": 0.2,
+      "engineering-herbalism": 0.2,
+      "engineering-leatherworking": 0.2,
+      "engineering-skinning": 0.2,
+      "engineering-tailoring": 0.2,
+      "herbalism-leatherworking": 0.2,
+      "herbalism-mining": 0.2,
+      "herbalism-skinning": 0.2,
+      "herbalism-tailoring": 0.2,
+      "leatherworking-mining": 0.2,
+      "leatherworking-tailoring": 0.2,
+      "mining-skinning": 0.2,
+      "mining-tailoring": 0.2,
+      "skinning-tailoring": 0.2
+    },
+    "Paladin": {
+      "lw-skin": 0.2,
+      "eng-mine": 12,
+      "alch-herb": 12,
+      "bs-mine": 70,
+      "tail-ench": 0.2,
+      "alchemy-blacksmithing": 0.2,
+      "alchemy-enchanting": 0.2,
+      "alchemy-engineering": 0.2,
+      "alchemy-leatherworking": 0.2,
+      "alchemy-mining": 0.2,
+      "alchemy-skinning": 0.2,
+      "alchemy-tailoring": 0.2,
+      "blacksmithing-enchanting": 0.2,
+      "blacksmithing-engineering": 0.2,
+      "blacksmithing-herbalism": 0.2,
+      "blacksmithing-leatherworking": 0.2,
+      "blacksmithing-skinning": 0.2,
+      "blacksmithing-tailoring": 0.2,
+      "enchanting-engineering": 0.2,
+      "enchanting-herbalism": 0.2,
+      "enchanting-leatherworking": 0.2,
+      "enchanting-mining": 0.2,
+      "enchanting-skinning": 0.2,
+      "engineering-herbalism": 0.2,
+      "engineering-leatherworking": 0.2,
+      "engineering-skinning": 0.2,
+      "engineering-tailoring": 0.2,
+      "herbalism-leatherworking": 0.2,
+      "herbalism-mining": 0.2,
+      "herbalism-skinning": 0.2,
+      "herbalism-tailoring": 0.2,
+      "leatherworking-mining": 0.2,
+      "leatherworking-tailoring": 0.2,
+      "mining-skinning": 0.2,
+      "mining-tailoring": 0.2,
+      "skinning-tailoring": 0.2
+    },
+    "Priest": {
+      "lw-skin": 0.2,
+      "eng-mine": 12,
+      "alch-herb": 12,
+      "bs-mine": 0.2,
+      "tail-ench": 70,
+      "alchemy-blacksmithing": 0.2,
+      "alchemy-enchanting": 0.2,
+      "alchemy-engineering": 0.2,
+      "alchemy-leatherworking": 0.2,
+      "alchemy-mining": 0.2,
+      "alchemy-skinning": 0.2,
+      "alchemy-tailoring": 0.2,
+      "blacksmithing-enchanting": 0.2,
+      "blacksmithing-engineering": 0.2,
+      "blacksmithing-herbalism": 0.2,
+      "blacksmithing-leatherworking": 0.2,
+      "blacksmithing-skinning": 0.2,
+      "blacksmithing-tailoring": 0.2,
+      "enchanting-engineering": 0.2,
+      "enchanting-herbalism": 0.2,
+      "enchanting-leatherworking": 0.2,
+      "enchanting-mining": 0.2,
+      "enchanting-skinning": 0.2,
+      "engineering-herbalism": 0.2,
+      "engineering-leatherworking": 0.2,
+      "engineering-skinning": 0.2,
+      "engineering-tailoring": 0.2,
+      "herbalism-leatherworking": 0.2,
+      "herbalism-mining": 0.2,
+      "herbalism-skinning": 0.2,
+      "herbalism-tailoring": 0.2,
+      "leatherworking-mining": 0.2,
+      "leatherworking-tailoring": 0.2,
+      "mining-skinning": 0.2,
+      "mining-tailoring": 0.2,
+      "skinning-tailoring": 0.2
+    },
+    "Rogue": {
+      "lw-skin": 70,
+      "eng-mine": 12,
+      "alch-herb": 12,
+      "bs-mine": 0.2,
+      "tail-ench": 0.2,
+      "alchemy-blacksmithing": 0.2,
+      "alchemy-enchanting": 0.2,
+      "alchemy-engineering": 0.2,
+      "alchemy-leatherworking": 0.2,
+      "alchemy-mining": 0.2,
+      "alchemy-skinning": 0.2,
+      "alchemy-tailoring": 0.2,
+      "blacksmithing-enchanting": 0.2,
+      "blacksmithing-engineering": 0.2,
+      "blacksmithing-herbalism": 0.2,
+      "blacksmithing-leatherworking": 0.2,
+      "blacksmithing-skinning": 0.2,
+      "blacksmithing-tailoring": 0.2,
+      "enchanting-engineering": 0.2,
+      "enchanting-herbalism": 0.2,
+      "enchanting-leatherworking": 0.2,
+      "enchanting-mining": 0.2,
+      "enchanting-skinning": 0.2,
+      "engineering-herbalism": 0.2,
+      "engineering-leatherworking": 0.2,
+      "engineering-skinning": 0.2,
+      "engineering-tailoring": 0.2,
+      "herbalism-leatherworking": 0.2,
+      "herbalism-mining": 0.2,
+      "herbalism-skinning": 0.2,
+      "herbalism-tailoring": 0.2,
+      "leatherworking-mining": 0.2,
+      "leatherworking-tailoring": 0.2,
+      "mining-skinning": 0.2,
+      "mining-tailoring": 0.2,
+      "skinning-tailoring": 0.2
+    },
+    "Shaman": {
+      "lw-skin": 70,
+      "eng-mine": 12,
+      "alch-herb": 12,
+      "bs-mine": 0.2,
+      "tail-ench": 0.2,
+      "alchemy-blacksmithing": 0.2,
+      "alchemy-enchanting": 0.2,
+      "alchemy-engineering": 0.2,
+      "alchemy-leatherworking": 0.2,
+      "alchemy-mining": 0.2,
+      "alchemy-skinning": 0.2,
+      "alchemy-tailoring": 0.2,
+      "blacksmithing-enchanting": 0.2,
+      "blacksmithing-engineering": 0.2,
+      "blacksmithing-herbalism": 0.2,
+      "blacksmithing-leatherworking": 0.2,
+      "blacksmithing-skinning": 0.2,
+      "blacksmithing-tailoring": 0.2,
+      "enchanting-engineering": 0.2,
+      "enchanting-herbalism": 0.2,
+      "enchanting-leatherworking": 0.2,
+      "enchanting-mining": 0.2,
+      "enchanting-skinning": 0.2,
+      "engineering-herbalism": 0.2,
+      "engineering-leatherworking": 0.2,
+      "engineering-skinning": 0.2,
+      "engineering-tailoring": 0.2,
+      "herbalism-leatherworking": 0.2,
+      "herbalism-mining": 0.2,
+      "herbalism-skinning": 0.2,
+      "herbalism-tailoring": 0.2,
+      "leatherworking-mining": 0.2,
+      "leatherworking-tailoring": 0.2,
+      "mining-skinning": 0.2,
+      "mining-tailoring": 0.2,
+      "skinning-tailoring": 0.2
+    },
+    "Warlock": {
+      "lw-skin": 0.2,
+      "eng-mine": 12,
+      "alch-herb": 12,
+      "bs-mine": 0.2,
+      "tail-ench": 70,
+      "alchemy-blacksmithing": 0.2,
+      "alchemy-enchanting": 0.2,
+      "alchemy-engineering": 0.2,
+      "alchemy-leatherworking": 0.2,
+      "alchemy-mining": 0.2,
+      "alchemy-skinning": 0.2,
+      "alchemy-tailoring": 0.2,
+      "blacksmithing-enchanting": 0.2,
+      "blacksmithing-engineering": 0.2,
+      "blacksmithing-herbalism": 0.2,
+      "blacksmithing-leatherworking": 0.2,
+      "blacksmithing-skinning": 0.2,
+      "blacksmithing-tailoring": 0.2,
+      "enchanting-engineering": 0.2,
+      "enchanting-herbalism": 0.2,
+      "enchanting-leatherworking": 0.2,
+      "enchanting-mining": 0.2,
+      "enchanting-skinning": 0.2,
+      "engineering-herbalism": 0.2,
+      "engineering-leatherworking": 0.2,
+      "engineering-skinning": 0.2,
+      "engineering-tailoring": 0.2,
+      "herbalism-leatherworking": 0.2,
+      "herbalism-mining": 0.2,
+      "herbalism-skinning": 0.2,
+      "herbalism-tailoring": 0.2,
+      "leatherworking-mining": 0.2,
+      "leatherworking-tailoring": 0.2,
+      "mining-skinning": 0.2,
+      "mining-tailoring": 0.2,
+      "skinning-tailoring": 0.2
+    },
+    "Warrior": {
+      "lw-skin": 0.2,
+      "eng-mine": 12,
+      "alch-herb": 12,
+      "bs-mine": 70,
+      "tail-ench": 0.2,
+      "alchemy-blacksmithing": 0.2,
+      "alchemy-enchanting": 0.2,
+      "alchemy-engineering": 0.2,
+      "alchemy-leatherworking": 0.2,
+      "alchemy-mining": 0.2,
+      "alchemy-skinning": 0.2,
+      "alchemy-tailoring": 0.2,
+      "blacksmithing-enchanting": 0.2,
+      "blacksmithing-engineering": 0.2,
+      "blacksmithing-herbalism": 0.2,
+      "blacksmithing-leatherworking": 0.2,
+      "blacksmithing-skinning": 0.2,
+      "blacksmithing-tailoring": 0.2,
+      "enchanting-engineering": 0.2,
+      "enchanting-herbalism": 0.2,
+      "enchanting-leatherworking": 0.2,
+      "enchanting-mining": 0.2,
+      "enchanting-skinning": 0.2,
+      "engineering-herbalism": 0.2,
+      "engineering-leatherworking": 0.2,
+      "engineering-skinning": 0.2,
+      "engineering-tailoring": 0.2,
+      "herbalism-leatherworking": 0.2,
+      "herbalism-mining": 0.2,
+      "herbalism-skinning": 0.2,
+      "herbalism-tailoring": 0.2,
+      "leatherworking-mining": 0.2,
+      "leatherworking-tailoring": 0.2,
+      "mining-skinning": 0.2,
+      "mining-tailoring": 0.2,
+      "skinning-tailoring": 0.2
+    }
+  },
+  "affixes": [
+    {
+      "id": "travel-ban",
+      "name": "Travel Ban",
+      "scope": "class",
+      "difficulty": "easy",
+      "description": "The Cenarion Circle revoked your shapeshifting licence after you received one too many speeding tickets in Travel Form. You cannot use Travel Form or Aquatic Form.",
+      "subRolls": [],
+      "exclusionGroup": null,
+      "friction": 8,
+      "rollable": true,
+      "className": "Druid",
+      "specs": [],
+      "icon": {
+        "source": "blizzard",
+        "id": "classicon_druid"
+      }
+    },
+    {
+      "id": "mark-of-the-wild-card",
+      "name": "Mark of the Wild Card",
+      "scope": "class",
+      "difficulty": "easy",
+      "description": "You handed out so many buffs that the party started calling you a walking gift shop, so the Circle took your stock away. You cannot use Mark of the Wild or Thorns.",
+      "subRolls": [],
+      "exclusionGroup": null,
+      "friction": 7,
+      "rollable": true,
+      "className": "Druid",
+      "specs": [],
+      "icon": {
+        "source": "blizzard",
+        "id": "spell_nature_regeneration"
+      }
+    },
+    {
+      "id": "rooted-in-failure",
+      "name": "Rooted in Failure",
+      "scope": "class",
+      "difficulty": "medium",
+      "description": "You once rooted a boar, forgot about it, and came back to find it had unionised. You cannot use Entangling Roots, Hibernate, or Nature’s Grasp.",
+      "subRolls": [],
+      "exclusionGroup": null,
+      "friction": 17,
+      "rollable": true,
+      "className": "Druid",
+      "specs": [],
+      "icon": {
+        "source": "blizzard",
+        "id": "spell_nature_stranglevines"
+      }
+    },
+    {
+      "id": "barkless",
+      "name": "Barkless",
+      "scope": "class",
+      "difficulty": "medium",
+      "description": "You decided tree bark was just a rumour spread by woodpeckers, and now you rely on charm alone. You cannot use Barkskin or Frenzied Regeneration.",
+      "subRolls": [],
+      "exclusionGroup": null,
+      "friction": 18,
+      "rollable": true,
+      "className": "Druid",
+      "specs": [],
+      "icon": {
+        "source": "blizzard",
+        "id": "spell_nature_stoneclawtotem"
+      }
+    },
+    {
+      "id": "stuck-in-the-office",
+      "name": "Stuck in the Office",
+      "scope": "class",
+      "difficulty": "hard",
+      "description": "Humanoid form filed for exclusive occupancy and won. You cannot shapeshift. Stay in caster form.",
+      "subRolls": [],
+      "exclusionGroup": "Shapeshift",
+      "friction": 36,
+      "rollable": true,
+      "className": "Druid",
+      "specs": [],
+      "icon": {
+        "source": "blizzard",
+        "id": "ability_druid_catform"
+      }
+    },
+    {
+      "id": "trapped-in-the-past",
+      "name": "Trapped in the Past",
+      "scope": "class",
+      "difficulty": "medium",
+      "description": "You caught yourself in your own trap, then pretended it was an advanced training exercise. The witnesses are still laughing, and you are too embarrassed to use traps again. You cannot use traps.",
+      "subRolls": [],
+      "exclusionGroup": null,
+      "friction": 17,
+      "rollable": true,
+      "className": "Hunter",
+      "specs": [],
+      "icon": {
+        "source": "blizzard",
+        "id": "classicon_hunter"
+      }
+    },
+    {
+      "id": "pacing-yourself",
+      "name": "Pacing Yourself",
+      "scope": "class",
+      "difficulty": "easy",
+      "description": "Your doctor advised a calmer lifestyle, and your pet agreed after being dragged through three zones at a sprint. You cannot use Aspect of the Cheetah or Aspect of the Pack.",
+      "subRolls": [],
+      "exclusionGroup": null,
+      "friction": 17,
+      "rollable": true,
+      "className": "Hunter",
+      "specs": [],
+      "icon": {
+        "source": "blizzard",
+        "id": "ability_mount_jungletiger"
+      }
+    },
+    {
+      "id": "feign-disbelief",
+      "name": "Feign Disbelief",
+      "scope": "class",
+      "difficulty": "medium",
+      "description": "You played dead once and a passing gnoll was so offended that the hunting lodge banned the bit. You cannot use Feign Death or Disengage.",
+      "subRolls": [],
+      "exclusionGroup": null,
+      "friction": 18,
+      "rollable": true,
+      "className": "Hunter",
+      "specs": [],
+      "icon": {
+        "source": "blizzard",
+        "id": "ability_rogue_feigndeath"
+      }
+    },
+    {
+      "id": "no-kiting-allowed",
+      "name": "No Kiting Allowed",
+      "scope": "class",
+      "difficulty": "medium",
+      "description": "A boar filed a complaint about chasing you around a tree for forty minutes, and the lodge sided with the boar. You cannot use Concussive Shot, Wing Clip, or Scatter Shot.",
+      "subRolls": [],
+      "exclusionGroup": null,
+      "friction": 18,
+      "rollable": true,
+      "className": "Hunter",
+      "specs": [],
+      "icon": {
+        "source": "blizzard",
+        "id": "ability_hunter_runningshot"
+      }
+    },
+    {
+      "id": "point-blank",
+      "name": "Point Blank",
+      "scope": "class",
+      "difficulty": "easy",
+      "description": "A boar asked you to respect its personal space, and you have been awkwardly keeping your distance since. You cannot deal damage to enemies less than 8 yards away.",
+      "subRolls": [],
+      "exclusionGroup": "Hunter Range",
+      "friction": 26,
+      "rollable": true,
+      "className": "Hunter",
+      "specs": [],
+      "icon": {
+        "source": "blizzard",
+        "id": "ability_hunter_snipershot"
+      }
+    },
+    {
+      "id": "blink-and-you-ll-miss-it",
+      "name": "Blink and You’ll Miss It",
+      "scope": "class",
+      "difficulty": "medium",
+      "description": "You Blinked into the wrong inn room and have refused to discuss what you saw ever since. You cannot use Blink.",
+      "subRolls": [],
+      "exclusionGroup": null,
+      "friction": 21,
+      "rollable": true,
+      "className": "Mage",
+      "specs": [],
+      "icon": {
+        "source": "blizzard",
+        "id": "classicon_mage"
+      }
+    },
+    {
+      "id": "table-for-none",
+      "name": "Table for None",
+      "scope": "class",
+      "difficulty": "easy",
+      "description": "You conjured a feast, nobody said thank you, and you swore never to bake for ingrates again. You cannot conjure food or water, or use conjured food or water.",
+      "subRolls": [],
+      "exclusionGroup": "Consumables",
+      "friction": 17,
+      "rollable": true,
+      "className": "Mage",
+      "specs": [],
+      "icon": {
+        "source": "blizzard",
+        "id": "inv_misc_food_73cinnamonroll"
+      }
+    },
+    {
+      "id": "baa-d-idea",
+      "name": "Baa-d Idea",
+      "scope": "class",
+      "difficulty": "medium",
+      "description": "You polymorphed your own reflection, lost the argument, and have been banned from every mirror in Stormwind. You cannot use Polymorph or Counterspell.",
+      "subRolls": [],
+      "exclusionGroup": null,
+      "friction": 23,
+      "rollable": true,
+      "className": "Mage",
+      "specs": [],
+      "icon": {
+        "source": "blizzard",
+        "id": "spell_nature_polymorph"
+      }
+    },
+    {
+      "id": "unwarded",
+      "name": "Unwarded",
+      "scope": "class",
+      "difficulty": "medium",
+      "description": "A rival wizard told you that armour spells are for people who plan to be hit, and your pride refuses to plan that far ahead. You cannot use Frost Armor, Ice Armor, or Mage Armor. Ice Block, Ice Barrier, and Mana Shield are still allowed.",
+      "subRolls": [],
+      "exclusionGroup": null,
+      "friction": 14,
+      "rollable": true,
+      "className": "Mage",
+      "specs": [],
+      "icon": {
+        "source": "blizzard",
+        "id": "spell_frost_frostarmor02"
+      }
+    },
+    {
+      "id": "shattered-expectations",
+      "name": "Shattered Expectations",
+      "scope": "class",
+      "difficulty": "hard",
+      "description": "You told a frost elemental that real mages only hit things that are already miserable. You may only deal damage to enemies that are chilled or frozen. If they are neither, apply a chill first.",
+      "subRolls": [],
+      "exclusionGroup": null,
+      "friction": 35,
+      "rollable": true,
+      "className": "Mage",
+      "specs": [],
+      "icon": {
+        "source": "blizzard",
+        "id": "spell_frost_frostnova"
+      }
+    },
+    {
+      "id": "bubble-trouble",
+      "name": "Bubble Trouble",
+      "scope": "class",
+      "difficulty": "hard",
+      "description": "The Light reviewed your previous bubble usage and revoked your emergency invincibility privileges for cowardice. You cannot use Blessing of Protection or Divine Shield.",
+      "subRolls": [],
+      "exclusionGroup": null,
+      "friction": 34,
+      "rollable": true,
+      "className": "Paladin",
+      "specs": [],
+      "icon": {
+        "source": "blizzard",
+        "id": "classicon_paladin"
+      }
+    },
+    {
+      "id": "seal-team-one",
+      "name": "Seal Team One",
+      "scope": "class",
+      "difficulty": "medium",
+      "description": "You saw a sale on seals, bought exactly one, and refuse to admit the rest were also on special. You may only use the rolled Seal. Until it is learned, you may use Seal of Righteousness.",
+      "subRolls": [
+        "Righteousness",
+        "Crusader",
+        "Light",
+        "Wisdom"
+      ],
+      "exclusionGroup": null,
+      "friction": 20,
+      "subRollFriction": {
+        "Righteousness": 22,
+        "Crusader": 28,
+        "Light": 24,
+        "Wisdom": 22
+      },
+      "rollable": true,
+      "className": "Paladin",
+      "specs": [],
+      "icon": {
+        "source": "blizzard",
+        "id": "ability_paladin_sealofblood"
+      }
+    },
+    {
+      "id": "hands-to-yourself",
+      "name": "Hands to Yourself",
+      "scope": "class",
+      "difficulty": "medium",
+      "description": "The Silver Hand received too many complaints about unsolicited laying on of hands. You cannot use Lay on Hands.",
+      "subRolls": [],
+      "exclusionGroup": null,
+      "friction": 17,
+      "rollable": true,
+      "className": "Paladin",
+      "specs": [],
+      "icon": {
+        "source": "blizzard",
+        "id": "spell_holy_layonhands"
+      }
+    },
+    {
+      "id": "non-judgemental",
+      "name": "Non-Judgemental",
+      "scope": "class",
+      "difficulty": "medium",
+      "description": "You were raised to believe that judging others is rude, and you apply this even to murlocs. You cannot use Judgement.",
+      "subRolls": [],
+      "exclusionGroup": null,
+      "friction": 19,
+      "rollable": true,
+      "className": "Paladin",
+      "specs": [],
+      "icon": {
+        "source": "blizzard",
+        "id": "spell_holy_righteousfury"
+      }
+    },
+    {
+      "id": "wandering-off",
+      "name": "Wandering Off",
+      "scope": "class",
+      "difficulty": "medium",
+      "description": "You were told that every Priest needs a wand, so naturally you took a vow against them out of spite. You cannot equip a wand.",
+      "subRolls": [],
+      "exclusionGroup": null,
+      "friction": 26,
+      "rollable": true,
+      "className": "Priest",
+      "specs": [],
+      "icon": {
+        "source": "blizzard",
+        "id": "classicon_priest"
+      }
+    },
+    {
+      "id": "power-word-no",
+      "name": "Power Word: No",
+      "scope": "class",
+      "difficulty": "medium",
+      "description": "You tried to shield your party, accidentally shielded the boss, and have been politely asked to stop. You cannot use Power Word: Shield or Power Word: Fortitude.",
+      "subRolls": [],
+      "exclusionGroup": null,
+      "friction": 24,
+      "rollable": true,
+      "className": "Priest",
+      "specs": [],
+      "icon": {
+        "source": "blizzard",
+        "id": "spell_holy_powerwordshield"
+      }
+    },
+    {
+      "id": "silent-treatment",
+      "name": "Silent Treatment",
+      "scope": "class",
+      "difficulty": "medium",
+      "description": "You decided that raised voices solve nothing, including the ones you use to scare people away. You cannot use Psychic Scream or Fade.",
+      "subRolls": [],
+      "exclusionGroup": null,
+      "friction": 17,
+      "rollable": true,
+      "className": "Priest",
+      "specs": [],
+      "icon": {
+        "source": "blizzard",
+        "id": "spell_shadow_psychicscream"
+      }
+    },
+    {
+      "id": "dispel-denied",
+      "name": "Dispel Denied",
+      "scope": "class",
+      "difficulty": "medium",
+      "description": "You believe suffering builds character, especially other people’s. You cannot use Dispel Magic, Cure Disease, or Abolish Disease.",
+      "subRolls": [],
+      "exclusionGroup": null,
+      "friction": 18,
+      "rollable": true,
+      "className": "Priest",
+      "specs": [],
+      "icon": {
+        "source": "blizzard",
+        "id": "spell_holy_dispelmagic"
+      }
+    },
+    {
+      "id": "down-to-earth",
+      "name": "Down to Earth",
+      "scope": "class",
+      "difficulty": "easy",
+      "description": "You floated over a puddle, made a short speech about rising above it, then fell in. You cannot use Levitate.",
+      "subRolls": [],
+      "exclusionGroup": null,
+      "friction": 1,
+      "rollable": true,
+      "className": "Priest",
+      "specs": [],
+      "icon": {
+        "source": "blizzard",
+        "id": "spell_magic_featherfall"
+      }
+    },
+    {
+      "id": "take-five",
+      "name": "Take Five",
+      "scope": "class",
+      "difficulty": "hard",
+      "description": "Your intern told you about the five-second rule for dropped toast, and you applied it to theology. After any spell you cast, you must wait until your mana starts regenerating before you may cast again. Wanding and melee are allowed during the wait.",
+      "subRolls": [],
+      "exclusionGroup": null,
+      "friction": 35,
+      "rollable": true,
+      "className": "Priest",
+      "specs": [],
+      "icon": {
+        "source": "blizzard",
+        "id": "inv_misc_pocketwatch_01"
+      }
+    },
+    {
+      "id": "no-stun-intended",
+      "name": "No Stun Intended",
+      "scope": "class",
+      "difficulty": "medium",
+      "description": "You stealthed out of anatomy class to huff poisons behind the guild hall, so you have no idea where the kidneys are. You cannot use Kidney Shot or Cheap Shot.",
+      "subRolls": [],
+      "exclusionGroup": null,
+      "friction": 17,
+      "rollable": true,
+      "className": "Rogue",
+      "specs": [],
+      "icon": {
+        "source": "blizzard",
+        "id": "classicon_rogue"
+      }
+    },
+    {
+      "id": "last-in-the-race",
+      "name": "Last in the Race",
+      "scope": "class",
+      "difficulty": "easy",
+      "description": "You sprinted past a quest giver, were too embarrassed to turn around, and have walked everywhere since. You cannot use Sprint.",
+      "subRolls": [],
+      "exclusionGroup": null,
+      "friction": 12,
+      "rollable": true,
+      "className": "Rogue",
+      "specs": [],
+      "icon": {
+        "source": "blizzard",
+        "id": "ability_rogue_sprint"
+      }
+    },
+    {
+      "id": "poison-control",
+      "name": "Poison Control",
+      "scope": "class",
+      "difficulty": "medium",
+      "description": "A trainer found out you were using poison on a sandwich and called it a workplace safety issue. You cannot apply poisons to your weapons.",
+      "subRolls": [],
+      "exclusionGroup": "Consumables",
+      "friction": 20,
+      "rollable": true,
+      "className": "Rogue",
+      "specs": [],
+      "icon": {
+        "source": "blizzard",
+        "id": "ability_poisons"
+      }
+    },
+    {
+      "id": "unfinished-business",
+      "name": "Unfinished Business",
+      "scope": "class",
+      "difficulty": "medium",
+      "description": "You never finish what you start, and the guild treasurer has the paperwork to prove it. You cannot use Eviscerate or Rupture.",
+      "subRolls": [],
+      "exclusionGroup": null,
+      "friction": 24,
+      "rollable": true,
+      "className": "Rogue",
+      "specs": [],
+      "icon": {
+        "source": "blizzard",
+        "id": "ability_rogue_eviscerate"
+      }
+    },
+    {
+      "id": "loud-and-proud",
+      "name": "Loud and Proud",
+      "scope": "class",
+      "difficulty": "hard",
+      "description": "You tried to sneak and immediately introduced yourself. You cannot use Stealth or Vanish.",
+      "subRolls": [],
+      "exclusionGroup": "Stealth",
+      "friction": 36,
+      "rollable": true,
+      "className": "Rogue",
+      "specs": [],
+      "icon": {
+        "source": "blizzard",
+        "id": "ability_stealth"
+      }
+    },
+    {
+      "id": "totem-mismanagement",
+      "name": "Totem Mismanagement",
+      "scope": "class",
+      "difficulty": "hard",
+      "description": "You left a totem behind, it pulled an entire patrol, and the elements revoked your placement privileges. You cannot use totems.",
+      "subRolls": [],
+      "exclusionGroup": "Totems",
+      "friction": 36,
+      "rollable": true,
+      "className": "Shaman",
+      "specs": [],
+      "icon": {
+        "source": "blizzard",
+        "id": "classicon_shaman"
+      }
+    },
+    {
+      "id": "howl-no",
+      "name": "Howl No",
+      "scope": "class",
+      "difficulty": "easy",
+      "description": "The wolf spirits unionised and refuse to be your taxi. You cannot use Ghost Wolf.",
+      "subRolls": [],
+      "exclusionGroup": null,
+      "friction": 17,
+      "rollable": true,
+      "className": "Shaman",
+      "specs": [],
+      "icon": {
+        "source": "blizzard",
+        "id": "spell_nature_spiritwolf"
+      }
+    },
+    {
+      "id": "unshockable",
+      "name": "Unshockable",
+      "scope": "class",
+      "difficulty": "medium",
+      "description": "Three separate shocks, one insurance claim, and an adjuster who still cannot explain Frost Shock. You cannot use Earth Shock, Flame Shock, or Frost Shock.",
+      "subRolls": [],
+      "exclusionGroup": null,
+      "friction": 19,
+      "rollable": true,
+      "className": "Shaman",
+      "specs": [],
+      "icon": {
+        "source": "blizzard",
+        "id": "spell_nature_earthshock"
+      }
+    },
+    {
+      "id": "plain-old-weapons",
+      "name": "Plain Old Weapons",
+      "scope": "class",
+      "difficulty": "easy",
+      "description": "The totems told you that enchanting your weapon was cheating, and you believed them. You cannot use Rockbiter, Flametongue, Frostbrand, or Windfury Weapon.",
+      "subRolls": [],
+      "exclusionGroup": null,
+      "friction": 9,
+      "rollable": true,
+      "className": "Shaman",
+      "specs": [],
+      "icon": {
+        "source": "blizzard",
+        "id": "spell_nature_rockbiter"
+      }
+    },
+    {
+      "id": "mind-your-language",
+      "name": "Mind Your Language",
+      "scope": "class",
+      "difficulty": "easy",
+      "description": "Your mother raised you better than to go around cursing strangers. You cannot use Curse spells.",
+      "subRolls": [],
+      "exclusionGroup": null,
+      "friction": 12,
+      "rollable": true,
+      "className": "Warlock",
+      "specs": [],
+      "icon": {
+        "source": "blizzard",
+        "id": "classicon_warlock"
+      }
+    },
+    {
+      "id": "stone-cold",
+      "name": "Stone Cold",
+      "scope": "class",
+      "difficulty": "medium",
+      "description": "You smashed a Healthstone in frustration and the Soulstone left in disgust. You cannot use Soulstones or Healthstones.",
+      "subRolls": [],
+      "exclusionGroup": "Consumables",
+      "friction": 23,
+      "rollable": true,
+      "className": "Warlock",
+      "specs": [],
+      "icon": {
+        "source": "blizzard",
+        "id": "inv_stone_04"
+      }
+    },
+    {
+      "id": "tapped-out",
+      "name": "Tapped Out",
+      "scope": "class",
+      "difficulty": "easy",
+      "description": "Your last Life Tap left you so dizzy that you walked into a lake. You cannot use Life Tap.",
+      "subRolls": [],
+      "exclusionGroup": null,
+      "friction": 18,
+      "rollable": true,
+      "className": "Warlock",
+      "specs": [],
+      "icon": {
+        "source": "blizzard",
+        "id": "spell_shadow_lifedrain02"
+      }
+    },
+    {
+      "id": "nothing-to-fear",
+      "name": "Nothing to Fear",
+      "scope": "class",
+      "difficulty": "medium",
+      "description": "You decided that scaring people is bad manners, and a gentleman never howls first. You cannot use Fear, Howl of Terror, or Death Coil.",
+      "subRolls": [],
+      "exclusionGroup": null,
+      "friction": 18,
+      "rollable": true,
+      "className": "Warlock",
+      "specs": [],
+      "icon": {
+        "source": "blizzard",
+        "id": "spell_shadow_possession"
+      }
+    },
+    {
+      "id": "independent-contractor",
+      "name": "Independent Contractor",
+      "scope": "class",
+      "difficulty": "hard",
+      "description": "Your demons formed a union, demanded hazard pay, and walked out mid-summon. You cannot summon or use a demon pet.",
+      "subRolls": [],
+      "exclusionGroup": "Demons",
+      "friction": 35,
+      "rollable": true,
+      "className": "Warlock",
+      "specs": [],
+      "icon": {
+        "source": "blizzard",
+        "id": "spell_shadow_summonfelhunter"
+      }
+    },
+    {
+      "id": "one-stance-wonder",
+      "name": "One-Stance Wonder",
+      "scope": "class",
+      "difficulty": "medium",
+      "description": "You changed stance once, forgot what every button did, and decided tactical flexibility was overrated. Use only Battle Stance until your specialization stance is learned; after that, you must remain in that stance.",
+      "subRolls": [],
+      "exclusionGroup": "Stance",
+      "friction": 20,
+      "rollable": true,
+      "className": "Warrior",
+      "specs": [],
+      "icon": {
+        "source": "blizzard",
+        "id": "classicon_warrior"
+      }
+    },
+    {
+      "id": "uncharged",
+      "name": "Uncharged",
+      "scope": "class",
+      "difficulty": "medium",
+      "description": "You charged a mob, forgot to stop, and spent the afternoon explaining it to a patient innkeeper. You cannot use Charge or Intercept.",
+      "subRolls": [],
+      "exclusionGroup": null,
+      "friction": 17,
+      "rollable": true,
+      "className": "Warrior",
+      "specs": [],
+      "icon": {
+        "source": "blizzard",
+        "id": "ability_warrior_charge"
+      }
+    },
+    {
+      "id": "silent-warrior",
+      "name": "Silent Warrior",
+      "scope": "class",
+      "difficulty": "medium",
+      "description": "You took a vow of silence and your battle cries have been replaced by unconvincing grunts. You cannot use Battle Shout, Demoralizing Shout, Intimidating Shout, or Challenging Shout.",
+      "subRolls": [],
+      "exclusionGroup": null,
+      "friction": 18,
+      "rollable": true,
+      "className": "Warrior",
+      "specs": [],
+      "icon": {
+        "source": "blizzard",
+        "id": "ability_warrior_battleshout"
+      }
+    },
+    {
+      "id": "left-hand-free",
+      "name": "Left Hand Free",
+      "scope": "class",
+      "difficulty": "medium",
+      "description": "A trainer said a shield is just a very large coaster, and you took it as an insult to both. You cannot equip a shield.",
+      "subRolls": [],
+      "exclusionGroup": "Armour",
+      "friction": 20,
+      "rollable": true,
+      "className": "Warrior",
+      "specs": [],
+      "icon": {
+        "source": "blizzard",
+        "id": "inv_shield_06"
+      }
+    },
+    {
+      "id": "battle-addiction",
+      "name": "Battle Addiction",
+      "scope": "class",
+      "difficulty": "medium",
+      "description": "You changed stance once, forgot every button, and decided flexibility was a rumour. You may only use Battle Stance.",
+      "subRolls": [],
+      "exclusionGroup": "Stance",
+      "friction": 20,
+      "rollable": true,
+      "className": "Warrior",
+      "specs": [],
+      "icon": {
+        "source": "blizzard",
+        "id": "ability_warrior_offensivestance"
+      }
+    },
+    {
+      "id": "self-found",
+      "name": "Self Found",
+      "scope": "self-found",
+      "difficulty": "self found",
+      "description": "Using the self found mode in hardcore. This is not a rollable affix and is only listed here to work with exclusions for other affixes",
+      "subRolls": [],
+      "exclusionGroup": "Self Found",
+      "friction": 38,
+      "rollable": false,
+      "className": null,
+      "specs": [],
+      "icon": {
+        "source": "blizzard",
+        "id": "inv_misc_coin_05"
+      }
+    },
+    {
+      "id": "featherweight",
+      "name": "Featherweight",
+      "scope": "spec",
+      "difficulty": "medium",
+      "description": "A tailor convinced you that leather interferes with lunar reception, and you believed them because the robe had stars on it. You may only equip cloth armour.",
+      "subRolls": [],
+      "exclusionGroup": "Armour",
+      "friction": 26,
+      "rollable": true,
+      "className": "Druid",
+      "specs": [
+        "Balance"
+      ],
+      "icon": {
+        "source": "blizzard",
+        "id": "classicon_druid"
+      }
+    },
+    {
+      "id": "moonkin-out-of-order",
+      "name": "Moonkin Out of Order",
+      "scope": "spec",
+      "difficulty": "medium",
+      "description": "The Cenarion Circle inspected your Moonkin Form and ruled that it was, legally speaking, an unlicensed owl. You cannot use Moonkin Form.",
+      "subRolls": [],
+      "exclusionGroup": "Shapeshift",
+      "friction": 19,
+      "rollable": true,
+      "className": "Druid",
+      "specs": [
+        "Balance"
+      ],
+      "icon": {
+        "source": "blizzard",
+        "id": "spell_nature_forceofnature"
+      }
+    },
+    {
+      "id": "moon-landing-denied",
+      "name": "Moon Landing Denied",
+      "scope": "spec",
+      "difficulty": "medium",
+      "description": "You are convinced the moon is flat. You cannot use Moonfire or Starfire.",
+      "subRolls": [],
+      "exclusionGroup": null,
+      "friction": 24,
+      "rollable": true,
+      "className": "Druid",
+      "specs": [
+        "Balance"
+      ],
+      "icon": {
+        "source": "blizzard",
+        "id": "spell_nature_starfall"
+      }
+    },
+    {
+      "id": "paws-and-effect",
+      "name": "Paws and Effect",
+      "scope": "spec",
+      "difficulty": "medium",
+      "description": "You spent so long communing with nature that nature stopped returning your calls and simply repossessed your humanoid form. Once unlocked, remain in the rolled Cat or Bear form and use only abilities available in that form. If an interaction shifts you out, shift back immediately.",
+      "subRolls": [
+        "Cat form",
+        "Bear form"
+      ],
+      "exclusionGroup": "Shapeshift",
+      "friction": 28,
+      "subRollFriction": {
+        "Cat form": 43,
+        "Bear form": 36
+      },
+      "rollable": true,
+      "className": "Druid",
+      "specs": [
+        "Feral"
+      ],
+      "icon": {
+        "source": "blizzard",
+        "id": "classicon_druid"
+      }
+    },
+    {
+      "id": "cat-got-your-tongue",
+      "name": "Cat Got Your Tongue",
+      "scope": "spec",
+      "difficulty": "medium",
+      "description": "You pounced on a quest giver from the bushes and the apology tour lasted three zones. You cannot use Prowl or Pounce.",
+      "subRolls": [],
+      "exclusionGroup": null,
+      "friction": 17,
+      "rollable": true,
+      "className": "Druid",
+      "specs": [
+        "Feral"
+      ],
+      "icon": {
+        "source": "blizzard",
+        "id": "ability_druid_prowl"
+      }
+    },
+    {
+      "id": "claws-for-concern",
+      "name": "Claws for Concern",
+      "scope": "spec",
+      "difficulty": "medium",
+      "description": "You trimmed your claws for a fancy dinner and have been too embarrassed to grow them back. You cannot use Rake or Rip.",
+      "subRolls": [],
+      "exclusionGroup": null,
+      "friction": 30,
+      "rollable": true,
+      "className": "Druid",
+      "specs": [
+        "Feral"
+      ],
+      "icon": {
+        "source": "blizzard",
+        "id": "ability_druid_rake"
+      }
+    },
+    {
+      "id": "paladruid",
+      "name": "Paladruid",
+      "scope": "spec",
+      "difficulty": "hard",
+      "description": "After watching a Paladin heal someone instantly, you decided healing over time was just procrastination with sparkles. You cannot use healing-over-time effects.",
+      "subRolls": [],
+      "exclusionGroup": null,
+      "friction": 41,
+      "rollable": true,
+      "className": "Druid",
+      "specs": [
+        "Restoration"
+      ],
+      "icon": {
+        "source": "blizzard",
+        "id": "classicon_druid"
+      }
+    },
+    {
+      "id": "healing-touch-y-subject",
+      "name": "Healing Touch-y Subject",
+      "scope": "spec",
+      "difficulty": "hard",
+      "description": "A patient mistook Healing Touch for an unsolicited hug and filed a report. You cannot use Healing Touch.",
+      "subRolls": [],
+      "exclusionGroup": null,
+      "friction": 35,
+      "rollable": true,
+      "className": "Druid",
+      "specs": [
+        "Restoration"
+      ],
+      "icon": {
+        "source": "blizzard",
+        "id": "spell_nature_healingtouch"
+      }
+    },
+    {
+      "id": "inner-hate",
+      "name": "Inner-Hate",
+      "scope": "spec",
+      "difficulty": "easy",
+      "description": "You told yourself you were worthless, and Innervate agreed. You cannot use Innervate or Tranquility.",
+      "subRolls": [],
+      "exclusionGroup": null,
+      "friction": 12,
+      "rollable": true,
+      "className": "Druid",
+      "specs": [
+        "Restoration"
+      ],
+      "icon": {
+        "source": "blizzard",
+        "id": "spell_nature_lightning"
+      }
+    },
+    {
+      "id": "furwell-friend",
+      "name": "Furwell, Friend",
+      "scope": "spec",
+      "difficulty": "medium",
+      "description": "You believe the bond between hunter and beast is sacred, unique, and apparently not covered by resurrection magic. If your pet dies, you cannot resurrect it and must tame a new companion.",
+      "subRolls": [],
+      "exclusionGroup": null,
+      "friction": 32,
+      "rollable": true,
+      "className": "Hunter",
+      "specs": [
+        "Beast Mastery"
+      ],
+      "icon": {
+        "source": "blizzard",
+        "id": "classicon_hunter"
+      }
+    },
+    {
+      "id": "fed-up",
+      "name": "Fed Up",
+      "scope": "spec",
+      "difficulty": "medium",
+      "description": "Your pet read the feeding schedule, sighed, and left a one-star review. You cannot use Feed Pet or Mend Pet.",
+      "subRolls": [],
+      "exclusionGroup": null,
+      "friction": 36,
+      "rollable": true,
+      "className": "Hunter",
+      "specs": [
+        "Beast Mastery"
+      ],
+      "icon": {
+        "source": "blizzard",
+        "id": "ability_hunter_mendpet"
+      }
+    },
+    {
+      "id": "passive-aggressive",
+      "name": "Passive Aggressive",
+      "scope": "spec",
+      "difficulty": "medium",
+      "description": "You told your pet to be passive and it took the feedback far too seriously. Your pet must stay on Passive and may only attack when you command it.",
+      "subRolls": [],
+      "exclusionGroup": null,
+      "friction": 30,
+      "rollable": true,
+      "className": "Hunter",
+      "specs": [
+        "Beast Mastery"
+      ],
+      "icon": {
+        "source": "blizzard",
+        "id": "ability_hunter_pet_bear"
+      }
+    },
+    {
+      "id": "creature-of-habit",
+      "name": "Creature of Habit",
+      "scope": "spec",
+      "difficulty": "easy",
+      "description": "Your first pet filled in a loyalty card and you have been too polite to shop around. The first pet family you tame is the only family you may use for the rest of the run.",
+      "subRolls": [],
+      "exclusionGroup": null,
+      "friction": 13,
+      "rollable": true,
+      "className": "Hunter",
+      "specs": [
+        "Beast Mastery"
+      ],
+      "icon": {
+        "source": "blizzard",
+        "id": "ability_hunter_beasttaming"
+      }
+    },
+    {
+      "id": "pet-ition-denied",
+      "name": "Pet-ition Denied",
+      "scope": "spec",
+      "difficulty": "hard",
+      "description": "Your last pet kept pulling extra packs and insisting it was “optimal pathing,” so you left it behind. You cannot tame pets.",
+      "subRolls": [],
+      "exclusionGroup": null,
+      "friction": 40,
+      "rollable": true,
+      "className": "Hunter",
+      "specs": [
+        "Marksmanship"
+      ],
+      "icon": {
+        "source": "blizzard",
+        "id": "classicon_hunter"
+      }
+    },
+    {
+      "id": "aimless",
+      "name": "Aimless",
+      "scope": "spec",
+      "difficulty": "medium",
+      "description": "Your last Aimed Shot turned out to be a very expensive warning shot. You cannot use Aimed Shot or Multi-Shot.",
+      "subRolls": [],
+      "exclusionGroup": null,
+      "friction": 29,
+      "rollable": true,
+      "className": "Hunter",
+      "specs": [
+        "Marksmanship"
+      ],
+      "icon": {
+        "source": "blizzard",
+        "id": "inv_spear_07"
+      }
+    },
+    {
+      "id": "unmarked",
+      "name": "Unmarked",
+      "scope": "spec",
+      "difficulty": "medium",
+      "description": "A rival hunter told you that marking targets was rude, and you kept the paperwork. You cannot use Hunter’s Mark.",
+      "subRolls": [],
+      "exclusionGroup": null,
+      "friction": 18,
+      "rollable": true,
+      "className": "Hunter",
+      "specs": [
+        "Marksmanship"
+      ],
+      "icon": {
+        "source": "blizzard",
+        "id": "ability_hunter_snipershot"
+      }
+    },
+    {
+      "id": "bow-out",
+      "name": "Bow Out",
+      "scope": "spec",
+      "difficulty": "hard",
+      "description": "After missing one too many shots, you concluded that ranged weapons are merely melee weapons held incorrectly. You cannot raise your Bow, Gun, or Crossbow skill above 1.",
+      "subRolls": [],
+      "exclusionGroup": "Hunter Range",
+      "friction": 37,
+      "rollable": true,
+      "className": "Hunter",
+      "specs": [
+        "Survival"
+      ],
+      "icon": {
+        "source": "blizzard",
+        "id": "classicon_hunter"
+      }
+    },
+    {
+      "id": "sting-operation",
+      "name": "Sting Operation",
+      "scope": "spec",
+      "difficulty": "medium",
+      "description": "A bee filed an intellectual property suit and the lodge sided with the bee. You cannot use Serpent Sting, Viper Sting, or Scorpid Sting.",
+      "subRolls": [],
+      "exclusionGroup": null,
+      "friction": 20,
+      "rollable": true,
+      "className": "Hunter",
+      "specs": [
+        "Survival"
+      ],
+      "icon": {
+        "source": "blizzard",
+        "id": "ability_hunter_quickshot"
+      }
+    },
+    {
+      "id": "trackless",
+      "name": "Trackless",
+      "scope": "spec",
+      "difficulty": "easy",
+      "description": "You are so sure of where you are going that you cancelled every tracking ability you own. You cannot use Tracking abilities.",
+      "subRolls": [],
+      "exclusionGroup": null,
+      "friction": 8,
+      "rollable": true,
+      "className": "Hunter",
+      "specs": [
+        "Survival"
+      ],
+      "icon": {
+        "source": "blizzard",
+        "id": "ability_tracking"
+      }
+    },
+    {
+      "id": "purple-reign",
+      "name": "Purple Reign",
+      "scope": "spec",
+      "difficulty": "medium",
+      "description": "You studied every school of magic and concluded that colours other than purple are academically unsound. Once Arcane damaging spells become available, you may only deal damage with Arcane spells.",
+      "subRolls": [],
+      "exclusionGroup": null,
+      "friction": 21,
+      "rollable": true,
+      "className": "Mage",
+      "specs": [
+        "Arcane"
+      ],
+      "icon": {
+        "source": "blizzard",
+        "id": "classicon_mage"
+      }
+    },
+    {
+      "id": "missing-missiles",
+      "name": "Missing Missiles",
+      "scope": "spec",
+      "difficulty": "medium",
+      "description": "Your Arcane Missiles were compared to a malfunctioning firework at the Academy, and you took it personally. You cannot use Arcane Missiles or Arcane Explosion.",
+      "subRolls": [],
+      "exclusionGroup": null,
+      "friction": 24,
+      "rollable": true,
+      "className": "Mage",
+      "specs": [
+        "Arcane"
+      ],
+      "icon": {
+        "source": "blizzard",
+        "id": "spell_nature_starfall"
+      }
+    },
+    {
+      "id": "evocation-eviction",
+      "name": "Evocation Eviction",
+      "scope": "spec",
+      "difficulty": "medium",
+      "description": "A pyromancer pointed out that sitting down and screaming for energy is just a tantrum, and you agreed. You cannot use Evocation or mana gems.",
+      "subRolls": [],
+      "exclusionGroup": "Consumables",
+      "friction": 25,
+      "rollable": true,
+      "className": "Mage",
+      "specs": [
+        "Arcane"
+      ],
+      "icon": {
+        "source": "blizzard",
+        "id": "spell_nature_purge"
+      }
+    },
+    {
+      "id": "burn-notice",
+      "name": "Burn Notice",
+      "scope": "spec",
+      "difficulty": "medium",
+      "description": "Your solution to every magical problem is fire—and your solution to fire is considerably more fire. You may only use Fire damaging spells.",
+      "subRolls": [],
+      "exclusionGroup": null,
+      "friction": 20,
+      "rollable": true,
+      "className": "Mage",
+      "specs": [
+        "Fire"
+      ],
+      "icon": {
+        "source": "blizzard",
+        "id": "classicon_mage"
+      }
+    },
+    {
+      "id": "hot-potato",
+      "name": "Hot Potato",
+      "scope": "spec",
+      "difficulty": "medium",
+      "description": "You dropped a fireball in a hay barn and the farmer’s insurance has not stopped calling. You cannot use Fireball or Pyroblast.",
+      "subRolls": [],
+      "exclusionGroup": "Fire Spells",
+      "friction": 30,
+      "rollable": true,
+      "className": "Mage",
+      "specs": [
+        "Fire"
+      ],
+      "icon": {
+        "source": "blizzard",
+        "id": "spell_fire_flamebolt"
+      }
+    },
+    {
+      "id": "flame-retardant",
+      "name": "Flame Retardant",
+      "scope": "spec",
+      "difficulty": "medium",
+      "description": "You bought a policy that lists flammable as the only exclusion, so now you are being very careful. You cannot use Fire Blast, Flamestrike, or Scorch.",
+      "subRolls": [],
+      "exclusionGroup": "Fire Spells",
+      "friction": 18,
+      "rollable": true,
+      "className": "Mage",
+      "specs": [
+        "Fire"
+      ],
+      "icon": {
+        "source": "blizzard",
+        "id": "spell_fire_fireball"
+      }
+    },
+    {
+      "id": "cold-spell",
+      "name": "Cold Spell",
+      "scope": "spec",
+      "difficulty": "easy",
+      "description": "You loaded in to die on a campfire and have devoted your life to making warmth illegal. Once Frost damaging spells become available, you may only deal damage with Frost spells.",
+      "subRolls": [],
+      "exclusionGroup": null,
+      "friction": 15,
+      "rollable": true,
+      "className": "Mage",
+      "specs": [
+        "Frost"
+      ],
+      "icon": {
+        "source": "blizzard",
+        "id": "classicon_mage"
+      }
+    },
+    {
+      "id": "cold-shoulder",
+      "name": "Cold Shoulder",
+      "scope": "spec",
+      "difficulty": "medium",
+      "description": "Ice Block gave you the cold shoulder, so you returned the favour. You cannot use Ice Block or Cone of Cold.",
+      "subRolls": [],
+      "exclusionGroup": null,
+      "friction": 18,
+      "rollable": true,
+      "className": "Mage",
+      "specs": [
+        "Frost"
+      ],
+      "icon": {
+        "source": "blizzard",
+        "id": "spell_frost_frost"
+      }
+    },
+    {
+      "id": "snow-day-cancelled",
+      "name": "Snow Day Cancelled",
+      "scope": "spec",
+      "difficulty": "easy",
+      "description": "School was cancelled for a blizzard once, and you have held a grudge against snow ever since. You cannot use Blizzard or Cold Snap.",
+      "subRolls": [],
+      "exclusionGroup": null,
+      "friction": 12,
+      "rollable": true,
+      "className": "Mage",
+      "specs": [
+        "Frost"
+      ],
+      "icon": {
+        "source": "blizzard",
+        "id": "spell_frost_icestorm"
+      }
+    },
+    {
+      "id": "first-do-no-bonk",
+      "name": "First, Do No Bonk",
+      "scope": "spec",
+      "difficulty": "easy",
+      "description": "You were disciplined by the Silver Hand for violating the healer’s oath and Azeroth’s false-advertising laws after using Holy Shock to hurt someone. Once learned, you may only use Holy Shock for healing.",
+      "subRolls": [],
+      "exclusionGroup": null,
+      "friction": 7,
+      "rollable": true,
+      "className": "Paladin",
+      "specs": [
+        "Holy"
+      ],
+      "icon": {
+        "source": "blizzard",
+        "id": "classicon_paladin"
+      }
+    },
+    {
+      "id": "lights-out",
+      "name": "Lights Out",
+      "scope": "spec",
+      "difficulty": "hard",
+      "description": "The Light went to voicemail, and you refuse to leave another message. You cannot use Holy Light.",
+      "subRolls": [],
+      "exclusionGroup": null,
+      "friction": 35,
+      "rollable": true,
+      "className": "Paladin",
+      "specs": [
+        "Holy"
+      ],
+      "icon": {
+        "source": "blizzard",
+        "id": "spell_holy_holybolt"
+      }
+    },
+    {
+      "id": "unconsecrated",
+      "name": "Unconsecrated",
+      "scope": "spec",
+      "difficulty": "medium",
+      "description": "The cemetery committee served you notice for consecrating ground without a permit. You cannot use Consecration or Exorcism.",
+      "subRolls": [],
+      "exclusionGroup": null,
+      "friction": 17,
+      "rollable": true,
+      "className": "Paladin",
+      "specs": [
+        "Holy"
+      ],
+      "icon": {
+        "source": "blizzard",
+        "id": "spell_holy_innerfire"
+      }
+    },
+    {
+      "id": "house-call",
+      "name": "House Call",
+      "scope": "spec",
+      "difficulty": "medium",
+      "description": "You were told the Light works better as a house call, which is not how physics works, but here we are. You cannot heal a target more than 10 yards away.",
+      "subRolls": [],
+      "exclusionGroup": null,
+      "friction": 29,
+      "rollable": true,
+      "className": "Paladin",
+      "specs": [
+        "Holy"
+      ],
+      "icon": {
+        "source": "blizzard",
+        "id": "spell_holy_sealofsacrifice"
+      }
+    },
+    {
+      "id": "face-tank",
+      "name": "Face Tank",
+      "scope": "spec",
+      "difficulty": "medium",
+      "description": "You cannot use stuns or incapacitating effects. Real tanks take every hit personally.",
+      "subRolls": [],
+      "exclusionGroup": null,
+      "friction": 24,
+      "rollable": true,
+      "className": "Paladin",
+      "specs": [
+        "Protection"
+      ],
+      "icon": {
+        "source": "blizzard",
+        "id": "classicon_paladin"
+      }
+    },
+    {
+      "id": "shield-me-not",
+      "name": "Shield Me Not",
+      "scope": "spec",
+      "difficulty": "medium",
+      "description": "A blacksmith told you that holy shields come with a service plan and you walked out. You cannot use Holy Shield or Blessing of Sanctuary.",
+      "subRolls": [],
+      "exclusionGroup": null,
+      "friction": 19,
+      "rollable": true,
+      "className": "Paladin",
+      "specs": [
+        "Protection"
+      ],
+      "icon": {
+        "source": "blizzard",
+        "id": "spell_holy_blessingofprotection"
+      }
+    },
+    {
+      "id": "hand-me-down",
+      "name": "Hand Me Down",
+      "scope": "spec",
+      "difficulty": "easy",
+      "description": "You were given hand-me-down blessings and have refused to accept charity ever since. You cannot use Blessing of Freedom or Blessing of Sacrifice.",
+      "subRolls": [],
+      "exclusionGroup": null,
+      "friction": 7,
+      "rollable": true,
+      "className": "Paladin",
+      "specs": [
+        "Protection"
+      ],
+      "icon": {
+        "source": "blizzard",
+        "id": "spell_holy_sealofvalor"
+      }
+    },
+    {
+      "id": "hammer-i-hardly-know-her",
+      "name": "Hammer? I Hardly Know Her",
+      "scope": "spec",
+      "difficulty": "medium",
+      "description": "You heard someone shout “Hammer Time” once, experienced second-hand embarrassment so powerful it shook your faith, and vowed never to be that cringe. You cannot use Hammer of Wrath, Hammer of Justice, or equip maces.",
+      "subRolls": [],
+      "exclusionGroup": null,
+      "friction": 21,
+      "rollable": true,
+      "className": "Paladin",
+      "specs": [
+        "Retribution"
+      ],
+      "icon": {
+        "source": "blizzard",
+        "id": "classicon_paladin"
+      }
+    },
+    {
+      "id": "no-command-performance",
+      "name": "No Command Performance",
+      "scope": "spec",
+      "difficulty": "medium",
+      "description": "You were asked to give a command performance and delivered a one-man play instead. You cannot use Seal of Command or Repentance.",
+      "subRolls": [],
+      "exclusionGroup": null,
+      "friction": 19,
+      "rollable": true,
+      "className": "Paladin",
+      "specs": [
+        "Retribution"
+      ],
+      "icon": {
+        "source": "blizzard",
+        "id": "ability_paladin_sealofcommand"
+      }
+    },
+    {
+      "id": "no-aura-farming",
+      "name": "No Aura Farming",
+      "scope": "spec",
+      "difficulty": "easy",
+      "description": "A bard told you that aura farming was a trend you had no business starting. You cannot use Auras.",
+      "subRolls": [],
+      "exclusionGroup": null,
+      "friction": 13,
+      "rollable": true,
+      "className": "Paladin",
+      "specs": [
+        "Retribution"
+      ],
+      "icon": {
+        "source": "blizzard",
+        "id": "spell_holy_devotionaura"
+      }
+    },
+    {
+      "id": "strictly-discipline",
+      "name": "Strictly Discipline",
+      "scope": "spec",
+      "difficulty": "hard",
+      "description": "You became so disciplined that even the Holy tree requires a signed permission slip. You cannot use any healing spells from the Holy tree.",
+      "subRolls": [],
+      "exclusionGroup": null,
+      "friction": 36,
+      "rollable": true,
+      "className": "Priest",
+      "specs": [
+        "Discipline"
+      ],
+      "icon": {
+        "source": "blizzard",
+        "id": "classicon_priest"
+      }
+    },
+    {
+      "id": "unfocused",
+      "name": "Unfocused",
+      "scope": "spec",
+      "difficulty": "easy",
+      "description": "Your teacher asked you to focus, and you asked if lunch was included. You cannot use Inner Fire, Inner Focus, or Divine Spirit.",
+      "subRolls": [],
+      "exclusionGroup": null,
+      "friction": 13,
+      "rollable": true,
+      "className": "Priest",
+      "specs": [
+        "Discipline"
+      ],
+      "icon": {
+        "source": "blizzard",
+        "id": "spell_holy_innerfire"
+      }
+    },
+    {
+      "id": "mental-block",
+      "name": "Mental Block",
+      "scope": "spec",
+      "difficulty": "easy",
+      "description": "A rival warlock confused Mind Control with minding your own business, and you took it badly. You cannot use Mind Control, Mind Vision, or Mind Soothe.",
+      "subRolls": [],
+      "exclusionGroup": null,
+      "friction": 3,
+      "rollable": true,
+      "className": "Priest",
+      "specs": [
+        "Discipline"
+      ],
+      "icon": {
+        "source": "blizzard",
+        "id": "spell_shadow_shadowworddominate"
+      }
+    },
+    {
+      "id": "light-entertainment-only",
+      "name": "Light Entertainment Only",
+      "scope": "spec",
+      "difficulty": "hard",
+      "description": "You stared into the shadows once, saw something blink back, and decided radiant wholesomeness was the safer career path. You cannot use any Shadow spells, including buffs and utility.",
+      "subRolls": [],
+      "exclusionGroup": null,
+      "friction": 30,
+      "rollable": true,
+      "className": "Priest",
+      "specs": [
+        "Holy"
+      ],
+      "icon": {
+        "source": "blizzard",
+        "id": "classicon_priest"
+      }
+    },
+    {
+      "id": "smite-out",
+      "name": "Smite Out",
+      "scope": "spec",
+      "difficulty": "medium",
+      "description": "Smiting felt too aggressive for a service that serves tea afterwards. You cannot use Smite or Holy Fire.",
+      "subRolls": [],
+      "exclusionGroup": null,
+      "friction": 25,
+      "rollable": true,
+      "className": "Priest",
+      "specs": [
+        "Holy"
+      ],
+      "icon": {
+        "source": "blizzard",
+        "id": "spell_holy_holysmite"
+      }
+    },
+    {
+      "id": "group-therapy-cancelled",
+      "name": "Group Therapy Cancelled",
+      "scope": "spec",
+      "difficulty": "easy",
+      "description": "Your support group dissolved after you took attendance. You cannot use Prayer of Healing, Holy Nova, or Lightwell.",
+      "subRolls": [],
+      "exclusionGroup": null,
+      "friction": 13,
+      "rollable": true,
+      "className": "Priest",
+      "specs": [
+        "Holy"
+      ],
+      "icon": {
+        "source": "blizzard",
+        "id": "spell_holy_prayerofhealing02"
+      }
+    },
+    {
+      "id": "holy-ghosted",
+      "name": "Holy Ghosted",
+      "scope": "spec",
+      "difficulty": "hard",
+      "description": "The shadows offered unlimited power and casual Fridays; the Light only offered mandatory choir practice. You cannot use Holy damaging or healing spells.",
+      "subRolls": [],
+      "exclusionGroup": null,
+      "friction": 36,
+      "rollable": true,
+      "className": "Priest",
+      "specs": [
+        "Shadow"
+      ],
+      "icon": {
+        "source": "blizzard",
+        "id": "classicon_priest"
+      }
+    },
+    {
+      "id": "formless",
+      "name": "Formless",
+      "scope": "spec",
+      "difficulty": "medium",
+      "description": "You got stuck in your own shadow once, and nobody has let you forget it. You cannot use Shadowform.",
+      "subRolls": [],
+      "exclusionGroup": null,
+      "friction": 19,
+      "rollable": true,
+      "className": "Priest",
+      "specs": [
+        "Shadow"
+      ],
+      "icon": {
+        "source": "blizzard",
+        "id": "spell_shadow_shadowform"
+      }
+    },
+    {
+      "id": "pain-free-zone",
+      "name": "Pain Free Zone",
+      "scope": "spec",
+      "difficulty": "medium",
+      "description": "You decided pain was rude and have forbidden it in your presence. You cannot use Shadow Word: Pain or Mind Flay.",
+      "subRolls": [],
+      "exclusionGroup": null,
+      "friction": 30,
+      "rollable": true,
+      "className": "Priest",
+      "specs": [
+        "Shadow"
+      ],
+      "icon": {
+        "source": "blizzard",
+        "id": "spell_shadow_shadowwordpain"
+      }
+    },
+    {
+      "id": "assassins-code",
+      "name": "Assassins Code",
+      "scope": "spec",
+      "difficulty": "hard",
+      "description": "You misunderstood \"leave no witnesses\" as a legally binding employment contract. You must defeat every enemy you engage and finish the job; you cannot attempt to escape.",
+      "subRolls": [],
+      "exclusionGroup": null,
+      "friction": 36,
+      "rollable": true,
+      "className": "Rogue",
+      "specs": [
+        "Assassination"
+      ],
+      "icon": {
+        "source": "blizzard",
+        "id": "classicon_rogue"
+      }
+    },
+    {
+      "id": "backstabber-s-honesty",
+      "name": "Backstabber's Honesty",
+      "scope": "spec",
+      "difficulty": "medium",
+      "description": "You were told honesty is the best policy, and you have taken it far too personally. You cannot use Backstab or Ambush.",
+      "subRolls": [],
+      "exclusionGroup": null,
+      "friction": 29,
+      "rollable": true,
+      "className": "Rogue",
+      "specs": [
+        "Assassination"
+      ],
+      "icon": {
+        "source": "blizzard",
+        "id": "ability_backstab"
+      }
+    },
+    {
+      "id": "sliced-out",
+      "name": "Sliced Out",
+      "scope": "spec",
+      "difficulty": "medium",
+      "description": "A deli worker called your knife skills a threat to public health. You cannot use Slice and Dice or Expose Armor.",
+      "subRolls": [],
+      "exclusionGroup": null,
+      "friction": 18,
+      "rollable": true,
+      "className": "Rogue",
+      "specs": [
+        "Assassination"
+      ],
+      "icon": {
+        "source": "blizzard",
+        "id": "ability_rogue_slicedice"
+      }
+    },
+    {
+      "id": "brawler-s-code",
+      "name": "Brawler's Code",
+      "scope": "spec",
+      "difficulty": "hard",
+      "description": "You tried sneaking once, got bored halfway through, and announced your arrival by kicking the door in. Once you are in combat, you must remain in melee range of your current target. You cannot kite, and you cannot finish a fight with ranged attacks.",
+      "subRolls": [],
+      "exclusionGroup": null,
+      "friction": 36,
+      "rollable": true,
+      "className": "Rogue",
+      "specs": [
+        "Combat"
+      ],
+      "icon": {
+        "source": "blizzard",
+        "id": "classicon_rogue"
+      }
+    },
+    {
+      "id": "flurry-cancelled",
+      "name": "Flurry Cancelled",
+      "scope": "spec",
+      "difficulty": "easy",
+      "description": "A forecast of blade flurries was cancelled and you were quietly relieved. You cannot use Blade Flurry or Adrenaline Rush.",
+      "subRolls": [],
+      "exclusionGroup": null,
+      "friction": 13,
+      "rollable": true,
+      "className": "Rogue",
+      "specs": [
+        "Combat"
+      ],
+      "icon": {
+        "source": "blizzard",
+        "id": "ability_warrior_punishingblow"
+      }
+    },
+    {
+      "id": "sinister-misunderstanding",
+      "name": "Sinister Misunderstanding",
+      "scope": "spec",
+      "difficulty": "medium",
+      "description": "You were told your strikes were sinister, and you took it as a personal insult. You cannot use Sinister Strike.",
+      "subRolls": [],
+      "exclusionGroup": null,
+      "friction": 30,
+      "rollable": true,
+      "className": "Rogue",
+      "specs": [
+        "Combat"
+      ],
+      "icon": {
+        "source": "blizzard",
+        "id": "spell_shadow_ritualofsacrifice"
+      }
+    },
+    {
+      "id": "dagger-issues",
+      "name": "Dagger Issues",
+      "scope": "spec",
+      "difficulty": "medium",
+      "description": "You saw a Combat Rogue swagger through town with a sword on each hip and immediately decided daggers were for people with less confidence. You cannot use daggers.",
+      "subRolls": [],
+      "exclusionGroup": "Weapons",
+      "friction": 28,
+      "rollable": true,
+      "className": "Rogue",
+      "specs": [
+        "Subtlety"
+      ],
+      "icon": {
+        "source": "blizzard",
+        "id": "classicon_rogue"
+      }
+    },
+    {
+      "id": "sap-happy",
+      "name": "Sap Happy",
+      "scope": "spec",
+      "difficulty": "medium",
+      "description": "You were sapped on your own wedding day and have never fully recovered. You cannot use Sap, Blind, or Gouge.",
+      "subRolls": [],
+      "exclusionGroup": null,
+      "friction": 23,
+      "rollable": true,
+      "className": "Rogue",
+      "specs": [
+        "Subtlety"
+      ],
+      "icon": {
+        "source": "blizzard",
+        "id": "ability_sap"
+      }
+    },
+    {
+      "id": "dodge-this",
+      "name": "Dodge This",
+      "scope": "spec",
+      "difficulty": "medium",
+      "description": "An instructor shouted Dodge and you stood still and trusted fate. You cannot use Evasion, Feint, or Preparation.",
+      "subRolls": [],
+      "exclusionGroup": null,
+      "friction": 19,
+      "rollable": true,
+      "className": "Rogue",
+      "specs": [
+        "Subtlety"
+      ],
+      "icon": {
+        "source": "blizzard",
+        "id": "spell_shadow_shadowward"
+      }
+    },
+    {
+      "id": "hands-off-approach",
+      "name": "Hands Off Approach",
+      "scope": "spec",
+      "difficulty": "medium",
+      "description": "The elements agreed to fight for you on the condition that you stop embarrassing them with your melee technique. You cannot use physical melee attacks.",
+      "subRolls": [],
+      "exclusionGroup": null,
+      "friction": 19,
+      "rollable": true,
+      "className": "Shaman",
+      "specs": [
+        "Elemental"
+      ],
+      "icon": {
+        "source": "blizzard",
+        "id": "classicon_shaman"
+      }
+    },
+    {
+      "id": "storm-warning",
+      "name": "Storm Warning",
+      "scope": "spec",
+      "difficulty": "hard",
+      "description": "A lightning bolt struck your tent and the spirits recommended counselling. You cannot use Lightning Bolt or Chain Lightning.",
+      "subRolls": [],
+      "exclusionGroup": null,
+      "friction": 35,
+      "rollable": true,
+      "className": "Shaman",
+      "specs": [
+        "Elemental"
+      ],
+      "icon": {
+        "source": "blizzard",
+        "id": "spell_nature_lightning"
+      }
+    },
+    {
+      "id": "sink-or-swim",
+      "name": "Sink or Swim",
+      "scope": "spec",
+      "difficulty": "easy",
+      "description": "A heckler dared you to walk on water and you have tried every time since. You cannot use Water Walking, Water Breathing, or Far Sight.",
+      "subRolls": [],
+      "exclusionGroup": null,
+      "friction": 3,
+      "rollable": true,
+      "className": "Shaman",
+      "specs": [
+        "Elemental"
+      ],
+      "icon": {
+        "source": "blizzard",
+        "id": "spell_frost_windwalkon"
+      }
+    },
+    {
+      "id": "shamateur-tank",
+      "name": "Shamateur Tank",
+      "scope": "spec",
+      "difficulty": "easy",
+      "description": "A shield vendor called you \"champ,\" and you have been pretending to be a tank ever since. You cannot use two-handed weapons.",
+      "subRolls": [],
+      "exclusionGroup": "Weapons",
+      "friction": 10,
+      "rollable": true,
+      "className": "Shaman",
+      "specs": [
+        "Enhancement"
+      ],
+      "icon": {
+        "source": "blizzard",
+        "id": "classicon_shaman"
+      }
+    },
+    {
+      "id": "stormstruck-out",
+      "name": "Stormstruck Out",
+      "scope": "spec",
+      "difficulty": "medium",
+      "description": "You swung for the storm and hit nothing but air. You cannot use Stormstrike.",
+      "subRolls": [],
+      "exclusionGroup": null,
+      "friction": 19,
+      "rollable": true,
+      "className": "Shaman",
+      "specs": [
+        "Enhancement"
+      ],
+      "icon": {
+        "source": "blizzard",
+        "id": "ability_shaman_stormstrike"
+      }
+    },
+    {
+      "id": "one-hand-clapping",
+      "name": "One Hand Clapping",
+      "scope": "spec",
+      "difficulty": "easy",
+      "description": "A master asked you what the sound of one hand was, and now you only have one. You cannot dual wield.",
+      "subRolls": [],
+      "exclusionGroup": "Weapons",
+      "friction": 16,
+      "rollable": true,
+      "className": "Shaman",
+      "specs": [
+        "Enhancement"
+      ],
+      "icon": {
+        "source": "blizzard",
+        "id": "ability_dualwield"
+      }
+    },
+    {
+      "id": "totem-duty",
+      "name": "Totem Duty",
+      "scope": "spec",
+      "difficulty": "medium",
+      "description": "The elements clocked you for leaving them idle and put you on a shift. Whenever you are in combat, you must have at least one totem active.",
+      "subRolls": [],
+      "exclusionGroup": "Totems",
+      "friction": 31,
+      "rollable": true,
+      "className": "Shaman",
+      "specs": [
+        "Enhancement"
+      ],
+      "icon": {
+        "source": "blizzard",
+        "id": "spell_nature_tremortotem"
+      }
+    },
+    {
+      "id": "self-careless",
+      "name": "Self-Careless",
+      "scope": "spec",
+      "difficulty": "hard",
+      "description": "You took the word \"selfless\" far too literally. You cannot cast direct heals on yourself; you may only heal yourself with healing-over-time effects or Healing Stream Totem.",
+      "subRolls": [],
+      "exclusionGroup": null,
+      "friction": 41,
+      "rollable": true,
+      "className": "Shaman",
+      "specs": [
+        "Restoration"
+      ],
+      "icon": {
+        "source": "blizzard",
+        "id": "classicon_shaman"
+      }
+    },
+    {
+      "id": "wave-goodbye",
+      "name": "Wave Goodbye",
+      "scope": "spec",
+      "difficulty": "hard",
+      "description": "The tide went out and took your confidence with it. You cannot use Healing Wave.",
+      "subRolls": [],
+      "exclusionGroup": null,
+      "friction": 35,
+      "rollable": true,
+      "className": "Shaman",
+      "specs": [
+        "Restoration"
+      ],
+      "icon": {
+        "source": "blizzard",
+        "id": "spell_nature_magicimmunity"
+      }
+    },
+    {
+      "id": "ankh-ious",
+      "name": "Ankh-ious",
+      "scope": "spec",
+      "difficulty": "hard",
+      "description": "You gave away every Ankh you owned to a stranger who looked like they needed one more. You cannot use Reincarnation.",
+      "subRolls": [],
+      "exclusionGroup": null,
+      "friction": 23,
+      "rollable": true,
+      "className": "Shaman",
+      "specs": [
+        "Restoration"
+      ],
+      "icon": {
+        "source": "blizzard",
+        "id": "spell_nature_reincarnation"
+      }
+    },
+    {
+      "id": "connect-the-dots",
+      "name": "Connect the DoTs",
+      "scope": "spec",
+      "difficulty": "medium",
+      "description": "You believe direct damage lacks patience, artistry, and sufficient opportunities for the enemy to reconsider its life choices. You may only use damage-over-time spells and cannot use Drain Life.",
+      "subRolls": [],
+      "exclusionGroup": null,
+      "friction": 26,
+      "rollable": true,
+      "className": "Warlock",
+      "specs": [
+        "Affliction"
+      ],
+      "icon": {
+        "source": "blizzard",
+        "id": "classicon_warlock"
+      }
+    },
+    {
+      "id": "spreading-rumours",
+      "name": "Spreading Rumours",
+      "scope": "spec",
+      "difficulty": "medium",
+      "description": "You refuse to start a fight you cannot gossip about. Corruption must be on every enemy you are currently fighting.",
+      "subRolls": [],
+      "exclusionGroup": null,
+      "friction": 24,
+      "rollable": true,
+      "className": "Warlock",
+      "specs": [
+        "Affliction"
+      ],
+      "icon": {
+        "source": "blizzard",
+        "id": "spell_shadow_abominationexplosion"
+      }
+    },
+    {
+      "id": "siphoned-off",
+      "name": "Siphoned Off",
+      "scope": "spec",
+      "difficulty": "easy",
+      "description": "You tried to siphon a drink with a straw and the tavern banned you. You cannot use Drain Mana or Dark Pact.",
+      "subRolls": [],
+      "exclusionGroup": null,
+      "friction": 12,
+      "rollable": true,
+      "className": "Warlock",
+      "specs": [
+        "Affliction"
+      ],
+      "icon": {
+        "source": "blizzard",
+        "id": "spell_shadow_siphonmana"
+      }
+    },
+    {
+      "id": "imp-ossible-to-resist",
+      "name": "Imp-ossible to Resist",
+      "scope": "spec",
+      "difficulty": "hard",
+      "description": "Your Imp complimented your robes once, and you have been emotionally compromised ever since. You cannot summon or use any other demon than your imp.",
+      "subRolls": [],
+      "exclusionGroup": "Demons",
+      "friction": 36,
+      "rollable": true,
+      "className": "Warlock",
+      "specs": [
+        "Demonology"
+      ],
+      "icon": {
+        "source": "blizzard",
+        "id": "classicon_warlock"
+      }
+    },
+    {
+      "id": "unlinked",
+      "name": "Unlinked",
+      "scope": "spec",
+      "difficulty": "medium",
+      "description": "Your demon changed its relationship status without telling you. You cannot use Soul Link, Demonic Sacrifice, or Fel Domination.",
+      "subRolls": [],
+      "exclusionGroup": null,
+      "friction": 18,
+      "rollable": true,
+      "className": "Warlock",
+      "specs": [
+        "Demonology"
+      ],
+      "icon": {
+        "source": "blizzard",
+        "id": "spell_shadow_gathershadows"
+      }
+    },
+    {
+      "id": "hostile-takeover",
+      "name": "Hostile Takeover",
+      "scope": "spec",
+      "difficulty": "easy",
+      "description": "The board reviewed your management style and revoked your hostile takeover rights. You cannot use Enslave Demon, Inferno, or Ritual of Doom.",
+      "subRolls": [],
+      "exclusionGroup": null,
+      "friction": 8,
+      "rollable": true,
+      "className": "Warlock",
+      "specs": [
+        "Demonology"
+      ],
+      "icon": {
+        "source": "blizzard",
+        "id": "spell_shadow_enslavedemon"
+      }
+    },
+    {
+      "id": "playing-with-fire",
+      "name": "Playing with Fire",
+      "scope": "spec",
+      "difficulty": "hard",
+      "description": "A fire elemental offered you a timeshare and you signed in triplicate. Once Fire damaging spells become available, you may only deal damage with Fire spells.",
+      "subRolls": [],
+      "exclusionGroup": "Destruction School",
+      "friction": 35,
+      "rollable": true,
+      "className": "Warlock",
+      "specs": [
+        "Destruction"
+      ],
+      "icon": {
+        "source": "blizzard",
+        "id": "spell_fire_fire"
+      }
+    },
+    {
+      "id": "out-of-bolts",
+      "name": "Out of Bolts",
+      "scope": "spec",
+      "difficulty": "hard",
+      "description": "You ran out of bolts, nuts, and tolerance, and your shadows have gone home. You cannot use Shadow Bolt.",
+      "subRolls": [],
+      "exclusionGroup": "Destruction School",
+      "friction": 35,
+      "rollable": true,
+      "className": "Warlock",
+      "specs": [
+        "Destruction"
+      ],
+      "icon": {
+        "source": "blizzard",
+        "id": "spell_shadow_shadowbolt"
+      }
+    },
+    {
+      "id": "rain-check",
+      "name": "Rain Check",
+      "scope": "spec",
+      "difficulty": "easy",
+      "description": "Your fire insurance expired and the rain has been postponed indefinitely. You cannot use Rain of Fire, Hellfire, or Shadowburn.",
+      "subRolls": [],
+      "exclusionGroup": null,
+      "friction": 12,
+      "rollable": true,
+      "className": "Warlock",
+      "specs": [
+        "Destruction"
+      ],
+      "icon": {
+        "source": "blizzard",
+        "id": "spell_shadow_rainoffire"
+      }
+    },
+    {
+      "id": "weapon-of-choice",
+      "name": "Weapon of Choice",
+      "scope": "spec",
+      "difficulty": "medium",
+      "description": "A travelling weapons expert declared your rolled weapon type \"the thinking warrior’s choice,\" and you built your entire personality around it. Once that weapon type becomes available, you may use only that type.",
+      "subRolls": [
+        "Axes",
+        "Swords",
+        "Maces",
+        "Polearms or Staves"
+      ],
+      "exclusionGroup": "Weapons",
+      "friction": 27,
+      "subRollFriction": {
+        "Axes": 35,
+        "Swords": 37,
+        "Maces": 39,
+        "Polearms or Staves": 49
+      },
+      "rollable": true,
+      "className": "Warrior",
+      "specs": [
+        "Arms"
+      ],
+      "icon": {
+        "source": "blizzard",
+        "id": "classicon_warrior"
+      }
+    },
+    {
+      "id": "mortal-strike-out",
+      "name": "Mortal Strike Out",
+      "scope": "spec",
+      "difficulty": "medium",
+      "description": "You missed Mortal Strike so many times the trainer asked for the book back. You cannot use Mortal Strike or Overpower.",
+      "subRolls": [],
+      "exclusionGroup": null,
+      "friction": 19,
+      "rollable": true,
+      "className": "Warrior",
+      "specs": [
+        "Arms"
+      ],
+      "icon": {
+        "source": "blizzard",
+        "id": "ability_warrior_savageblow"
+      }
+    },
+    {
+      "id": "bleeding-heart",
+      "name": "Bleeding Heart",
+      "scope": "spec",
+      "difficulty": "easy",
+      "description": "The sight of blood unnerves you, so you ask enemies to bleed somewhere else. You cannot use Rend or Hamstring.",
+      "subRolls": [],
+      "exclusionGroup": null,
+      "friction": 13,
+      "rollable": true,
+      "className": "Warrior",
+      "specs": [
+        "Arms"
+      ],
+      "icon": {
+        "source": "blizzard",
+        "id": "ability_gouge"
+      }
+    },
+    {
+      "id": "sweeping-generalisations",
+      "name": "Sweeping Generalisations",
+      "scope": "spec",
+      "difficulty": "hard",
+      "description": "You tried Sweeping Strikes, hit an ally’s pride, and the trainer took the book back. You cannot use Sweeping Strikes.",
+      "subRolls": [],
+      "exclusionGroup": null,
+      "friction": 29,
+      "rollable": true,
+      "className": "Warrior",
+      "specs": [
+        "Arms"
+      ],
+      "icon": {
+        "source": "blizzard",
+        "id": "ability_rogue_slicedice"
+      }
+    },
+    {
+      "id": "conan-the-barebarian",
+      "name": "Conan the Barebarian",
+      "scope": "spec",
+      "difficulty": "hard",
+      "description": "You believe armour is for warriors who lack dramatic muscles and a strong soundtrack. You cannot equip chest armour.",
+      "subRolls": [],
+      "exclusionGroup": "Armour",
+      "friction": 35,
+      "rollable": true,
+      "className": "Warrior",
+      "specs": [
+        "Fury"
+      ],
+      "icon": {
+        "source": "blizzard",
+        "id": "classicon_warrior"
+      }
+    },
+    {
+      "id": "bloodthirst-quenched",
+      "name": "Bloodthirst Quenched",
+      "scope": "spec",
+      "difficulty": "medium",
+      "description": "You drank a nice cup of tea and your bloodlust went to sleep. You cannot use Bloodthirst or Whirlwind.",
+      "subRolls": [],
+      "exclusionGroup": null,
+      "friction": 24,
+      "rollable": true,
+      "className": "Warrior",
+      "specs": [
+        "Fury"
+      ],
+      "icon": {
+        "source": "blizzard",
+        "id": "spell_nature_bloodlust"
+      }
+    },
+    {
+      "id": "calm-down-dear",
+      "name": "Calm Down, Dear",
+      "scope": "spec",
+      "difficulty": "medium",
+      "description": "A therapist told you to take a deep breath and you have not breathed out since. You cannot use Berserker Rage, Recklessness, or Death Wish.",
+      "subRolls": [],
+      "exclusionGroup": null,
+      "friction": 13,
+      "rollable": true,
+      "className": "Warrior",
+      "specs": [
+        "Fury"
+      ],
+      "icon": {
+        "source": "blizzard",
+        "id": "ability_warrior_innerrage"
+      }
+    },
+    {
+      "id": "fight-or-fight",
+      "name": "Fight or Fight",
+      "scope": "spec",
+      "difficulty": "hard",
+      "description": "You once retreated two steps and have been trying to restore your honour ever since. You must never leave a fight initiated by you or a party member.",
+      "subRolls": [],
+      "exclusionGroup": null,
+      "friction": 36,
+      "rollable": true,
+      "className": "Warrior",
+      "specs": [
+        "Protection"
+      ],
+      "icon": {
+        "source": "blizzard",
+        "id": "classicon_warrior"
+      }
+    },
+    {
+      "id": "unprovoked",
+      "name": "Unprovoked",
+      "scope": "spec",
+      "difficulty": "easy",
+      "description": "You were told you could not provoke a fight and you took it as a legal ruling. You cannot use Taunt or Mocking Blow.",
+      "subRolls": [],
+      "exclusionGroup": null,
+      "friction": 13,
+      "rollable": true,
+      "className": "Warrior",
+      "specs": [
+        "Protection"
+      ],
+      "icon": {
+        "source": "blizzard",
+        "id": "spell_nature_reincarnation"
+      }
+    },
+    {
+      "id": "wall-not-included",
+      "name": "Wall Not Included",
+      "scope": "spec",
+      "difficulty": "hard",
+      "description": "A contractor billed you for a wall and delivered a very sturdy curtain. You cannot use Shield Wall, Last Stand, or Spell Reflection.",
+      "subRolls": [],
+      "exclusionGroup": null,
+      "friction": 24,
+      "rollable": true,
+      "className": "Warrior",
+      "specs": [
+        "Protection"
+      ],
+      "icon": {
+        "source": "blizzard",
+        "id": "ability_warrior_shieldwall"
+      }
+    },
+    {
+      "id": "it-s-about-the-journey",
+      "name": "It's About the Journey",
+      "scope": "universal",
+      "difficulty": "easy",
+      "description": "Someone told you the journey matters more than the destination, so you now consider teleportation a form of cheating. You cannot use portals, summons, or Hearthstones.",
+      "subRolls": [],
+      "exclusionGroup": null,
+      "friction": 29,
+      "rollable": true,
+      "className": null,
+      "specs": [],
+      "icon": {
+        "source": "blizzard",
+        "id": "inv_misc_head_dragon_01"
+      }
+    },
+    {
+      "id": "no-instance-left-behind",
+      "name": "No Instance Left Behind",
+      "scope": "universal",
+      "difficulty": "medium",
+      "description": "You once skipped a dungeon and have been haunted by the possibility that it contained a slightly better pair of trousers. Complete every dungeon within its level range, excluding those inside the opposing faction capital cities.",
+      "subRolls": [],
+      "exclusionGroup": "Dungeons",
+      "friction": 44,
+      "rollable": true,
+      "className": null,
+      "specs": [],
+      "icon": {
+        "source": "blizzard",
+        "id": "inv_misc_head_dragon_01"
+      }
+    },
+    {
+      "id": "back-in-my-day",
+      "name": "Back in My Day",
+      "scope": "universal",
+      "difficulty": "medium",
+      "description": "You believe every quest should require twenty minutes of wandering and at least one wrong continent. You cannot use third-party addons or research websites, and must use the Classic UI and map.",
+      "subRolls": [],
+      "exclusionGroup": null,
+      "friction": 37,
+      "rollable": true,
+      "className": null,
+      "specs": [],
+      "icon": {
+        "source": "blizzard",
+        "id": "inv_misc_head_dragon_01"
+      }
+    },
+    {
+      "id": "nudist",
+      "name": "Nudist",
+      "scope": "universal",
+      "difficulty": "insane",
+      "description": "You sold your armour to fund a suspiciously affordable course called 'Defence Through Confidence' and are now too proud to admit the instructor was just three Goblins in a trench coat. You cannot equip armour in any slot.",
+      "subRolls": [],
+      "exclusionGroup": "Armour",
+      "friction": 72,
+      "rollable": true,
+      "className": null,
+      "specs": [],
+      "icon": {
+        "source": "blizzard",
+        "id": "inv_misc_pelt_bear_ruin_05"
+      }
+    },
+    {
+      "id": "weaponised-incompetence",
+      "name": "Weaponised Incompetence",
+      "scope": "universal",
+      "difficulty": "insane",
+      "description": "A weapons trainer asked you to demonstrate the pointy end, and after several hours of debate the guild decided everyone would be safer if you stopped trying. You cannot equip or use weapons.",
+      "subRolls": [],
+      "exclusionGroup": "Weapons",
+      "friction": 72,
+      "rollable": true,
+      "className": null,
+      "specs": [],
+      "icon": {
+        "source": "blizzard",
+        "id": "inv_sword_04"
+      }
+    },
+    {
+      "id": "potion-commotion",
+      "name": "Potion Commotion",
+      "scope": "universal",
+      "difficulty": "medium",
+      "description": "You once drank a potion without reading the label and spent the afternoon convinced you were a mailbox. You cannot use potions.",
+      "subRolls": [],
+      "exclusionGroup": "Consumables",
+      "friction": 19,
+      "rollable": true,
+      "className": null,
+      "specs": [],
+      "icon": {
+        "source": "blizzard",
+        "id": "inv_potion_12"
+      }
+    },
+    {
+      "id": "consume-responsibly",
+      "name": "Consume Responsibly",
+      "scope": "universal",
+      "difficulty": "medium",
+      "description": "Your bags became so full of emergency supplies that you declared the real emergency was inventory management. You cannot use consumable items, including food, drinks, potions, elixirs, flasks, scrolls, bandages, or temporary item buffs.",
+      "subRolls": [],
+      "exclusionGroup": "Consumables",
+      "friction": 30,
+      "rollable": true,
+      "className": null,
+      "specs": [],
+      "icon": {
+        "source": "blizzard",
+        "id": "inv_potion_52"
+      }
+    },
+    {
+      "id": "unprofessional-conduct",
+      "name": "Unprofessional Conduct",
+      "scope": "universal",
+      "difficulty": "easy",
+      "description": "Every profession trainer in Azeroth has quietly agreed that your work creates more repair orders than products. You cannot learn or use primary professions.",
+      "subRolls": [],
+      "exclusionGroup": null,
+      "friction": 17,
+      "rollable": true,
+      "className": null,
+      "specs": [],
+      "icon": {
+        "source": "blizzard",
+        "id": "inv_misc_wrench_01"
+      }
+    },
+    {
+      "id": "no-time-for-hobbies",
+      "name": "No Time for Hobbies",
+      "scope": "universal",
+      "difficulty": "easy",
+      "description": "You tried fishing, cooking, and first aid in the same afternoon and somehow burned the fish while bandaging the cooking fire. You cannot learn or use secondary professions.",
+      "subRolls": [],
+      "exclusionGroup": "Secondary Professions",
+      "friction": 8,
+      "rollable": true,
+      "className": null,
+      "specs": [],
+      "icon": {
+        "source": "blizzard",
+        "id": "inv_misc_note_01"
+      }
+    },
+    {
+      "id": "arms-race",
+      "name": "Arms Race",
+      "scope": "universal",
+      "difficulty": "easy",
+      "description": "A weapons master called your technique uneven, so you responded by turning every level into a compulsory practical examination. From level 21 onward, whenever you gain a level, every weapon skill your class can learn must be within 10 points of the current maximum before you may continue earning experience.",
+      "subRolls": [],
+      "exclusionGroup": "Weapons",
+      "friction": 43,
+      "rollable": true,
+      "className": null,
+      "specs": [],
+      "icon": {
+        "source": "blizzard",
+        "id": "inv_axe_04"
+      }
+    },
+    {
+      "id": "dungeon-dodger",
+      "name": "Dungeon Dodger",
+      "scope": "universal",
+      "difficulty": "easy",
+      "description": "You heard that dungeons contain monsters, confined spaces, and group members with opinions, so you have decided the surface world is quite adventurous enough. You cannot enter or complete dungeons.",
+      "subRolls": [],
+      "exclusionGroup": "Dungeons",
+      "friction": 13,
+      "rollable": true,
+      "className": null,
+      "specs": [],
+      "icon": {
+        "source": "blizzard",
+        "id": "inv_helmet_08"
+      }
+    },
+    {
+      "id": "reel-progress",
+      "name": "Reel Progress",
+      "scope": "universal",
+      "difficulty": "easy",
+      "description": "A fisherman told you that patience builds character, and you mistook this for a mandatory levelling system. When you reach levels 10, 20, 30, 40, 50, and 60, your Fishing skill must be at least five times your level before you may continue earning experience.",
+      "subRolls": [],
+      "exclusionGroup": "Secondary Professions",
+      "friction": 27,
+      "rollable": true,
+      "className": null,
+      "specs": [],
+      "icon": {
+        "source": "blizzard",
+        "id": "trade_fishing"
+      }
+    },
+    {
+      "id": "auction-house-arrest",
+      "name": "Auction House Arrest",
+      "scope": "universal",
+      "difficulty": "easy",
+      "description": "An auctioneer described your final bid as economically creative and then had you escorted from the building. You cannot buy or sell items through the Auction House.",
+      "subRolls": [],
+      "exclusionGroup": "Self Found",
+      "friction": 18,
+      "rollable": true,
+      "className": null,
+      "specs": [],
+      "icon": {
+        "source": "blizzard",
+        "id": "inv_misc_coin_01"
+      }
+    },
+    {
+      "id": "trade-embargo",
+      "name": "Trade Embargo",
+      "scope": "universal",
+      "difficulty": "easy",
+      "description": "You accepted one suspicious trade window too many and now regard all player commerce as an elaborate confidence trick. You cannot trade items or gold with other players, or receive them through player mail.",
+      "subRolls": [],
+      "exclusionGroup": "Self Found",
+      "friction": 18,
+      "rollable": true,
+      "className": null,
+      "specs": [],
+      "icon": {
+        "source": "blizzard",
+        "id": "inv_misc_gift_01"
+      }
+    },
+    {
+      "id": "frequent-flyer-denied",
+      "name": "Frequent Flyer Denied",
+      "scope": "universal",
+      "difficulty": "easy",
+      "description": "After asking a gryphon master whether the seat had been cleaned, you were added to a no-fly list spanning both continents. You cannot use flight paths.",
+      "subRolls": [],
+      "exclusionGroup": null,
+      "friction": 24,
+      "rollable": true,
+      "className": null,
+      "specs": [],
+      "icon": {
+        "source": "blizzard",
+        "id": "ability_hunter_pathfinding"
+      }
+    },
+    {
+      "id": "mounting-problems",
+      "name": "Mounting Problems",
+      "scope": "universal",
+      "difficulty": "easy",
+      "description": "Your last riding lesson ended with the mount filing a formal complaint, and the stable masters have agreed to honour it. You cannot learn riding or use mounts.",
+      "subRolls": [],
+      "exclusionGroup": null,
+      "friction": 30,
+      "rollable": true,
+      "className": null,
+      "specs": [],
+      "icon": {
+        "source": "blizzard",
+        "id": "ability_mount_ridinghorse"
+      }
+    },
+    {
+      "id": "naturally-untalented",
+      "name": "Naturally Untalented",
+      "scope": "universal",
+      "difficulty": "hard",
+      "description": "Your class trainer handed you a talent point and you immediately spent it on confidence. You cannot spend talent points.",
+      "subRolls": [],
+      "exclusionGroup": null,
+      "friction": 36,
+      "rollable": true,
+      "className": null,
+      "specs": [],
+      "icon": {
+        "source": "blizzard",
+        "id": "inv_misc_book_09"
+      }
+    },
+    {
+      "id": "thanks-but-no-thanks",
+      "name": "Thanks, But No Thanks",
+      "scope": "universal",
+      "difficulty": "medium",
+      "description": "You became convinced that quest rewards are how adventurers get trapped in long-term contractual obligations. You cannot equip items received as quest rewards.",
+      "subRolls": [],
+      "exclusionGroup": null,
+      "friction": 31,
+      "rollable": true,
+      "className": null,
+      "specs": [],
+      "icon": {
+        "source": "blizzard",
+        "id": "inv_misc_bag_10"
+      }
+    },
+    {
+      "id": "common-courtesy",
+      "name": "Common Courtesy",
+      "scope": "universal",
+      "difficulty": "hard",
+      "description": "A merchant praised your uncommon equipment and you took it as a personal insult to ordinary craftsmanship. You may only equip Poor or Common quality items.",
+      "subRolls": [],
+      "exclusionGroup": "Item Quality",
+      "friction": 49,
+      "rollable": true,
+      "className": null,
+      "specs": [],
+      "icon": {
+        "source": "blizzard",
+        "id": "inv_shirt_grey_01"
+      }
+    },
+    {
+      "id": "fasting-and-furious",
+      "name": "Fasting and Furious",
+      "scope": "universal",
+      "difficulty": "hard",
+      "description": "You joined a wellness retreat that promised inner strength, then discovered the meal plan was simply an empty table. You cannot eat food or drink beverages.",
+      "subRolls": [],
+      "exclusionGroup": "Consumables",
+      "friction": 46,
+      "rollable": true,
+      "className": null,
+      "specs": [],
+      "icon": {
+        "source": "blizzard",
+        "id": "inv_misc_food_15"
+      }
+    },
+    {
+      "id": "pack-light",
+      "name": "Pack Light",
+      "scope": "universal",
+      "difficulty": "easy",
+      "description": "A tidying consultant held up each of your bags and asked whether it sparked joy. Anything larger than a coin purse did not. Beyond your backpack, you may only use bags with 6 slots or fewer.",
+      "subRolls": [],
+      "exclusionGroup": null,
+      "friction": 19,
+      "rollable": true,
+      "className": null,
+      "specs": [],
+      "icon": {
+        "source": "blizzard",
+        "id": "inv_misc_bag_07"
+      }
+    },
+    {
+      "id": "closed-for-business",
+      "name": "Closed for Business",
+      "scope": "universal",
+      "difficulty": "insane",
+      "description": "A goblin accountant audited your shopping and declared you a systemic risk to the economy. You cannot buy items or repairs from vendors.",
+      "subRolls": [],
+      "exclusionGroup": null,
+      "friction": 59,
+      "rollable": true,
+      "className": null,
+      "specs": [],
+      "icon": {
+        "source": "blizzard",
+        "id": "inv_misc_coin_04"
+      }
+    },
+    {
+      "id": "never-graduated",
+      "name": "Never Graduated",
+      "scope": "universal",
+      "difficulty": "insane",
+      "description": "Your class trainer asked you to demonstrate last week’s homework, then quietly retired. You cannot train new class skills from trainers.",
+      "subRolls": [],
+      "exclusionGroup": null,
+      "friction": 53,
+      "rollable": true,
+      "className": null,
+      "specs": [],
+      "icon": {
+        "source": "blizzard",
+        "id": "inv_misc_book_11"
+      }
+    },
+    {
+      "id": "poor-taste",
+      "name": "Poor Taste",
+      "scope": "universal",
+      "difficulty": "insane",
+      "description": "A tailor said your outfit had “character,” which you took as a binding contract with the colour beige. You may only equip Poor quality items.",
+      "subRolls": [],
+      "exclusionGroup": "Item Quality",
+      "friction": 64,
+      "rollable": true,
+      "className": null,
+      "specs": [],
+      "icon": {
+        "source": "blizzard",
+        "id": "inv_shirt_grey_01"
+      }
+    },
+    {
+      "id": "side-quest-aversion",
+      "name": "Side Quest Aversion",
+      "scope": "universal",
+      "difficulty": "insane",
+      "description": "You started a quest, saw the golden question mark, and felt personally hunted. You cannot accept or turn in quests. Experience must come from kills, exploration, or dungeons.",
+      "subRolls": [],
+      "exclusionGroup": "Questing",
+      "friction": 54,
+      "rollable": true,
+      "className": null,
+      "specs": [],
+      "icon": {
+        "source": "blizzard",
+        "id": "inv_misc_questionmark"
+      }
+    },
+    {
+      "id": "party-pooper",
+      "name": "Party Pooper",
+      "scope": "universal",
+      "difficulty": "medium",
+      "description": "You joined one group, heard someone say “one more,” and have been spiritually unavailable ever since. You cannot join a party or raid.",
+      "subRolls": [],
+      "exclusionGroup": null,
+      "friction": 31,
+      "rollable": true,
+      "className": null,
+      "specs": [],
+      "icon": {
+        "source": "blizzard",
+        "id": "spell_holy_prayerofhealing02"
+      }
+    },
+    {
+      "id": "red-flag",
+      "name": "Red Flag",
+      "scope": "universal",
+      "difficulty": "insane",
+      "description": "You left PvP on by accident, won an argument about it, and now it is a lifestyle. You must keep War Mode / PvP flagging enabled whenever the game allows it, and you cannot turn it off.",
+      "subRolls": [],
+      "exclusionGroup": null,
+      "friction": 37,
+      "rollable": true,
+      "className": null,
+      "specs": [],
+      "icon": {
+        "source": "blizzard",
+        "id": "inv_bannerpvp_01"
+      }
+    },
+    {
+      "id": "tourist-visa",
+      "name": "Tourist Visa",
+      "scope": "universal",
+      "difficulty": "medium",
+      "description": "A border guard stamped your map and told you not to skip the gift shop. You cannot leave a zone until you have completed every quest available to you from NPCs in that zone.",
+      "subRolls": [],
+      "exclusionGroup": "Questing",
+      "friction": 39,
+      "rollable": true,
+      "className": null,
+      "specs": [],
+      "icon": {
+        "source": "blizzard",
+        "id": "inv_misc_map_01"
+      }
+    },
+    {
+      "id": "restless",
+      "name": "Restless",
+      "scope": "universal",
+      "difficulty": "easy",
+      "description": "An innkeeper offered you a room and you asked whether that was a scam. You cannot bind at inns or gain rested experience.",
+      "subRolls": [],
+      "exclusionGroup": null,
+      "friction": 18,
+      "rollable": true,
+      "className": null,
+      "specs": [],
+      "icon": {
+        "source": "blizzard",
+        "id": "spell_nature_sleep"
+      }
+    },
+    {
+      "id": "bank-holiday",
+      "name": "Bank Holiday",
+      "scope": "universal",
+      "difficulty": "easy",
+      "description": "The bank accused you of treating the vault like a second bag, which was accurate. You cannot use banks.",
+      "subRolls": [],
+      "exclusionGroup": null,
+      "friction": 19,
+      "rollable": true,
+      "className": null,
+      "specs": [],
+      "icon": {
+        "source": "blizzard",
+        "id": "inv_misc_coin_02"
+      }
+    },
+    {
+      "id": "borrowed-power",
+      "name": "Borrowed Power",
+      "scope": "universal",
+      "difficulty": "medium",
+      "description": "You tried to credit your ancestors for a kill and they sent a cease-and-desist. You cannot use racial abilities.",
+      "subRolls": [],
+      "exclusionGroup": null,
+      "friction": 20,
+      "rollable": true,
+      "className": null,
+      "specs": [],
+      "icon": {
+        "source": "blizzard",
+        "id": "spell_holy_holyprotection"
+      }
+    }
+  ]
+}

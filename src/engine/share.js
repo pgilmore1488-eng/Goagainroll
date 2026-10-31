@@ -1,0 +1,165 @@
+import { affixFriction, affixFrictionRange, scoreRun } from './friction.js'
+
+export const AFFIX_ALIASES = {
+  'open-book': 'take-five',
+  uninsured: 'shattered-expectations',
+  demonetised: 'playing-with-fire',
+  'flash-photography': 'house-call',
+  'quiet-on-set': 'creature-of-habit',
+  'breeze-block': 'totem-duty',
+  'clean-conscience': 'spreading-rumours',
+}
+
+function toBase64Url(value) {
+  const bytes = new TextEncoder().encode(value)
+  let binary = ''
+  bytes.forEach((byte) => {
+    binary += String.fromCharCode(byte)
+  })
+  return btoa(binary).replaceAll('+', '-').replaceAll('/', '_').replace(/=+$/g, '')
+}
+
+function fromBase64Url(value) {
+  const padded = value.replaceAll('-', '+').replaceAll('_', '/')
+  const pad = padded.length % 4 === 0 ? '' : '='.repeat(4 - (padded.length % 4))
+  const binary = atob(padded + pad)
+  return new TextDecoder().decode(Uint8Array.from(binary, (char) => char.charCodeAt(0)))
+}
+
+export function encodeRun(run) {
+  if (!run.faction || !run.class || !run.spec || !run.race || !run.profession) return ''
+  return toBase64Url(
+    JSON.stringify({
+      v: 3,
+      f: run.faction.id,
+      c: run.class.id,
+      s: run.spec.name,
+      r: run.race.id,
+      p: run.profession.id,
+      sf: Boolean(run.selfFound),
+      a: (run.affixes ?? []).map((affix) => ({
+        i: affix.id,
+        d: affix.difficulty,
+        k: affix.scope,
+        n: affix.subRoll ?? affix.condition ?? null,
+      })),
+    }),
+  )
+}
+
+function findById(list, id) {
+  return list.find((item) => item.id === id) ?? null
+}
+
+function findProfession(catalog, id) {
+  if (!id) return null
+  const exact = findById(catalog.professionPairs, id)
+  if (exact) return exact
+  const sorted = String(id).split('-').filter(Boolean).sort().join('-')
+  return catalog.professionPairs.find((pair) => pair.id.split('-').sort().join('-') === sorted) ?? null
+}
+
+function resolveAffix(catalog, entry) {
+  const requested = entry?.i
+  const aliased = AFFIX_ALIASES[requested]
+  const affix = findById(catalog.affixes, requested) ?? (aliased ? findById(catalog.affixes, aliased) : null)
+  if (!affix) return { missing: requested || 'unknown' }
+  return {
+    remapped: aliased && affix.id === aliased ? requested : null,
+    affix: {
+      ...affix,
+      difficulty: entry.d || affix.difficulty,
+      subRoll: entry.n || null,
+    },
+  }
+}
+
+export function decodeRun(catalog, token) {
+  if (!token) return null
+  try {
+    const payload = JSON.parse(fromBase64Url(token))
+    const faction = findById(catalog.factions, payload.f)
+    const classItem = findById(catalog.classes, payload.c)
+    const spec = catalog.specs.find((item) => item.classId === payload.c && item.name === payload.s)
+    const race = findById(catalog.races, payload.r)
+    const profession = findProfession(catalog, payload.p)
+    if (!faction || !classItem || !spec || !race || !profession) return null
+
+    const remapped = []
+    const missing = []
+    const affixes = []
+    for (const entry of payload.a ?? []) {
+      const resolved = resolveAffix(catalog, entry)
+      if (resolved.missing) missing.push(resolved.missing)
+      if (resolved.affix) affixes.push(resolved.affix)
+      if (resolved.remapped) remapped.push(resolved.remapped)
+    }
+
+    return {
+      faction,
+      class: classItem,
+      spec,
+      race,
+      profession,
+      selfFound: Boolean(payload.sf),
+      affixes,
+      shareNotice: remapped.length || missing.length ? { remapped, missing } : null,
+    }
+  } catch {
+    return null
+  }
+}
+
+export function shareUrl(run) {
+  const token = encodeRun(run)
+  if (!token) return ''
+  const url = new URL(window.location.href)
+  url.hash = token
+  return url.toString()
+}
+
+export function summarizeRun(run, catalog) {
+  const affixLines = (run.affixes ?? []).map((affix) => {
+    const extra = affix.subRoll ? ` (${affix.subRoll})` : ''
+    const range = affixFrictionRange(affix)
+    const rangeText = range ? `, range ${range.min}–${range.max}` : ''
+    return `- ${affix.name}${extra} [${affixFriction(affix)}${rangeText}]: ${affix.description}`
+  })
+  const score = catalog ? scoreRun(catalog, run) : null
+  const synergyLines = score?.synergies?.length
+    ? score.synergies.map((synergy) => `- +${synergy.friction}: ${synergy.warning}`).join('\n')
+    : null
+  return [
+    `${run.faction.name} ${run.race.name} ${run.spec.name} ${run.class.name}`,
+    `Professions: ${run.profession.name}`,
+    `Self Found: ${run.selfFound ? 'Yes' : 'No'}`,
+    score
+      ? `Friction: ${score.total} (affixes ${score.base} + spec ${score.specScore} + professions ${score.professionScore} + self found ${score.selfFoundScore} + synergy ${score.synergyScore} + affix count ${score.stackingScore})`
+      : null,
+    affixLines.length ? `Affixes:\n${affixLines.join('\n')}` : 'Affixes: none',
+    synergyLines ? `Synergies:\n${synergyLines}` : null,
+  ]
+    .filter(Boolean)
+    .join('\n')
+}
+
+export function canNativeShare() {
+  return typeof navigator !== 'undefined' && typeof navigator.share === 'function'
+}
+
+export async function copyText(value) {
+  if (navigator.clipboard?.writeText) {
+    await navigator.clipboard.writeText(value)
+    return
+  }
+  const field = document.createElement('textarea')
+  field.value = value
+  field.setAttribute('readonly', '')
+  field.style.position = 'fixed'
+  field.style.left = '-9999px'
+  document.body.appendChild(field)
+  field.select()
+  const ok = document.execCommand('copy')
+  field.remove()
+  if (!ok) throw new Error('copy failed')
+}
