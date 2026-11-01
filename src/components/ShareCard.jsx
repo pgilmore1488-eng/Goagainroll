@@ -42,14 +42,8 @@ export const ShareCard = forwardRef(function ShareCard({ run, score }, ref) {
       className="box-border w-[720px] bg-[#040b07] px-12 py-14 text-center"
       style={{ fontFamily: 'Oswald, ui-sans-serif, system-ui, sans-serif' }}
     >
-      <p
-        className="text-[13px] tracking-[0.45em] text-[#8a6d1f] uppercase"
-        style={{ fontFamily: 'Oswald, ui-sans-serif, sans-serif' }}
-      >
-        Your run
-      </p>
       <h1
-        className="mt-3 text-[42px] font-black leading-tight tracking-[0.08em] text-[#ffe89a] uppercase"
+        className="text-[42px] font-black leading-tight tracking-[0.08em] text-[#ffe89a] uppercase"
         style={{ fontFamily: 'Cinzel, ui-serif, Georgia, serif' }}
       >
         {run.race?.name} {run.spec?.name} {run.class?.name}
@@ -124,6 +118,13 @@ export const ShareCard = forwardRef(function ShareCard({ run, score }, ref) {
           No affixes. Clean living.
         </p>
       )}
+
+      <p
+        className="mt-14 text-[12px] tracking-[0.22em] text-[#8a6d1f] uppercase"
+        style={{ fontFamily: 'Oswald, ui-sans-serif, sans-serif' }}
+      >
+        A World of Warcraft Hardcore challenge from goagainroll.com
+      </p>
     </article>
   )
 })

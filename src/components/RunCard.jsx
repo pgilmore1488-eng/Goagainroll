@@ -1,8 +1,8 @@
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import catalog from '../data/catalog.json'
 import { affixFrictionLabel, scoreRun } from '../engine/friction.js'
 import { SLOT_LABELS } from '../engine/quickRoll.js'
-import { copyText, shareRun, shareUrl, summarizeRun } from '../engine/share.js'
+import { copyText, encodeRun, hashShareUrl, resolveShareUrl, shareRun, summarizeRun } from '../engine/share.js'
 import { AffixHeading } from './AffixHeading.jsx'
 import { GoldButton } from './ChoiceButton.jsx'
 import { FrictionScore } from './FrictionScore.jsx'
@@ -31,7 +31,23 @@ export function RunCard({ run, center = null, placing = null, revealScore = fals
   const [sharing, setSharing] = useState(false)
   const shareCardRef = useRef(null)
   const complete = Boolean(run.faction && run.class && run.spec && run.race && run.profession && revealScore)
-  const link = complete ? shareUrl(run) : ''
+  const [link, setLink] = useState(() => (complete ? hashShareUrl(encodeRun(run)) : ''))
+
+  useEffect(() => {
+    if (!complete) {
+      setLink('')
+      return undefined
+    }
+    const fallback = hashShareUrl(encodeRun(run))
+    setLink(fallback)
+    let cancelled = false
+    resolveShareUrl(run).then((url) => {
+      if (!cancelled && url) setLink(url)
+    })
+    return () => {
+      cancelled = true
+    }
+  }, [complete, run])
   const score = complete ? scoreRun(catalog, run) : null
   const titleReady = run.race || run.spec || run.class
   const affixCount = Number.isFinite(run.plannedAffixCount) ? run.plannedAffixCount : run.affixes.length
@@ -203,7 +219,7 @@ export function RunCard({ run, center = null, placing = null, revealScore = fals
 
           <div className="flex flex-col items-stretch justify-center gap-3 sm:flex-row sm:flex-wrap sm:items-center">
             <GoldButton onClick={shareNative} disabled={sharing}>
-              {sharing ? 'Preparing' : 'Share link'}
+              {sharing ? 'Preparing' : 'Share run card'}
             </GoldButton>
             <button
               type="button"

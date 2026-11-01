@@ -11,7 +11,7 @@ import {
   viableDifficulties,
 } from '../engine/lookups.js'
 import { buildQuickSequence, resolveQuickRun, selfFoundDisplay } from '../engine/quickRoll.js'
-import { decodeRun, encodeRun } from '../engine/share.js'
+import { decodeRun, encodeRun, fetchSharedToken, shortIdFromPath } from '../engine/share.js'
 import { evenPick, sleep, weightedPick } from '../engine/weighted.js'
 
 export const STEPS = {
@@ -70,11 +70,13 @@ function emptyRun() {
     draft: emptyDraft,
     preview: null,
     shareNotice: null,
+    shareLoading: false,
   }
 }
 
 export function useRun(catalog) {
   const [run, setRun] = useState(() => {
+    if (shortIdFromPath()) return { ...emptyRun(), step: STEPS.DONE, shareLoading: true }
     const token = window.location.hash.replace(/^#/, '')
     const shared = decodeRun(catalog, token)
     if (!shared) return emptyRun()
@@ -99,7 +101,33 @@ export function useRun(catalog) {
   }, [catalog])
 
   useEffect(() => {
-    if (run.step !== STEPS.DONE) return
+    const id = shortIdFromPath()
+    if (!id) return undefined
+    let cancelled = false
+    fetchSharedToken(id)
+      .then((token) => {
+        if (cancelled) return
+        const shared = decodeRun(catalog, token)
+        if (shared) {
+          setRun({ ...emptyRun(), ...shared, step: STEPS.DONE })
+          return
+        }
+        window.history.replaceState(null, '', '/')
+        setRun(emptyRun())
+      })
+      .catch(() => {
+        if (cancelled) return
+        window.history.replaceState(null, '', '/')
+        setRun(emptyRun())
+      })
+    return () => {
+      cancelled = true
+    }
+  }, [catalog])
+
+  useEffect(() => {
+    if (run.step !== STEPS.DONE || run.shareLoading) return
+    if (shortIdFromPath()) return
     const token = encodeRun(run)
     if (token && window.location.hash.replace(/^#/, '') !== token) {
       window.history.replaceState(null, '', `#${token}`)
@@ -328,7 +356,7 @@ export function useRun(catalog) {
     quickGenRef.current += 1
     quickResolvedRef.current = null
     abortRef.current?.abort()
-    window.history.replaceState(null, '', window.location.pathname + window.location.search)
+    window.history.replaceState(null, '', '/')
     setRun(emptyRun())
   }, [])
 

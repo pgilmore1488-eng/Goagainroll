@@ -9,5 +9,11 @@
         }
       ]
     }
+  ],
+  "rewrites": [
+    {
+      "source": "/r/:id",
+      "destination": "/index.html"
+    }
   ]
 }

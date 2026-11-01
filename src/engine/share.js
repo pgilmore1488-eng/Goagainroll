@@ -111,12 +111,63 @@ export function decodeRun(catalog, token) {
   }
 }
 
-export function shareUrl(run) {
-  const token = encodeRun(run)
+const shortLinkCache = new Map()
+const shortLinkInflight = new Map()
+
+export function hashShareUrl(token) {
   if (!token) return ''
-  const url = new URL(window.location.href)
+  const url = new URL(window.location.origin)
   url.hash = token
   return url.toString()
+}
+
+export function shareUrl(run) {
+  return hashShareUrl(encodeRun(run))
+}
+
+async function mintShortId(token) {
+  const response = await fetch('/api/links', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ token }),
+  })
+  if (!response.ok) return null
+  const data = await response.json()
+  return data?.id || null
+}
+
+export async function resolveShareUrl(run) {
+  const token = encodeRun(run)
+  if (!token) return ''
+  const fallback = hashShareUrl(token)
+  if (shortLinkCache.has(token)) {
+    return `${window.location.origin}/r/${shortLinkCache.get(token)}`
+  }
+  let pending = shortLinkInflight.get(token)
+  if (!pending) {
+    pending = mintShortId(token).finally(() => shortLinkInflight.delete(token))
+    shortLinkInflight.set(token, pending)
+  }
+  try {
+    const id = await pending
+    if (!id) return fallback
+    shortLinkCache.set(token, id)
+    return `${window.location.origin}/r/${id}`
+  } catch {
+    return fallback
+  }
+}
+
+export async function fetchSharedToken(id) {
+  const response = await fetch(`/api/links/${encodeURIComponent(id)}`)
+  if (!response.ok) return null
+  const data = await response.json()
+  return typeof data?.token === 'string' ? data.token : null
+}
+
+export function shortIdFromPath(pathname = window.location.pathname) {
+  const match = pathname.match(/^\/r\/([A-Za-z0-9]{5,8})$/)
+  return match?.[1] ?? null
 }
 
 export function summarizeRun(run, catalog) {
@@ -186,20 +237,20 @@ export async function shareRun({ node, url }) {
   const blob = await captureShareCard(node)
   const file = new File([blob], 'goagainroll.png', { type: 'image/png' })
   const title = 'GO AGAIN ROLL'
-  const fileShare = { title, text: url, files: [file] }
-  const fullShare = { title, text: url, url, files: [file] }
+  const withUrl = { title, url, files: [file] }
+  const withText = { title, text: url, files: [file] }
 
   try {
-    if (navigator.canShare?.(fullShare)) {
-      await navigator.share(fullShare)
+    if (navigator.canShare?.(withUrl)) {
+      await navigator.share(withUrl)
       return 'shared'
     }
-    if (navigator.canShare?.(fileShare)) {
-      await navigator.share(fileShare)
+    if (navigator.canShare?.(withText)) {
+      await navigator.share(withText)
       return 'shared'
     }
     if (typeof navigator.share === 'function') {
-      await navigator.share({ title, text: url, url })
+      await navigator.share({ title, url })
       downloadBlob(blob, 'goagainroll.png')
       return 'shared-link'
     }
