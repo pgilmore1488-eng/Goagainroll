@@ -1,4 +1,5 @@
 import { resolveIcon } from '../engine/icons.js'
+import { professionIcons } from '../engine/professions.js'
 
 const FALLBACK = 'https://wow.zamimg.com/images/wow/icons/large/inv_misc_questionmark.jpg'
 
@@ -19,6 +20,18 @@ export function IconPlate({ icon, size = 'large', className = '' }) {
         }}
       />
       <span className="pointer-events-none absolute inset-0 bg-linear-to-br from-white/20 to-transparent" />
+    </span>
+  )
+}
+
+export function ProfessionPlates({ pair, size = 'large', placing = false, className = '' }) {
+  const icons = professionIcons(pair)
+  if (!icons.length) return null
+  return (
+    <span className={`inline-flex gap-1 ${placing ? 'place-in' : ''} ${className}`}>
+      {icons.map((icon, index) => (
+        <IconPlate key={`${pair?.id ?? 'profession'}-${index}`} icon={icon} size={size} />
+      ))}
     </span>
   )
 }

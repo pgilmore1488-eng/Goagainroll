@@ -101,8 +101,8 @@ export function QuickRollPanel({ onQuickRoll, onLucky }) {
       <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
         <Select label="Self Found" value={picks.selfFound} onChange={(value) => update('selfFound', value)}>
           <option value="">Roll</option>
-          <option value="yes">Yes</option>
-          <option value="no">No</option>
+          <option value="yes">Self Found</option>
+          <option value="no">Regular</option>
         </Select>
         <Select label="Faction" value={picks.factionId} onChange={(value) => update('factionId', value)}>
           <option value="">Roll</option>

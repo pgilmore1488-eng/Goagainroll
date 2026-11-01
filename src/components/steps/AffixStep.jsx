@@ -110,13 +110,17 @@ export function AffixStep({
             {leftover > 0 ? (
               <GoldButton onClick={onAddAnother}>Add another affix</GoldButton>
             ) : null}
-            <button
-              type="button"
-              onClick={onFinish}
-              className="border border-gold/30 px-6 py-3 font-ui text-sm tracking-[0.28em] text-chrome/80 uppercase hover:text-gold"
-            >
-              That is enough
-            </button>
+            {leftover > 0 ? (
+              <button
+                type="button"
+                onClick={onFinish}
+                className="border border-gold/30 px-6 py-3 font-ui text-sm tracking-[0.28em] text-chrome/80 uppercase hover:text-gold"
+              >
+                That is enough
+              </button>
+            ) : (
+              <GoldButton onClick={onFinish}>That is enough</GoldButton>
+            )}
           </div>
         )}
       </div>

@@ -170,6 +170,17 @@ export function shortIdFromPath(pathname = window.location.pathname) {
   return match?.[1] ?? null
 }
 
+export function replaceLocation({ pathname, hash } = {}) {
+  const url = new URL(window.location.href)
+  if (pathname != null) url.pathname = pathname
+  if (hash != null) url.hash = hash
+  window.history.replaceState(null, '', `${url.pathname}${url.search}${url.hash}`)
+}
+
+function prefersFileShare() {
+  return Boolean(window.matchMedia?.('(pointer: coarse)').matches && navigator.maxTouchPoints > 0)
+}
+
 export function summarizeRun(run, catalog) {
   const affixLines = (run.affixes ?? []).map((affix) => {
     const extra = affix.subRoll ? ` (${affix.subRoll})` : ''
@@ -184,7 +195,7 @@ export function summarizeRun(run, catalog) {
   return [
     `${run.faction.name} ${run.race.name} ${run.spec.name} ${run.class.name}`,
     `Professions: ${run.profession.name}`,
-    `Self Found: ${run.selfFound ? 'Yes' : 'No'}`,
+    run.selfFound ? 'Self Found' : 'Regular',
     score
       ? `Friction: ${score.total} — ${score.rank.name} (affixes ${score.base} + spec ${score.specScore} + professions ${score.professionScore} + self found ${score.selfFoundScore} + synergy ${score.synergyScore} + affix count ${score.stackingScore})`
       : null,
@@ -221,6 +232,11 @@ async function waitForImages(node) {
   )
 }
 
+export async function downloadShareCard(node) {
+  const blob = await captureShareCard(node)
+  downloadBlob(blob, 'goagainroll.png')
+}
+
 export async function captureShareCard(node) {
   if (!node) throw new Error('share card missing')
   await waitForImages(node)
@@ -239,6 +255,27 @@ export async function shareRun({ node, url }) {
   const title = 'GO AGAIN ROLL'
   const withUrl = { title, url, files: [file] }
   const withText = { title, text: url, files: [file] }
+
+  if (!prefersFileShare()) {
+    let copiedOk = false
+    try {
+      await copyText(url)
+      copiedOk = true
+    } catch {
+      /* Facebook/Messenger still need the URL row if clipboard is blocked */
+    }
+    try {
+      if (typeof navigator.share === 'function') {
+        await navigator.share({ title, url })
+        return copiedOk ? 'copied' : 'shared-link'
+      }
+    } catch (error) {
+      if (error?.name === 'AbortError') return copiedOk ? 'copied' : 'aborted'
+      throw error
+    }
+    if (!copiedOk) downloadBlob(blob, 'goagainroll.png')
+    return copiedOk ? 'copied' : 'downloaded'
+  }
 
   try {
     if (navigator.canShare?.(withUrl)) {

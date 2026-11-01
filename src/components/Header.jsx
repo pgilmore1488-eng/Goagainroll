@@ -2,7 +2,7 @@ export function Header({ onReset }) {
   return (
     <header className="flex flex-col items-center gap-2 text-center">
       <p className="font-ui text-[11px] tracking-[0.55em] text-gold-dim uppercase">
-        World of Warcraft · Hardcore
+        World of Warcraft: Forever · Hardcore
       </p>
       <h1 className="font-display text-3xl font-black tracking-[0.18em] text-gold-bright sm:text-5xl">
         GO AGAIN ROLL

@@ -9,6 +9,14 @@ import {
 } from './lookups.js'
 import { evenPick, weightedPick } from './weighted.js'
 
+export const LUCKY_AFFIX_COUNTS = [
+  { count: 1, weight: 35 },
+  { count: 2, weight: 30 },
+  { count: 3, weight: 20 },
+  { count: 4, weight: 10 },
+  { count: 5, weight: 5 },
+]
+
 export const SLOT_LABELS = {
   selfFound: 'Self Found',
   faction: 'Faction',
@@ -27,7 +35,7 @@ export function selfFoundDisplay(catalog, selfFound) {
   }
   return {
     id: 'self-found-no',
-    name: 'Open world',
+    name: 'Regular',
     icon: { source: 'blizzard', id: 'inv_misc_groupneedmore' },
   }
 }
@@ -109,13 +117,7 @@ export function resolveQuickRun(catalog, picks = {}, options = {}) {
   const affixCount = wanted.affixCount
     ? Number(picks.affixCount)
     : lucky
-      ? weightedPick([
-          { count: 1, weight: 30 },
-          { count: 2, weight: 30 },
-          { count: 3, weight: 18 },
-          { count: 4, weight: 10 },
-          { count: 5, weight: 12 },
-        ]).count
+      ? weightedPick(LUCKY_AFFIX_COUNTS).count
       : evenPick([0, 1, 2, 3, 4, 5])
 
   const locked = {

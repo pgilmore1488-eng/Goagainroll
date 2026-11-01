@@ -20,12 +20,12 @@ export const RUN_RANKS = [
     description: 'Self Found, or light restrictions. You turned a dial, not the whole machine.',
   },
   {
-    max: 140,
+    max: 120,
     name: 'This was a choice',
     description: 'You put in some real restrictions. Just remember, this was your choice.',
   },
   {
-    max: 240,
+    max: 199,
     name: 'This was a bad choice',
     description:
       'A stack of affixes. Bad life choices open new opportunities, and Azeroth will take every one you handed her to end this run.',

@@ -1,5 +1,6 @@
 import { forwardRef } from 'react'
 import { resolveIcon } from '../engine/icons.js'
+import { identityIconSlots } from '../engine/professions.js'
 
 const FALLBACK = 'https://wow.zamimg.com/images/wow/icons/large/inv_misc_questionmark.jpg'
 
@@ -31,8 +32,12 @@ function ShareIcon({ icon, size = 56 }) {
 
 export const ShareCard = forwardRef(function ShareCard({ run, score }, ref) {
   const count = run.affixes?.length ?? 0
-  const identity = [run.faction, run.class, run.spec, run.race, run.profession].filter(Boolean)
-  const subtitle = [run.faction?.name, run.profession?.name, run.selfFound ? 'Self Found' : null]
+  const identity = identityIconSlots(run)
+  const subtitle = [
+    run.faction?.name,
+    run.profession?.name,
+    run.selfFound ? 'Self Found' : run.selfFound === false ? 'Regular' : null,
+  ]
     .filter(Boolean)
     .join(' · ')
 
@@ -57,7 +62,7 @@ export const ShareCard = forwardRef(function ShareCard({ run, score }, ref) {
 
       <div className="mt-10 flex justify-center gap-3">
         {identity.map((item) => (
-          <ShareIcon key={item.id} icon={item.icon} />
+          <ShareIcon key={item.key} icon={item.icon} />
         ))}
       </div>
       <p
@@ -123,7 +128,7 @@ export const ShareCard = forwardRef(function ShareCard({ run, score }, ref) {
         className="mt-14 text-[12px] tracking-[0.22em] text-[#8a6d1f] uppercase"
         style={{ fontFamily: 'Oswald, ui-sans-serif, sans-serif' }}
       >
-        A World of Warcraft Hardcore challenge from goagainroll.com
+        A World of Warcraft: Forever Hardcore challenge from goagainroll.com
       </p>
     </article>
   )

@@ -2,11 +2,20 @@ import { useEffect, useRef, useState } from 'react'
 import catalog from '../data/catalog.json'
 import { affixFrictionLabel, scoreRun } from '../engine/friction.js'
 import { SLOT_LABELS } from '../engine/quickRoll.js'
-import { copyText, encodeRun, hashShareUrl, resolveShareUrl, shareRun, summarizeRun } from '../engine/share.js'
+import { STEPS } from '../hooks/useRun.js'
+import {
+  copyText,
+  downloadShareCard,
+  encodeRun,
+  hashShareUrl,
+  resolveShareUrl,
+  shareRun,
+  summarizeRun,
+} from '../engine/share.js'
 import { AffixHeading } from './AffixHeading.jsx'
 import { GoldButton } from './ChoiceButton.jsx'
 import { FrictionScore } from './FrictionScore.jsx'
-import { IconPlate } from './IconPlate.jsx'
+import { IconPlate, ProfessionPlates } from './IconPlate.jsx'
 import { ShareCard } from './ShareCard.jsx'
 
 function EmptyPlate() {
@@ -26,7 +35,16 @@ function IdentitySlot({ item, placing }) {
   )
 }
 
-export function RunCard({ run, center = null, placing = null, revealScore = false, onReset, onSkip }) {
+export function RunCard({
+  run,
+  center = null,
+  placing = null,
+  revealScore = false,
+  overlay = false,
+  onReset,
+  onSkip,
+  onContinue,
+}) {
   const [copied, setCopied] = useState('')
   const [sharing, setSharing] = useState(false)
   const shareCardRef = useRef(null)
@@ -67,7 +85,20 @@ export function RunCard({ run, center = null, placing = null, revealScore = fals
     setSharing(true)
     try {
       const result = await shareRun({ node: shareCardRef.current, url: link })
-      if (result === 'downloaded') setCopied('link')
+      if (result === 'downloaded' || result === 'copied') setCopied('link')
+    } catch {
+      setCopied('failed')
+    } finally {
+      setSharing(false)
+    }
+  }
+
+  async function generateCard() {
+    if (sharing) return
+    setSharing(true)
+    try {
+      await downloadShareCard(shareCardRef.current)
+      setCopied('card')
     } catch {
       setCopied('failed')
     } finally {
@@ -76,7 +107,7 @@ export function RunCard({ run, center = null, placing = null, revealScore = fals
   }
 
   return (
-    <section className="relative flex flex-col gap-8">
+    <section className={`relative flex flex-col gap-8 ${overlay && center ? 'min-h-[70vh]' : ''}`}>
       {onSkip && !revealScore ? (
         <div className="sticky top-2 z-20 flex justify-center">
           <button
@@ -99,12 +130,26 @@ export function RunCard({ run, center = null, placing = null, revealScore = fals
               {center.spinning ? 'Rolling' : 'Locked'} {SLOT_LABELS[center.key] || center.key}
             </p>
             <div className="mt-3 flex flex-col items-center gap-3">
-              {center.item?.icon ? <IconPlate icon={center.item.icon} /> : null}
+              {center.key === 'profession' ? (
+                <ProfessionPlates pair={center.item} />
+              ) : center.item?.icon ? (
+                <IconPlate icon={center.item.icon} />
+              ) : null}
               <p className="font-display text-2xl font-black tracking-[0.12em] text-gold-bright uppercase">
                 {center.item?.name ?? '—'}
               </p>
               {center.item?.subRoll ? (
                 <p className="font-ui text-sm tracking-[0.28em] text-gold uppercase">{center.item.subRoll}</p>
+              ) : null}
+              {overlay && center.key === 'affix' && center.item?.description && !center.spinning ? (
+                <p className="mt-2 max-w-lg font-ui text-sm leading-relaxed tracking-normal text-chrome/85 normal-case">
+                  {center.item.description}
+                </p>
+              ) : null}
+              {overlay && !center.spinning && onContinue ? (
+                <div className="pointer-events-auto mt-6">
+                  <GoldButton onClick={onContinue}>Next</GoldButton>
+                </div>
               ) : null}
             </div>
           </div>
@@ -121,12 +166,16 @@ export function RunCard({ run, center = null, placing = null, revealScore = fals
           {run.race?.name ?? '—'} {run.spec?.name ?? '—'} {run.class?.name ?? '—'}
         </h2>
         <p
-          className={`mt-2 font-ui tracking-[0.2em] uppercase ${run.faction || run.profession || run.selfFound ? 'text-chrome/70' : 'text-chrome/25'} ${
-            placing === 'faction' || placing === 'profession' || placing === 'selfFound' ? 'place-in' : ''
-          }`}
+          className={`mt-2 font-ui tracking-[0.2em] uppercase ${
+            run.faction || run.profession || run.selfFound != null ? 'text-chrome/70' : 'text-chrome/25'
+          } ${placing === 'faction' || placing === 'profession' || placing === 'selfFound' ? 'place-in' : ''}`}
         >
           {run.faction?.name ?? '—'} · {run.profession?.name ?? '—'}
-          {run.selfFound ? ' · Self Found' : run.selfFound === false && !revealScore ? ' · Open world' : ''}
+          {run.selfFound
+            ? ' · Self Found'
+            : run.selfFound === false && (revealScore || run.step !== STEPS.SELF_FOUND)
+              ? ' · Regular'
+              : ''}
         </p>
       </div>
 
@@ -136,7 +185,11 @@ export function RunCard({ run, center = null, placing = null, revealScore = fals
           <IdentitySlot item={run.class} placing={placing === 'class'} />
           <IdentitySlot item={run.spec} placing={placing === 'spec'} />
           <IdentitySlot item={run.race} placing={placing === 'race'} />
-          <IdentitySlot item={run.profession} placing={placing === 'profession'} />
+          {run.profession ? (
+            <ProfessionPlates pair={run.profession} placing={placing === 'profession'} />
+          ) : (
+            <EmptyPlate />
+          )}
         </div>
         <p
           className={`font-ui text-[11px] tracking-[0.28em] uppercase ${
@@ -188,7 +241,28 @@ export function RunCard({ run, center = null, placing = null, revealScore = fals
         <p className="text-center font-ui tracking-[0.2em] text-chrome/25 uppercase">Affixes pending</p>
       )}
 
-      {complete ? (
+      {overlay && run.holdNext && onContinue && !center ? (
+        <div className="relative z-30 flex justify-center">
+          <GoldButton onClick={onContinue}>Next</GoldButton>
+        </div>
+      ) : null}
+
+      {complete && overlay ? (
+        <div className="flex flex-col items-center justify-center gap-3 sm:flex-row">
+          <GoldButton id="overlay-generate-card" onClick={generateCard} disabled={sharing}>
+            {sharing ? 'Preparing' : copied === 'card' ? 'Card saved' : 'Generate card'}
+          </GoldButton>
+          <button
+            type="button"
+            onClick={onReset}
+            className="min-h-12 border border-gold/30 px-6 py-3 font-ui text-sm tracking-[0.28em] text-chrome/80 uppercase hover:text-gold"
+          >
+            Roll another
+          </button>
+        </div>
+      ) : null}
+
+      {complete && !overlay ? (
         <>
           {run.shareNotice ? (
             <p className="place-in border border-gold/30 bg-black/40 px-4 py-3 text-center text-sm leading-relaxed text-chrome/80">
@@ -207,15 +281,13 @@ export function RunCard({ run, center = null, placing = null, revealScore = fals
               onClick={() => copy('link')}
               className="min-h-12 w-full truncate border border-gold/25 bg-black/40 px-3 py-3 text-left font-mono text-xs text-chrome/80"
             >
-              {copied === 'link' ? 'Copied to clipboard' : copied === 'failed' ? 'Copy failed. Long-press the address bar instead.' : link}
+              {copied === 'link'
+                ? 'Link copied. Paste it into Facebook, Messenger, or chat.'
+                : copied === 'failed'
+                  ? 'Copy failed. Select the link below and copy it yourself.'
+                  : link}
             </button>
           </div>
-
-          {complete && score ? (
-            <div className="pointer-events-none fixed top-0 left-0 -z-10" style={{ transform: 'translateX(-200vw)' }} aria-hidden>
-              <ShareCard ref={shareCardRef} run={run} score={score} />
-            </div>
-          ) : null}
 
           <div className="flex flex-col items-stretch justify-center gap-3 sm:flex-row sm:flex-wrap sm:items-center">
             <GoldButton onClick={shareNative} disabled={sharing}>
@@ -237,6 +309,12 @@ export function RunCard({ run, center = null, placing = null, revealScore = fals
             </button>
           </div>
         </>
+      ) : null}
+
+      {complete && score ? (
+        <div className="pointer-events-none fixed top-0 left-0 -z-10" style={{ transform: 'translateX(-200vw)' }} aria-hidden>
+          <ShareCard ref={shareCardRef} run={run} score={score} />
+        </div>
       ) : null}
     </section>
   )

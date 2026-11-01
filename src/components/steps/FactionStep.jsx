@@ -1,4 +1,4 @@
-import { ChoiceButton } from '../ChoiceButton.jsx'
+import { ChoiceButton, GoldButton } from '../ChoiceButton.jsx'
 import { IconPlate } from '../IconPlate.jsx'
 
 export function FactionStep({ factions, onChoose, onRoll, preview, spinning, reelSpinning = false }) {
@@ -32,14 +32,9 @@ export function FactionStep({ factions, onChoose, onRoll, preview, spinning, ree
               />
             ))}
           </div>
-          <button
-            type="button"
-            disabled={spinning}
-            onClick={onRoll}
-            className="min-h-12 min-w-32 border-2 border-gold/40 bg-black/30 px-8 py-3 font-display text-xl font-black tracking-[0.22em] text-gold-bright uppercase hover:border-gold-bright hover:bg-gold/10 disabled:opacity-40"
-          >
+          <GoldButton onClick={onRoll} disabled={spinning}>
             Roll
-          </button>
+          </GoldButton>
         </>
       )}
     </section>

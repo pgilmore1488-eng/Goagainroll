@@ -23,6 +23,7 @@ export function ProgressStrip({ run }) {
   if (run.race) chips.push({ icon: run.race.icon, label: run.race.name })
   if (run.profession) chips.push({ icon: run.profession.icon, label: run.profession.name })
   if (run.selfFound) chips.push({ label: 'Self Found', sub: 'locked in' })
+  else if (run.selfFound === false) chips.push({ label: 'Regular', sub: 'locked in' })
   for (const affix of run.affixes ?? []) {
     chips.push({
       icon: affix.icon,

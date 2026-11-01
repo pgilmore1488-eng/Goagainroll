@@ -92,6 +92,16 @@ body {
     linear-gradient(180deg, #0b120e 0%, #05060a 45%, #07080c 100%);
 }
 
+html.overlay-mode,
+html.overlay-mode body,
+html.overlay-mode #root {
+  background: #00ff00;
+}
+
+.overlay-shell {
+  background: #00ff00;
+}
+
 .cabinet-frame {
   box-shadow:
     inset 0 0 0 1px rgba(232, 197, 71, 0.35),

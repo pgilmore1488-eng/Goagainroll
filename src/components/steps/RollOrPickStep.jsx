@@ -1,5 +1,6 @@
+import { professionIcons } from '../../engine/professions.js'
 import { ChoiceButton, GoldButton } from '../ChoiceButton.jsx'
-import { IconPlate } from '../IconPlate.jsx'
+import { IconPlate, ProfessionPlates } from '../IconPlate.jsx'
 
 export function RollOrPickStep({
   stepLabel,
@@ -39,7 +40,11 @@ export function RollOrPickStep({
       <div className="flex min-h-24 flex-col items-center justify-center gap-3">
         {preview ? (
           <div className={`flex items-center gap-3 ${reelSpinning ? 'reel-spinning' : 'place-in'}`}>
-            <IconPlate icon={preview.icon} size="large" />
+            {preview.professions?.length ? (
+              <ProfessionPlates pair={preview} />
+            ) : preview.icon ? (
+              <IconPlate icon={preview.icon} size="large" />
+            ) : null}
             <p className="font-display text-3xl font-black tracking-[0.1em] text-gold-bright uppercase">
               {preview.name}
             </p>
@@ -62,6 +67,7 @@ export function RollOrPickStep({
                 <ChoiceButton
                   key={item.id}
                   icon={item.icon}
+                  icons={item.professions?.length ? professionIcons(item) : undefined}
                   title={item.name}
                   subtitle={item.group === 'wild' ? 'Long shot' : undefined}
                   disabled={spinning}

@@ -11,7 +11,7 @@ import {
   viableDifficulties,
 } from '../engine/lookups.js'
 import { buildQuickSequence, resolveQuickRun, selfFoundDisplay } from '../engine/quickRoll.js'
-import { decodeRun, encodeRun, fetchSharedToken, shortIdFromPath } from '../engine/share.js'
+import { decodeRun, encodeRun, fetchSharedToken, replaceLocation, shortIdFromPath } from '../engine/share.js'
 import { evenPick, sleep, weightedPick } from '../engine/weighted.js'
 
 export const STEPS = {
@@ -64,17 +64,19 @@ function emptyRun() {
     spec: null,
     race: null,
     profession: null,
-    selfFound: false,
+    selfFound: null,
     affixes: [],
     plannedAffixCount: null,
     draft: emptyDraft,
     preview: null,
     shareNotice: null,
     shareLoading: false,
+    holdNext: null,
+    holdPatch: null,
   }
 }
 
-export function useRun(catalog) {
+export function useRun(catalog, { pauseBetween = false } = {}) {
   const [run, setRun] = useState(() => {
     if (shortIdFromPath()) return { ...emptyRun(), step: STEPS.DONE, shareLoading: true }
     const token = window.location.hash.replace(/^#/, '')
@@ -86,6 +88,11 @@ export function useRun(catalog) {
   const abortRef = useRef(null)
   const quickGenRef = useRef(0)
   const quickResolvedRef = useRef(null)
+  const pauseRef = useRef(pauseBetween)
+  const nextWaitRef = useRef(null)
+  const runRef = useRef(run)
+  pauseRef.current = pauseBetween
+  runRef.current = run
 
   useEffect(() => () => abortRef.current?.abort(), [])
 
@@ -112,12 +119,12 @@ export function useRun(catalog) {
           setRun({ ...emptyRun(), ...shared, step: STEPS.DONE })
           return
         }
-        window.history.replaceState(null, '', '/')
+        replaceLocation({ pathname: '/', hash: '' })
         setRun(emptyRun())
       })
       .catch(() => {
         if (cancelled) return
-        window.history.replaceState(null, '', '/')
+        replaceLocation({ pathname: '/', hash: '' })
         setRun(emptyRun())
       })
     return () => {
@@ -130,7 +137,7 @@ export function useRun(catalog) {
     if (shortIdFromPath()) return
     const token = encodeRun(run)
     if (token && window.location.hash.replace(/^#/, '') !== token) {
-      window.history.replaceState(null, '', `#${token}`)
+      replaceLocation({ hash: `#${token}` })
     }
   }, [run])
 
@@ -150,8 +157,10 @@ export function useRun(catalog) {
         ...current,
         preview: { key: previewKey, item, spinning: false },
       }))
-      await sleep(QUICK_HOLD_MS, controller.signal)
-      setRun((current) => ({ ...current, preview: null }))
+      if (!pauseRef.current) {
+        await sleep(QUICK_HOLD_MS, controller.signal)
+        setRun((current) => ({ ...current, preview: null }))
+      }
       return item
     } catch (error) {
       if (error?.name === 'AbortError') return null
@@ -183,8 +192,10 @@ export function useRun(catalog) {
         ...current,
         preview: { key: previewKey, item: chosen, spinning: false },
       }))
-      await sleep(QUICK_HOLD_MS, controller.signal)
-      setRun((current) => ({ ...current, preview: null }))
+      if (!pauseRef.current) {
+        await sleep(QUICK_HOLD_MS, controller.signal)
+        setRun((current) => ({ ...current, preview: null }))
+      }
       return chosen
     } catch (error) {
       if (error?.name === 'AbortError') return null
@@ -194,12 +205,104 @@ export function useRun(catalog) {
     }
   }, [])
 
+  const lockPicked = (patch, nextStep) => {
+    setRun((current) => ({
+      ...current,
+      ...patch,
+      preview: null,
+      holdNext: null,
+      holdPatch: null,
+      step: nextStep,
+    }))
+  }
+
+  const lockRolled = (patch, nextStep) => {
+    if (!pauseRef.current) {
+      lockPicked(patch, nextStep)
+      return
+    }
+    setRun((current) => ({
+      ...current,
+      holdNext: nextStep,
+      holdPatch: patch,
+    }))
+  }
+
+  const waitForPresenter = async (controller) => {
+    if (!pauseRef.current) {
+      await sleep(QUICK_HOLD_MS, controller.signal)
+      return
+    }
+    await new Promise((resolve, reject) => {
+      const abort = () => {
+        nextWaitRef.current = null
+        const error = new Error('Aborted')
+        error.name = 'AbortError'
+        reject(error)
+      }
+      nextWaitRef.current = () => {
+        controller.signal.removeEventListener('abort', abort)
+        nextWaitRef.current = null
+        setRun((current) => ({ ...current, holdNext: null }))
+        resolve()
+      }
+      controller.signal.addEventListener('abort', abort, { once: true })
+      setRun((current) => ({ ...current, holdNext: 'quick' }))
+    })
+  }
+
+  const continueHold = useCallback(() => {
+    if (nextWaitRef.current) {
+      nextWaitRef.current()
+      return
+    }
+    setRun((current) => {
+      if (!current.holdNext || current.holdNext === 'quick') {
+        return { ...current, holdNext: null, holdPatch: null }
+      }
+      return {
+        ...current,
+        ...current.holdPatch,
+        step: current.holdNext,
+        holdNext: null,
+        holdPatch: null,
+        preview: null,
+      }
+    })
+  }, [])
+
+  useEffect(() => {
+    if (pauseBetween) return undefined
+    if (nextWaitRef.current) {
+      nextWaitRef.current()
+      return undefined
+    }
+    setRun((current) => {
+      if (!current.holdNext || current.holdNext === 'quick') {
+        return current.holdNext ? { ...current, holdNext: null, holdPatch: null } : current
+      }
+      return {
+        ...current,
+        ...current.holdPatch,
+        step: current.holdNext,
+        holdNext: null,
+        holdPatch: null,
+        preview: null,
+      }
+    })
+    return undefined
+  }, [pauseBetween])
+
   const setFaction = useCallback(
     async (faction) => {
       if (spinning) return
+      if (pauseRef.current) {
+        lockPicked({ faction }, STEPS.CLASS)
+        return
+      }
       const shown = await revealThen(faction, 'faction')
       if (!shown) return
-      setRun((current) => ({ ...current, faction: shown, preview: null, step: STEPS.CLASS }))
+      lockPicked({ faction: shown }, STEPS.CLASS)
     },
     [revealThen, spinning],
   )
@@ -209,17 +312,25 @@ export function useRun(catalog) {
     const pool = catalog.factions
     const chosen = await spinThen(pool, () => evenPick(pool), 'faction')
     if (!chosen) return
-    setRun((current) => ({ ...current, faction: chosen, preview: null, step: STEPS.CLASS }))
+    lockRolled({ faction: chosen }, STEPS.CLASS)
   }, [catalog.factions, spinThen, spinning])
 
   const chooseClass = useCallback(
     async (classItem) => {
       if (spinning) return
-      const chosen = classItem
-        ? await revealThen(classItem, 'class')
-        : await spinThen(catalog.classes, () => evenPick(catalog.classes), 'class')
+      if (classItem) {
+        if (pauseRef.current) {
+          lockPicked({ class: classItem, spec: null }, STEPS.SPEC)
+          return
+        }
+        const chosen = await revealThen(classItem, 'class')
+        if (!chosen) return
+        lockPicked({ class: chosen, spec: null }, STEPS.SPEC)
+        return
+      }
+      const chosen = await spinThen(catalog.classes, () => evenPick(catalog.classes), 'class')
       if (!chosen) return
-      setRun((current) => ({ ...current, class: chosen, spec: null, preview: null, step: STEPS.SPEC }))
+      lockRolled({ class: chosen, spec: null }, STEPS.SPEC)
     },
     [catalog.classes, revealThen, spinThen, spinning],
   )
@@ -228,9 +339,19 @@ export function useRun(catalog) {
     async (specItem) => {
       if (spinning) return
       const pool = specsFor(catalog, run.class)
-      const chosen = specItem ? await revealThen(specItem, 'spec') : await spinThen(pool, () => evenPick(pool), 'spec')
+      if (specItem) {
+        if (pauseRef.current) {
+          lockPicked({ spec: specItem }, STEPS.RACE)
+          return
+        }
+        const chosen = await revealThen(specItem, 'spec')
+        if (!chosen) return
+        lockPicked({ spec: chosen }, STEPS.RACE)
+        return
+      }
+      const chosen = await spinThen(pool, () => evenPick(pool), 'spec')
       if (!chosen) return
-      setRun((current) => ({ ...current, spec: chosen, preview: null, step: STEPS.RACE }))
+      lockRolled({ spec: chosen }, STEPS.RACE)
     },
     [catalog, revealThen, run.class, spinThen, spinning],
   )
@@ -239,9 +360,19 @@ export function useRun(catalog) {
     async (raceItem) => {
       if (spinning) return
       const pool = racesFor(catalog, run.class, run.faction.id)
-      const chosen = raceItem ? await revealThen(raceItem, 'race') : await spinThen(pool, () => evenPick(pool), 'race')
+      if (raceItem) {
+        if (pauseRef.current) {
+          lockPicked({ race: raceItem }, STEPS.PROFESSIONS)
+          return
+        }
+        const chosen = await revealThen(raceItem, 'race')
+        if (!chosen) return
+        lockPicked({ race: chosen }, STEPS.PROFESSIONS)
+        return
+      }
+      const chosen = await spinThen(pool, () => evenPick(pool), 'race')
       if (!chosen) return
-      setRun((current) => ({ ...current, race: chosen, preview: null, step: STEPS.PROFESSIONS }))
+      lockRolled({ race: chosen }, STEPS.PROFESSIONS)
     },
     [catalog, revealThen, run.class, run.faction, spinThen, spinning],
   )
@@ -250,18 +381,26 @@ export function useRun(catalog) {
     async (pair) => {
       if (spinning) return
       const pool = professionChoices(catalog, run.class)
-      const chosen = pair
-        ? await revealThen(getProfession(catalog, pair.id) ?? pair, 'profession')
-        : await spinThen(pool, () => weightedPick(pool), 'profession')
-      if (!chosen) return
-      setRun((current) => ({
-        ...current,
-        profession: chosen,
-        preview: null,
-        step: remainingAffixes(catalog, { ...current, profession: chosen }).length
+      if (pair) {
+        const picked = getProfession(catalog, pair.id) ?? pair
+        const next = remainingAffixes(catalog, { ...runRef.current, profession: picked }).length
           ? STEPS.AFFIX_ASK
-          : STEPS.DONE,
-      }))
+          : STEPS.DONE
+        if (pauseRef.current) {
+          lockPicked({ profession: picked }, next)
+          return
+        }
+        const chosen = await revealThen(picked, 'profession')
+        if (!chosen) return
+        lockPicked({ profession: chosen }, next)
+        return
+      }
+      const chosen = await spinThen(pool, () => weightedPick(pool), 'profession')
+      if (!chosen) return
+      const next = remainingAffixes(catalog, { ...runRef.current, profession: chosen }).length
+        ? STEPS.AFFIX_ASK
+        : STEPS.DONE
+      lockRolled({ profession: chosen }, next)
     },
     [catalog, revealThen, run.class, spinThen, spinning],
   )
@@ -269,9 +408,13 @@ export function useRun(catalog) {
   const chooseSelfFound = useCallback(
     async (selfFound) => {
       if (spinning) return
+      if (pauseRef.current) {
+        lockPicked({ selfFound }, STEPS.FACTION)
+        return
+      }
       const shown = await revealThen(selfFoundDisplay(catalog, selfFound), 'selfFound')
       if (!shown) return
-      setRun((current) => ({ ...current, selfFound, preview: null, step: STEPS.FACTION }))
+      lockPicked({ selfFound }, STEPS.FACTION)
     },
     [catalog, revealThen, spinning],
   )
@@ -284,7 +427,7 @@ export function useRun(catalog) {
     ]
     const chosen = await spinThen(pool, () => evenPick(pool), 'selfFound')
     if (!chosen) return
-    setRun((current) => ({ ...current, selfFound: chosen.value, preview: null, step: STEPS.FACTION }))
+    lockRolled({ selfFound: chosen.value }, STEPS.FACTION)
   }, [catalog, spinThen, spinning])
 
   const skipAffixes = useCallback(() => {
@@ -300,6 +443,7 @@ export function useRun(catalog) {
     const ctx = run
 
     if (!ctx.draft.difficulty) {
+      setRun((current) => ({ ...current, preview: null }))
       const viable = viableDifficulties(catalog, ctx)
       const pool = viable.length ? viable : catalog.difficulties
       const chosen = await spinThen(pool, () => weightedPick(pool), 'difficulty')
@@ -339,6 +483,9 @@ export function useRun(catalog) {
       ...current,
       affixes: commitDraft(current),
       draft: emptyDraft,
+      preview: null,
+      holdNext: null,
+      holdPatch: null,
       step: STEPS.AFFIX,
     }))
   }, [])
@@ -356,7 +503,7 @@ export function useRun(catalog) {
     quickGenRef.current += 1
     quickResolvedRef.current = null
     abortRef.current?.abort()
-    window.history.replaceState(null, '', '/')
+    replaceLocation({ pathname: '/', hash: '' })
     setRun(emptyRun())
   }, [])
 
@@ -402,6 +549,16 @@ export function useRun(catalog) {
 
       try {
         for (const event of sequence) {
+          if (pauseRef.current && event.locked) {
+            if (!stillGoing()) return
+            setRun((current) => ({
+              ...applyQuickEvent(current, event),
+              quick: { center: null, placing: placingKey(event) },
+            }))
+            await sleep(QUICK_PLACE_MS, controller.signal)
+            continue
+          }
+
           const canSpin = !event.locked && (event.pool?.length ?? 0) > 1
 
           if (canSpin) {
@@ -424,7 +581,7 @@ export function useRun(catalog) {
               placing: null,
             },
           }))
-          await sleep(QUICK_HOLD_MS, controller.signal)
+          await waitForPresenter(controller)
 
           if (!stillGoing()) return
           setRun((current) => ({
@@ -485,5 +642,6 @@ export function useRun(catalog) {
     startQuickRoll,
     startLucky,
     skipQuick,
+    continueHold,
   }
 }

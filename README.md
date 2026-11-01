@@ -1,6 +1,6 @@
 # GO AGAIN ROLL
 
-Hardcore character roller for goagainroll.com.
+World of Warcraft: Forever Hardcore character roller for goagainroll.com.
 
 Play order is one step at a time:
 

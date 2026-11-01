@@ -1,8 +1,9 @@
+import { GoldButton } from '../ChoiceButton.jsx'
 import { IconPlate } from '../IconPlate.jsx'
 
 const CHOICES = [
-  { label: 'Yes', value: true },
-  { label: 'No', value: false },
+  { label: 'Self Found', value: true },
+  { label: 'Regular', value: false },
 ]
 
 export function SelfFoundStep({ onChoose, onRoll, preview, spinning, reelSpinning = false }) {
@@ -10,7 +11,7 @@ export function SelfFoundStep({ onChoose, onRoll, preview, spinning, reelSpinnin
     <section className="flex flex-col items-center gap-6 text-center">
       <p className="font-ui text-[11px] tracking-[0.45em] text-gold-dim uppercase">Step 01</p>
       <h2 className="font-display text-3xl font-black tracking-[0.12em] text-gold-bright">
-        Will you play Self Found?
+        Self Found or Regular?
       </h2>
       <p className="max-w-lg font-ui text-sm tracking-[0.12em] text-chrome/70 uppercase">
         No auction house, no trading, no mail from other characters. Everything you use, you earned.
@@ -35,14 +36,9 @@ export function SelfFoundStep({ onChoose, onRoll, preview, spinning, reelSpinnin
               {choice.label}
             </button>
           ))}
-          <button
-            type="button"
-            disabled={spinning}
-            onClick={onRoll}
-            className="min-h-12 min-w-32 border-2 border-gold/40 bg-black/30 px-8 py-3 font-display text-xl font-black tracking-[0.22em] text-gold-bright uppercase hover:border-gold-bright hover:bg-gold/10 disabled:opacity-40"
-          >
+          <GoldButton onClick={onRoll} disabled={spinning}>
             Roll
-          </button>
+          </GoldButton>
         </div>
       )}
     </section>

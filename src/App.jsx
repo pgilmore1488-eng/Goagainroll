@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import catalog from './data/catalog.json'
 import { Header } from './components/Header.jsx'
 import { SiteFooter } from './components/SiteFooter.jsx'
@@ -11,21 +12,114 @@ import { DoneStep } from './components/steps/DoneStep.jsx'
 import { FactionStep } from './components/steps/FactionStep.jsx'
 import { RollOrPickStep } from './components/steps/RollOrPickStep.jsx'
 import { professionChoices, racesFor, specsFor } from './engine/lookups.js'
+import { useOverlay } from './hooks/useOverlay.js'
 import { STEPS, useRun } from './hooks/useRun.js'
 
 export default function App() {
-  const machine = useRun(catalog)
+  const { overlay, toggleOverlay } = useOverlay()
+  const machine = useRun(catalog, { pauseBetween: overlay })
   const { run, spinning } = machine
+  const holding = overlay && Boolean(run.holdNext)
+  const showOverlayCard = overlay && run.step !== STEPS.DONE && run.step !== STEPS.QUICK_FIRE
   const previewItem = run.preview?.item
+  const showStep = !holding
+  const overlayCenter =
+    holding && run.preview?.item
+      ? { key: run.preview.key, item: run.preview.item, spinning: Boolean(run.preview.spinning) }
+      : null
+
+  useEffect(() => {
+    if (!overlay) return undefined
+
+    const typing = (node) => {
+      if (!node || node === document.body) return false
+      const tag = node.tagName
+      return tag === 'INPUT' || tag === 'SELECT' || tag === 'TEXTAREA' || node.isContentEditable
+    }
+
+    const onKey = (event) => {
+      if (typing(event.target)) return
+      if (event.repeat) return
+
+      if (event.key === 'Escape') {
+        event.preventDefault()
+        if (spinning && !run.holdNext) return
+        if (run.step === STEPS.AFFIX && (run.draft?.affix || run.affixes.length)) {
+          machine.finish()
+          return
+        }
+        if (run.step === STEPS.AFFIX_ASK) {
+          machine.skipAffixes()
+          return
+        }
+        toggleOverlay()
+        return
+      }
+
+      if (event.key !== 'Enter' && event.key !== ' ') return
+      event.preventDefault()
+      if (run.holdNext) {
+        machine.continueHold()
+        return
+      }
+      if (spinning) return
+      if (run.step === STEPS.SELF_FOUND) machine.rollSelfFound()
+      else if (run.step === STEPS.FACTION) machine.rollFaction()
+      else if (run.step === STEPS.CLASS) machine.chooseClass()
+      else if (run.step === STEPS.SPEC) machine.chooseSpec()
+      else if (run.step === STEPS.RACE) machine.chooseRace()
+      else if (run.step === STEPS.PROFESSIONS) machine.chooseProfession()
+      else if (run.step === STEPS.AFFIX_ASK) machine.startAffix()
+      else if (run.step === STEPS.AFFIX) {
+        if (machine.affixButton) machine.rollAffixTier()
+        else if (machine.leftover.length > 0) machine.addAnotherAffix()
+        else machine.finish()
+      } else if (run.step === STEPS.DONE) {
+        document.getElementById('overlay-generate-card')?.click()
+      }
+    }
+
+    window.addEventListener('keydown', onKey)
+    return () => window.removeEventListener('keydown', onKey)
+  }, [overlay, spinning, run, machine, toggleOverlay])
 
   return (
-    <div className="cabinet-grain min-h-svh px-4 py-8 sm:px-8 sm:py-10">
+    <div
+      className={
+        overlay
+          ? 'overlay-shell min-h-svh px-4 py-8 sm:px-8 sm:py-10'
+          : 'cabinet-grain min-h-svh px-4 py-8 sm:px-8 sm:py-10'
+      }
+    >
+      {overlay ? (
+        <button
+          type="button"
+          onClick={toggleOverlay}
+          className="fixed top-3 right-3 z-50 min-h-11 border border-gold/50 bg-felt-deep/90 px-3 font-ui text-[11px] tracking-[0.28em] text-gold uppercase"
+        >
+          Exit overlay
+        </button>
+      ) : null}
       <div className="mx-auto flex max-w-6xl flex-col gap-8">
-        <Header onReset={machine.reset} />
-        {run.step !== STEPS.DONE && run.step !== STEPS.QUICK_FIRE ? <ProgressStrip run={run} /> : null}
+        {overlay ? null : <Header onReset={machine.reset} />}
+        {!overlay && run.step !== STEPS.DONE && run.step !== STEPS.QUICK_FIRE ? (
+          <ProgressStrip run={run} />
+        ) : null}
 
         <main className="rounded-sm bg-felt/80 p-4 sm:p-8 cabinet-frame">
-          {run.step === STEPS.SELF_FOUND ? (
+          {showOverlayCard ? (
+            <div className={showStep ? 'mb-10' : ''}>
+              <RunCard
+                run={run}
+                overlay
+                center={overlayCenter}
+                onReset={machine.reset}
+                onContinue={machine.continueHold}
+              />
+            </div>
+          ) : null}
+
+          {showStep && run.step === STEPS.SELF_FOUND ? (
             <div className="flex flex-col">
               <SelfFoundStep
                 onChoose={machine.chooseSelfFound}
@@ -45,12 +139,14 @@ export default function App() {
               run={run}
               center={run.quick?.center}
               placing={run.quick?.placing}
+              overlay={overlay}
               onReset={machine.reset}
               onSkip={machine.skipQuick}
+              onContinue={machine.continueHold}
             />
           ) : null}
 
-          {run.step === STEPS.FACTION ? (
+          {showStep && run.step === STEPS.FACTION ? (
             <FactionStep
               factions={catalog.factions}
               onChoose={machine.setFaction}
@@ -61,7 +157,7 @@ export default function App() {
             />
           ) : null}
 
-          {run.step === STEPS.CLASS ? (
+          {showStep && run.step === STEPS.CLASS ? (
             <RollOrPickStep
               stepLabel="Step 03"
               title="Roll or pick your class"
@@ -74,7 +170,7 @@ export default function App() {
             />
           ) : null}
 
-          {run.step === STEPS.SPEC ? (
+          {showStep && run.step === STEPS.SPEC ? (
             <RollOrPickStep
               stepLabel="Step 04"
               title="Roll or pick your spec"
@@ -87,7 +183,7 @@ export default function App() {
             />
           ) : null}
 
-          {run.step === STEPS.RACE ? (
+          {showStep && run.step === STEPS.RACE ? (
             <RollOrPickStep
               stepLabel="Step 05"
               title="Roll or pick your race"
@@ -100,7 +196,7 @@ export default function App() {
             />
           ) : null}
 
-          {run.step === STEPS.PROFESSIONS ? (
+          {showStep && run.step === STEPS.PROFESSIONS ? (
             <RollOrPickStep
               stepLabel="Step 06"
               title="Roll or pick professions"
@@ -114,7 +210,7 @@ export default function App() {
             />
           ) : null}
 
-          {run.step === STEPS.AFFIX_ASK ? (
+          {showStep && run.step === STEPS.AFFIX_ASK ? (
             <AffixAskStep
               leftover={machine.leftover.length}
               onYes={machine.startAffix}
@@ -122,7 +218,7 @@ export default function App() {
             />
           ) : null}
 
-          {run.step === STEPS.AFFIX ? (
+          {showStep && run.step === STEPS.AFFIX ? (
             <AffixStep
               draft={run.draft}
               preview={run.preview}
@@ -136,10 +232,12 @@ export default function App() {
             />
           ) : null}
 
-          {run.step === STEPS.DONE ? <DoneStep run={run} onReset={machine.reset} /> : null}
+          {run.step === STEPS.DONE ? (
+            <DoneStep run={run} overlay={overlay} onReset={machine.reset} />
+          ) : null}
         </main>
 
-        <SiteFooter />
+        {overlay ? null : <SiteFooter onOverlay={toggleOverlay} />}
       </div>
     </div>
   )
