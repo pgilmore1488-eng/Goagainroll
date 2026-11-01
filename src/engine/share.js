@@ -1,4 +1,5 @@
 import { toBlob } from 'html-to-image'
+import catalog from '../data/catalog.json'
 import { affixFriction, affixFrictionRange, scoreRun } from './friction.js'
 
 export const AFFIX_ALIASES = {
@@ -9,6 +10,8 @@ export const AFFIX_ALIASES = {
   'quiet-on-set': 'creature-of-habit',
   'breeze-block': 'totem-duty',
   'clean-conscience': 'spreading-rumours',
+  'ankh-ious': 'hidebound',
+  'lightning-rod': 'hidebound',
 }
 
 function toBase64Url(value) {
@@ -177,7 +180,7 @@ export function replaceLocation({ pathname, hash } = {}) {
   window.history.replaceState(null, '', `${url.pathname}${url.search}${url.hash}`)
 }
 
-function prefersFileShare() {
+export function prefersFileShare() {
   return Boolean(window.matchMedia?.('(pointer: coarse)').matches && navigator.maxTouchPoints > 0)
 }
 
@@ -210,6 +213,22 @@ export function canNativeShare() {
   return typeof navigator !== 'undefined' && typeof navigator.share === 'function'
 }
 
+function fileSafe(value) {
+  return String(value)
+    .replace(/[<>:"/\\|?*]/g, '')
+    .replace(/\s+/g, ' ')
+    .trim()
+}
+
+export function shareCardFileName(run) {
+  const identity = [run?.race?.name, run?.spec?.name, run?.class?.name].filter(Boolean).join(' ')
+  const sf = run?.selfFound ? ' SF' : ''
+  const total = run ? scoreRun(catalog, run).total : null
+  const scoreBit = Number.isFinite(total) ? ` - ${total}` : ''
+  const body = identity ? `${identity}${sf}${scoreBit}` : 'run'
+  return `GO AGAIN ROLL - ${fileSafe(body)}.png`
+}
+
 function downloadBlob(blob, name) {
   const href = URL.createObjectURL(blob)
   const anchor = document.createElement('a')
@@ -232,9 +251,9 @@ async function waitForImages(node) {
   )
 }
 
-export async function downloadShareCard(node) {
+export async function downloadShareCard(node, run) {
   const blob = await captureShareCard(node)
-  downloadBlob(blob, 'goagainroll.png')
+  downloadBlob(blob, shareCardFileName(run))
 }
 
 export async function captureShareCard(node) {
@@ -249,32 +268,17 @@ export async function captureShareCard(node) {
   return blob
 }
 
-export async function shareRun({ node, url }) {
+export async function shareRun({ node, url, run }) {
   const blob = await captureShareCard(node)
-  const file = new File([blob], 'goagainroll.png', { type: 'image/png' })
+  const fileName = shareCardFileName(run)
+  const file = new File([blob], fileName, { type: 'image/png' })
   const title = 'GO AGAIN ROLL'
   const withUrl = { title, url, files: [file] }
   const withText = { title, text: url, files: [file] }
 
   if (!prefersFileShare()) {
-    let copiedOk = false
-    try {
-      await copyText(url)
-      copiedOk = true
-    } catch {
-      /* Facebook/Messenger still need the URL row if clipboard is blocked */
-    }
-    try {
-      if (typeof navigator.share === 'function') {
-        await navigator.share({ title, url })
-        return copiedOk ? 'copied' : 'shared-link'
-      }
-    } catch (error) {
-      if (error?.name === 'AbortError') return copiedOk ? 'copied' : 'aborted'
-      throw error
-    }
-    if (!copiedOk) downloadBlob(blob, 'goagainroll.png')
-    return copiedOk ? 'copied' : 'downloaded'
+    downloadBlob(blob, fileName)
+    return 'downloaded'
   }
 
   try {
@@ -288,7 +292,7 @@ export async function shareRun({ node, url }) {
     }
     if (typeof navigator.share === 'function') {
       await navigator.share({ title, url })
-      downloadBlob(blob, 'goagainroll.png')
+      downloadBlob(blob, fileName)
       return 'shared-link'
     }
   } catch (error) {
@@ -296,7 +300,7 @@ export async function shareRun({ node, url }) {
     throw error
   }
 
-  downloadBlob(blob, 'goagainroll.png')
+  downloadBlob(blob, fileName)
   try {
     await copyText(url)
   } catch {

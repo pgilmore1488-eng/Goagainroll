@@ -1,6 +1,11 @@
+import { SiteNav } from './SiteNav.jsx'
+
 export function SiteFooter({ onOverlay }) {
   return (
     <footer className="mx-auto max-w-3xl px-2 pb-4 text-center">
+      <div className="mb-4">
+        <SiteNav />
+      </div>
       {onOverlay ? (
         <button
           type="button"

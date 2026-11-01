@@ -11,16 +11,28 @@ import { AffixStep } from './components/steps/AffixStep.jsx'
 import { DoneStep } from './components/steps/DoneStep.jsx'
 import { FactionStep } from './components/steps/FactionStep.jsx'
 import { RollOrPickStep } from './components/steps/RollOrPickStep.jsx'
+import { AffixCatalogue } from './pages/AffixCatalogue.jsx'
+import { FrictionGuide } from './pages/FrictionGuide.jsx'
 import { professionChoices, racesFor, specsFor } from './engine/lookups.js'
 import { useOverlay } from './hooks/useOverlay.js'
+import { isRollPath, useRoute } from './hooks/useRoute.js'
 import { STEPS, useRun } from './hooks/useRun.js'
 
+const TITLES = {
+  '/affixes': 'Affix catalogue — GO AGAIN ROLL',
+  '/friction': 'Friction methodology — GO AGAIN ROLL',
+}
+
 export default function App() {
-  const { overlay, toggleOverlay } = useOverlay()
-  const machine = useRun(catalog, { pauseBetween: overlay })
+  const path = useRoute()
+  const onRollPage = isRollPath(path)
+  const { overlay, toggleOverlay } = useOverlay(onRollPage)
+  const overlayLive = overlay && onRollPage
+  const machine = useRun(catalog, { pauseBetween: overlayLive })
+  const showRoller = onRollPage
   const { run, spinning } = machine
-  const holding = overlay && Boolean(run.holdNext)
-  const showOverlayCard = overlay && run.step !== STEPS.DONE && run.step !== STEPS.QUICK_FIRE
+  const holding = overlayLive && Boolean(run.holdNext)
+  const showOverlayCard = overlayLive && run.step !== STEPS.DONE && run.step !== STEPS.QUICK_FIRE
   const previewItem = run.preview?.item
   const showStep = !holding
   const overlayCenter =
@@ -29,7 +41,13 @@ export default function App() {
       : null
 
   useEffect(() => {
-    if (!overlay) return undefined
+    document.title = onRollPage
+      ? 'GO AGAIN ROLL — Forever Hardcore Challenge Generator'
+      : TITLES[path] || 'GO AGAIN ROLL — Forever Hardcore Challenge Generator'
+  }, [onRollPage, path])
+
+  useEffect(() => {
+    if (!overlayLive) return undefined
 
     const typing = (node) => {
       if (!node || node === document.body) return false
@@ -81,17 +99,17 @@ export default function App() {
 
     window.addEventListener('keydown', onKey)
     return () => window.removeEventListener('keydown', onKey)
-  }, [overlay, spinning, run, machine, toggleOverlay])
+  }, [overlayLive, spinning, run, machine, toggleOverlay])
 
   return (
     <div
       className={
-        overlay
+        overlayLive
           ? 'overlay-shell min-h-svh px-4 py-8 sm:px-8 sm:py-10'
           : 'cabinet-grain min-h-svh px-4 py-8 sm:px-8 sm:py-10'
       }
     >
-      {overlay ? (
+      {overlayLive ? (
         <button
           type="button"
           onClick={toggleOverlay}
@@ -101,17 +119,21 @@ export default function App() {
         </button>
       ) : null}
       <div className="mx-auto flex max-w-6xl flex-col gap-8">
-        {overlay ? null : <Header onReset={machine.reset} />}
-        {!overlay && run.step !== STEPS.DONE && run.step !== STEPS.QUICK_FIRE ? (
+        {overlayLive ? null : <Header onReset={machine.reset} showReset={showRoller} />}
+        {showRoller && !overlayLive && run.step !== STEPS.DONE && run.step !== STEPS.QUICK_FIRE ? (
           <ProgressStrip run={run} />
         ) : null}
 
         <main className="rounded-sm bg-felt/80 p-4 sm:p-8 cabinet-frame">
+          {!showRoller && path === '/affixes' ? <AffixCatalogue /> : null}
+          {!showRoller && path === '/friction' ? <FrictionGuide /> : null}
+          {showRoller ? (
+          <>
           {showOverlayCard ? (
             <div className={showStep ? 'mb-10' : ''}>
               <RunCard
                 run={run}
-                overlay
+                overlay={overlayLive}
                 center={overlayCenter}
                 onReset={machine.reset}
                 onContinue={machine.continueHold}
@@ -139,7 +161,7 @@ export default function App() {
               run={run}
               center={run.quick?.center}
               placing={run.quick?.placing}
-              overlay={overlay}
+              overlay={overlayLive}
               onReset={machine.reset}
               onSkip={machine.skipQuick}
               onContinue={machine.continueHold}
@@ -233,11 +255,13 @@ export default function App() {
           ) : null}
 
           {run.step === STEPS.DONE ? (
-            <DoneStep run={run} overlay={overlay} onReset={machine.reset} />
+            <DoneStep run={run} overlay={overlayLive} onReset={machine.reset} />
+          ) : null}
+          </>
           ) : null}
         </main>
 
-        {overlay ? null : <SiteFooter onOverlay={toggleOverlay} />}
+        {overlayLive ? null : <SiteFooter onOverlay={showRoller ? toggleOverlay : undefined} />}
       </div>
     </div>
   )

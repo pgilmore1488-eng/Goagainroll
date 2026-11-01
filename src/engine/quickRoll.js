@@ -10,11 +10,11 @@ import {
 import { evenPick, weightedPick } from './weighted.js'
 
 export const LUCKY_AFFIX_COUNTS = [
-  { count: 1, weight: 35 },
-  { count: 2, weight: 30 },
-  { count: 3, weight: 20 },
-  { count: 4, weight: 10 },
-  { count: 5, weight: 5 },
+  { count: 1, weight: 55 },
+  { count: 2, weight: 28 },
+  { count: 3, weight: 12 },
+  { count: 4, weight: 4 },
+  { count: 5, weight: 1 },
 ]
 
 export const SLOT_LABELS = {

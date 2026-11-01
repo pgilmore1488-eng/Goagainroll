@@ -21,7 +21,7 @@ const HEADERS = [
 ]
 
 function frictionOf(time, death, restriction, maintenance, variance) {
-  return Number(time) + Number(death) + 3 * Number(restriction) + 2 * Number(maintenance) + Number(variance)
+  return Number(time) + Number(death) + Number(restriction) + Number(maintenance) + Number(variance)
 }
 
 function rowFrom(existing, patch) {

@@ -1,3 +1,41 @@
+export const FRICTION_AXES = [
+  {
+    id: 'time',
+    name: 'Time',
+    max: 30,
+    meaning:
+      'How much the affix slows the run: detours, gates, walking, waiting. Not whether you die if you take too long.',
+  },
+  {
+    id: 'death',
+    name: 'Death',
+    max: 30,
+    meaning:
+      'How much more likely a Hardcore death becomes. Missing a panic button lives here. Failing the honour rule does not.',
+  },
+  {
+    id: 'restriction',
+    name: 'Restriction',
+    max: 10,
+    meaning:
+      'How much of the kit or route is simply banned. Time and Death already count the leftover playstyle, so this axis stays small.',
+  },
+  {
+    id: 'maintenance',
+    name: 'Maintenance',
+    max: 15,
+    meaning:
+      'Ongoing homework: counts, upkeep, skill gates, something you must service every level. A tracker helps because the pain is the chore.',
+  },
+  {
+    id: 'variance',
+    name: 'Variance',
+    max: 15,
+    meaning:
+      'How swingy or easy the affix is to fail by accident, or how much luck and zone decide the pain. Two people can have very different runs.',
+  },
+]
+
 const BANDS = [
   { max: 10, label: 'Negligible' },
   { max: 25, label: 'Light' },

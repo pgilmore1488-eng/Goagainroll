@@ -94,7 +94,7 @@ export function QuickRollPanel({ onQuickRoll, onLucky }) {
         <p className="font-ui text-[11px] tracking-[0.45em] text-gold-dim uppercase">Feeling impatient?</p>
         <h2 className="font-display text-3xl font-black tracking-[0.12em] text-gold-bright">Quick roll</h2>
         <p className="mt-2 font-ui text-sm tracking-[0.12em] text-chrome/65 uppercase">
-          Lock what you already know. Leave a field on Roll and the machine fills it.
+          Lock in what you already want and roll the rest
         </p>
       </div>
 

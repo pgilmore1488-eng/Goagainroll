@@ -8,6 +8,7 @@ import {
   downloadShareCard,
   encodeRun,
   hashShareUrl,
+  prefersFileShare,
   resolveShareUrl,
   shareRun,
   summarizeRun,
@@ -84,8 +85,9 @@ export function RunCard({
     if (sharing) return
     setSharing(true)
     try {
-      const result = await shareRun({ node: shareCardRef.current, url: link })
-      if (result === 'downloaded' || result === 'copied') setCopied('link')
+      const result = await shareRun({ node: shareCardRef.current, url: link, run })
+      if (result === 'downloaded') setCopied('card')
+      else if (result === 'copied') setCopied('link')
     } catch {
       setCopied('failed')
     } finally {
@@ -97,7 +99,7 @@ export function RunCard({
     if (sharing) return
     setSharing(true)
     try {
-      await downloadShareCard(shareCardRef.current)
+      await downloadShareCard(shareCardRef.current, run)
       setCopied('card')
     } catch {
       setCopied('failed')
@@ -291,7 +293,13 @@ export function RunCard({
 
           <div className="flex flex-col items-stretch justify-center gap-3 sm:flex-row sm:flex-wrap sm:items-center">
             <GoldButton onClick={shareNative} disabled={sharing}>
-              {sharing ? 'Preparing' : 'Share run card'}
+              {sharing
+                ? 'Preparing'
+                : prefersFileShare()
+                  ? 'Share run card'
+                  : copied === 'card'
+                    ? 'Card saved'
+                    : 'Save run card'}
             </GoldButton>
             <button
               type="button"

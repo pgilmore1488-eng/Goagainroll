@@ -16,7 +16,7 @@ function writeOverlayParam(on) {
   window.history.replaceState(null, '', `${url.pathname}${url.search}${url.hash}`)
 }
 
-export function useOverlay() {
+export function useOverlay(active = true) {
   const [overlay, setOverlayState] = useState(
     () => overlayFromSearch() ?? window.localStorage.getItem(STORAGE_KEY) === '1',
   )
@@ -29,11 +29,12 @@ export function useOverlay() {
   }, [])
 
   useEffect(() => {
-    document.documentElement.classList.toggle('overlay-mode', overlay)
+    const on = overlay && active
+    document.documentElement.classList.toggle('overlay-mode', on)
     window.localStorage.setItem(STORAGE_KEY, overlay ? '1' : '0')
-    writeOverlayParam(overlay)
+    if (active) writeOverlayParam(overlay)
     return () => document.documentElement.classList.remove('overlay-mode')
-  }, [overlay])
+  }, [overlay, active])
 
   return {
     overlay,

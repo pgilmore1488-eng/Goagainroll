@@ -95,7 +95,7 @@ const AFFIX_ICONS = {
   'Stormstruck Out': 'ability_shaman_stormstrike',
   'One Hand Clapping': 'ability_dualwield',
   'Wave Goodbye': 'spell_nature_magicimmunity',
-  'Ankh-ious': 'spell_nature_reincarnation',
+  Hidebound: 'inv_chest_leather_08',
   'Clean Conscience': 'spell_shadow_abominationexplosion',
   'Siphoned Off': 'spell_shadow_siphonmana',
   Unlinked: 'spell_shadow_gathershadows',
@@ -130,6 +130,8 @@ const AFFIX_ICONS = {
   'Totem Duty': 'spell_nature_tremortotem',
   'Sweeping Generalisations': 'ability_rogue_slicedice',
   'Creature of Habit': 'ability_hunter_beasttaming',
+  'One with Nature': 'inv_misc_rabbit',
+  'Done with Nature': 'ability_hunter_pet_boar',
   'Playing with Fire': 'spell_fire_fire',
   'Spreading Rumours': 'spell_shadow_abominationexplosion',
 }
