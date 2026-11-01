@@ -1,7 +1,7 @@
 import { LastRollLink, SiteLink, SiteNav } from './SiteNav.jsx'
 
 const HEADER_ACTION =
-  'min-h-11 px-3 font-ui text-[11px] tracking-[0.35em] text-chrome/45 uppercase hover:text-gold'
+  'inline-flex h-11 items-center justify-center px-3 font-ui text-[11px] leading-none tracking-[0.35em] text-chrome/45 uppercase whitespace-nowrap hover:text-gold'
 
 export function Header({
   onReset,
@@ -30,9 +30,9 @@ export function Header({
       </h1>
       <SiteNav />
       {showReset ? (
-        <div className="flex flex-wrap items-center justify-center gap-x-8">
-          {lastRoll}
+        <div className="flex flex-nowrap items-center justify-center gap-x-10">
           {reset}
+          {lastRoll}
         </div>
       ) : (
         lastRoll
