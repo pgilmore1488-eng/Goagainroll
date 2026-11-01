@@ -178,6 +178,12 @@ export function shortIdFromPath(pathname = window.location.pathname) {
   return match?.[1] ?? null
 }
 
+export function shareCardSiteLine(url) {
+  const match = String(url || '').match(/\/r\/([A-Za-z0-9]{5,8})\/?$/)
+  if (match) return `See this challenge at goagainroll.com/r/${match[1]}`
+  return 'Roll your own at goagainroll.com'
+}
+
 export function replaceLocation({ pathname, hash } = {}) {
   const url = new URL(window.location.href)
   if (pathname != null) url.pathname = pathname

@@ -321,7 +321,7 @@ export function RunCard({
 
       {complete && score ? (
         <div className="pointer-events-none fixed top-0 left-0 -z-10" style={{ transform: 'translateX(-200vw)' }} aria-hidden>
-          <ShareCard ref={shareCardRef} run={run} score={score} />
+          <ShareCard ref={shareCardRef} run={run} score={score} shareUrl={link} />
         </div>
       ) : null}
     </section>

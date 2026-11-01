@@ -1,6 +1,7 @@
 import { forwardRef } from 'react'
 import { resolveIcon } from '../engine/icons.js'
 import { identityIconSlots } from '../engine/professions.js'
+import { shareCardSiteLine } from '../engine/share.js'
 
 const FALLBACK = 'https://wow.zamimg.com/images/wow/icons/large/inv_misc_questionmark.jpg'
 
@@ -30,7 +31,7 @@ function ShareIcon({ icon, size = 56 }) {
   )
 }
 
-export const ShareCard = forwardRef(function ShareCard({ run, score }, ref) {
+export const ShareCard = forwardRef(function ShareCard({ run, score, shareUrl }, ref) {
   const count = run.affixes?.length ?? 0
   const identity = identityIconSlots(run)
   const subtitle = [
@@ -124,12 +125,10 @@ export const ShareCard = forwardRef(function ShareCard({ run, score }, ref) {
         </p>
       )}
 
-      <p
-        className="mt-14 text-[12px] tracking-[0.22em] text-[#8a6d1f] uppercase"
-        style={{ fontFamily: 'Oswald, ui-sans-serif, sans-serif' }}
-      >
-        A World of Warcraft: Forever Hardcore challenge from goagainroll.com
-      </p>
+      <div className="mt-14 text-[#8a6d1f]" style={{ fontFamily: 'Oswald, ui-sans-serif, sans-serif' }}>
+        <p className="text-[12px] tracking-[0.22em] uppercase">A World of Warcraft: Forever Hardcore challenge</p>
+        <p className="mt-2 text-[13px] tracking-[0.04em]">{shareCardSiteLine(shareUrl)}</p>
+      </div>
     </article>
   )
 })
