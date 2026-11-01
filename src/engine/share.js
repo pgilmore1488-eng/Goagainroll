@@ -4,14 +4,19 @@ import { affixFriction, affixFrictionRange, scoreRun } from './friction.js'
 
 export const AFFIX_ALIASES = {
   'open-book': 'take-five',
-  uninsured: 'shattered-expectations',
   demonetised: 'playing-with-fire',
-  'flash-photography': 'house-call',
   'quiet-on-set': 'creature-of-habit',
   'breeze-block': 'totem-duty',
-  'clean-conscience': 'spreading-rumours',
+  'clean-conscience': 'spreading-rumors',
+  'spreading-rumours': 'spreading-rumors',
   'ankh-ious': 'hidebound',
   'lightning-rod': 'hidebound',
+  nudist: 'it-s-spelt-armour-with-a-u',
+  'weaponised-incompetence': 'weaponized-incompetence',
+  'sweeping-generalisations': 'sweeping-generalizations',
+  'flurry-cancelled': 'flurry-canceled',
+  'snow-day-cancelled': 'snow-day-canceled',
+  'group-therapy-cancelled': 'group-therapy-canceled',
 }
 
 function toBase64Url(value) {

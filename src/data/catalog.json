@@ -108,15 +108,6 @@
         "warning": "White-quality gear with no auction house to replace what you cannot wear."
       },
       {
-        "id": "self-found-poor-taste",
-        "requires": [
-          "self-found",
-          "poor-taste"
-        ],
-        "friction": 18,
-        "warning": "Grey gear only and no market to replace what breaks."
-      },
-      {
         "id": "self-found-unprofessional-conduct",
         "requires": [
           "self-found",
@@ -126,13 +117,13 @@
         "warning": "No professions and no auction house. You cannot craft or buy the gap closed."
       },
       {
-        "id": "self-found-nudist",
+        "id": "self-found-it-s-spelt-armour-with-a-u",
         "requires": [
           "self-found",
-          "nudist"
+          "it-s-spelt-armour-with-a-u"
         ],
         "friction": 12,
-        "warning": "No armour and no market to buy a workaround."
+        "warning": "No armor and no market to buy a workaround."
       },
       {
         "id": "self-found-fasting-and-furious",
@@ -162,10 +153,10 @@
         "warning": "Potion limits with no auction house to restock."
       },
       {
-        "id": "self-found-weaponised-incompetence",
+        "id": "self-found-weaponized-incompetence",
         "requires": [
           "self-found",
-          "weaponised-incompetence"
+          "weaponized-incompetence"
         ],
         "friction": 14,
         "warning": "No weapons and no market to replace what you cannot swing."
@@ -315,15 +306,6 @@
         "warning": "No shield and no market for a workaround."
       },
       {
-        "id": "self-found-one-hand-clapping",
-        "requires": [
-          "self-found",
-          "one-hand-clapping"
-        ],
-        "friction": 8,
-        "warning": "No dual wield and weapon drops have to come from the world."
-      },
-      {
         "id": "self-found-hands-to-yourself",
         "requires": [
           "self-found",
@@ -384,7 +366,7 @@
           "barkless"
         ],
         "friction": 6,
-        "warning": "No Barkskin or Frenzied Regeneration and no potions from the AH."
+        "warning": "No Barkskin and no potions from the AH."
       },
       {
         "id": "self-found-unwarded",
@@ -393,7 +375,7 @@
           "unwarded"
         ],
         "friction": 6,
-        "warning": "No mage armours and no auction house for extra safety."
+        "warning": "No mage armors and no auction house for extra safety."
       },
       {
         "id": "self-found-wall-not-included",
@@ -477,13 +459,13 @@
         "warning": "No vendors and no professions. You cannot buy, repair, or craft the gap closed."
       },
       {
-        "id": "closed-for-business-nudist",
+        "id": "closed-for-business-it-s-spelt-armour-with-a-u",
         "requires": [
           "closed-for-business",
-          "nudist"
+          "it-s-spelt-armour-with-a-u"
         ],
         "friction": 12,
-        "warning": "No armour and no vendor repairs. Everything that breaks stays broken."
+        "warning": "No armor and no vendor repairs. Everything that breaks stays broken."
       },
       {
         "id": "never-graduated-naturally-untalented",
@@ -510,7 +492,7 @@
           "point-blank"
         ],
         "friction": 8,
-        "warning": "Always at range and you cannot group. Every pull is a solo kite."
+        "warning": "Ranged-only hunter who cannot group. Every pull is yours."
       },
       {
         "id": "red-flag-party-pooper",
@@ -618,7 +600,7 @@
           "formless"
         ],
         "friction": 8,
-        "warning": "No Shadowform and no Pain or Mind Flay. Shadow is missing its shape and its filler."
+        "warning": "No Shadowform and no Shadow Word: Pain or Shadow Word: Death. Shadow is missing its shape and its DoTs."
       },
       {
         "id": "claws-for-concern-cat-got-your-tongue",
@@ -639,10 +621,10 @@
         "warning": "No Aimed Shot and no Hunter’s Mark. Marksmanship is missing its identity and its damage amp."
       },
       {
-        "id": "sinister-misunderstanding-flurry-cancelled",
+        "id": "sinister-misunderstanding-flurry-canceled",
         "requires": [
           "sinister-misunderstanding",
-          "flurry-cancelled"
+          "flurry-canceled"
         ],
         "friction": 6,
         "warning": "No Sinister Strike and no Blade Flurry. Combat rogue is missing filler and AoE."
@@ -666,10 +648,10 @@
         "warning": "No Mortal Strike and no Rend. Arms is missing its signature and its DoT."
       },
       {
-        "id": "mortal-strike-out-sweeping-generalisations",
+        "id": "mortal-strike-out-sweeping-generalizations",
         "requires": [
           "mortal-strike-out",
-          "sweeping-generalisations"
+          "sweeping-generalizations"
         ],
         "friction": 6,
         "warning": "No Mortal Strike and no Sweeping Strikes. Arms is missing single-target and cleave tools."
@@ -709,42 +691,6 @@
         ],
         "friction": 8,
         "warning": "No Moonkin Form and no Moonfire or Starfire. Balance is missing form and filler."
-      },
-      {
-        "id": "self-found-shattered-expectations",
-        "requires": [
-          "self-found",
-          "shattered-expectations"
-        ],
-        "friction": 8,
-        "warning": "You can only hit chilled targets and Self Found cannot buy extra frost tools."
-      },
-      {
-        "id": "self-found-house-call",
-        "requires": [
-          "self-found",
-          "house-call"
-        ],
-        "friction": 6,
-        "warning": "Heals only work at 10 yards and Self Found cannot buy range or safety."
-      },
-      {
-        "id": "lights-out-house-call",
-        "requires": [
-          "lights-out",
-          "house-call"
-        ],
-        "friction": 8,
-        "warning": "No Holy Light, and the heals you still have only work in melee."
-      },
-      {
-        "id": "shattered-expectations-cold-spell",
-        "requires": [
-          "shattered-expectations",
-          "cold-spell"
-        ],
-        "friction": 8,
-        "warning": "Frost damage only, and you may only hit targets that are already chilled."
       },
       {
         "id": "playing-with-fire-rain-check",
@@ -2180,7 +2126,7 @@
       "name": "Mark of the Wild Card",
       "scope": "class",
       "difficulty": "easy",
-      "description": "You handed out so many buffs that the party started calling you a walking gift shop, so the Circle took your stock away. You cannot use Mark of the Wild or Thorns.",
+      "description": "You handed out buffs and the party never thanked you, so you took offense. You cannot use Mark of the Wild or Thorns.",
       "subRolls": [],
       "exclusionGroup": null,
       "friction": 9,
@@ -2197,7 +2143,7 @@
       "name": "Rooted in Failure",
       "scope": "class",
       "difficulty": "medium",
-      "description": "You once rooted a boar, forgot about it, and came back to find it had unionised. You cannot use Entangling Roots, Hibernate, or Nature’s Grasp.",
+      "description": "You once rooted a boar, forgot about it, and came back to find it had unionized. You cannot use Entangling Roots, Hibernate, or Nature’s Grasp.",
       "subRolls": [],
       "exclusionGroup": null,
       "friction": 19,
@@ -2213,11 +2159,11 @@
       "id": "barkless",
       "name": "Barkless",
       "scope": "class",
-      "difficulty": "medium",
-      "description": "You decided tree bark was just a rumour spread by woodpeckers, and now you rely on charm alone. You cannot use Barkskin or Frenzied Regeneration.",
+      "difficulty": "easy",
+      "description": "You decided tree bark was just a rumor spread by woodpeckers, and now you rely on charm alone. You cannot use Barkskin.",
       "subRolls": [],
       "exclusionGroup": null,
-      "friction": 22,
+      "friction": 12,
       "rollable": true,
       "className": "Druid",
       "specs": [],
@@ -2282,10 +2228,10 @@
       "name": "Feign Disbelief",
       "scope": "class",
       "difficulty": "medium",
-      "description": "You played dead once and a passing gnoll was so offended that the hunting lodge banned the bit. You cannot use Feign Death or Disengage.",
+      "description": "You played dead once and a passing gnoll was so offended that the hunting lodge banned the bit. You cannot use Feign Death.",
       "subRolls": [],
       "exclusionGroup": null,
-      "friction": 22,
+      "friction": 14,
       "rollable": true,
       "className": "Hunter",
       "specs": [],
@@ -2316,10 +2262,10 @@
       "name": "Point Blank",
       "scope": "class",
       "difficulty": "easy",
-      "description": "A boar asked you to respect its personal space, and you have been awkwardly keeping your distance since. You cannot deal damage to enemies less than 8 yards away.",
+      "description": "A boar asked you to respect its personal space, and you have been awkwardly keeping your distance since. You cannot deal melee damage to enemies.",
       "subRolls": [],
       "exclusionGroup": "Hunter Range",
-      "friction": 34,
+      "friction": 17,
       "rollable": true,
       "className": "Hunter",
       "specs": [],
@@ -2367,10 +2313,10 @@
       "name": "Baa-d Idea",
       "scope": "class",
       "difficulty": "medium",
-      "description": "You polymorphed your own reflection, lost the argument, and have been banned from every mirror in Stormwind. You cannot use Polymorph or Counterspell.",
+      "description": "You polymorphed your own reflection and now identify as a sheep. You cannot use Polymorph or Counterspell.",
       "subRolls": [],
       "exclusionGroup": null,
-      "friction": 26,
+      "friction": 21,
       "rollable": true,
       "className": "Mage",
       "specs": [],
@@ -2384,7 +2330,7 @@
       "name": "Unwarded",
       "scope": "class",
       "difficulty": "medium",
-      "description": "A rival wizard told you that armour spells are for people who plan to be hit, and your pride refuses to plan that far ahead. You cannot use Frost Armor, Ice Armor, or Mage Armor. Ice Block, Ice Barrier, and Mana Shield are still allowed.",
+      "description": "A rival wizard told you that armor spells are for people who plan to be hit, and your pride refuses to plan that far ahead. You cannot use Frost Armor, Ice Armor, or Mage Armor.",
       "subRolls": [],
       "exclusionGroup": null,
       "friction": 19,
@@ -2394,23 +2340,6 @@
       "icon": {
         "source": "blizzard",
         "id": "spell_frost_frostarmor02"
-      }
-    },
-    {
-      "id": "shattered-expectations",
-      "name": "Shattered Expectations",
-      "scope": "class",
-      "difficulty": "hard",
-      "description": "You told a frost elemental that real mages only hit things that are already miserable. You may only deal damage to enemies that are chilled or frozen. If they are neither, apply a chill first.",
-      "subRolls": [],
-      "exclusionGroup": null,
-      "friction": 41,
-      "rollable": true,
-      "className": "Mage",
-      "specs": [],
-      "icon": {
-        "source": "blizzard",
-        "id": "spell_frost_frostnova"
       }
     },
     {
@@ -2440,7 +2369,8 @@
         "Righteousness",
         "Crusader",
         "Light",
-        "Wisdom"
+        "Wisdom",
+        "Command"
       ],
       "exclusionGroup": null,
       "friction": 27,
@@ -2448,7 +2378,8 @@
         "Righteousness": 22,
         "Crusader": 28,
         "Light": 24,
-        "Wisdom": 22
+        "Wisdom": 22,
+        "Command": 20
       },
       "rollable": true,
       "className": "Paladin",
@@ -2497,7 +2428,7 @@
       "name": "Wandering Off",
       "scope": "class",
       "difficulty": "medium",
-      "description": "You were told that every Priest needs a wand, so naturally you took a vow against them out of spite. You cannot equip a wand.",
+      "description": "You were told that every Priest needs a wand, so naturally you took a vow against them out of spite. You cannot use wands.",
       "subRolls": [],
       "exclusionGroup": null,
       "friction": 35,
@@ -2514,10 +2445,10 @@
       "name": "Power Word: No",
       "scope": "class",
       "difficulty": "medium",
-      "description": "You tried to shield your party, accidentally shielded the boss, and have been politely asked to stop. You cannot use Power Word: Shield or Power Word: Fortitude.",
+      "description": "You tried to shield your party, accidentally shielded the boss, and have been politely asked to stop. You cannot use Power Word: Shield.",
       "subRolls": [],
       "exclusionGroup": null,
-      "friction": 29,
+      "friction": 19,
       "rollable": true,
       "className": "Priest",
       "specs": [],
@@ -2649,11 +2580,11 @@
       "id": "unfinished-business",
       "name": "Unfinished Business",
       "scope": "class",
-      "difficulty": "medium",
-      "description": "You never finish what you start, and the guild treasurer has the paperwork to prove it. You cannot use Eviscerate or Rupture.",
+      "difficulty": "hard",
+      "description": "You never finish what you start, and the guild treasurer has the paperwork to prove it. You cannot use finishing moves.",
       "subRolls": [],
       "exclusionGroup": null,
-      "friction": 29,
+      "friction": 41,
       "rollable": true,
       "className": "Rogue",
       "specs": [],
@@ -2701,7 +2632,7 @@
       "name": "Howl No",
       "scope": "class",
       "difficulty": "easy",
-      "description": "The wolf spirits unionised and refuse to be your taxi. You cannot use Ghost Wolf.",
+      "description": "The wolf spirits unionized and refuse to be your taxi. You cannot use Ghost Wolf.",
       "subRolls": [],
       "exclusionGroup": null,
       "friction": 19,
@@ -2718,7 +2649,7 @@
       "name": "Unshockable",
       "scope": "class",
       "difficulty": "medium",
-      "description": "Three separate shocks, one insurance claim, and an adjuster who still cannot explain Frost Shock. You cannot use Earth Shock, Flame Shock, or Frost Shock.",
+      "description": "Your enemies have watched too many horror movies and nothing shocks them anymore. You cannot use Earth Shock, Flame Shock, or Frost Shock.",
       "subRolls": [],
       "exclusionGroup": null,
       "friction": 24,
@@ -2820,7 +2751,7 @@
       "name": "Independent Contractor",
       "scope": "class",
       "difficulty": "hard",
-      "description": "Your demons formed a union, demanded hazard pay, and walked out mid-summon. You cannot summon or use a demon pet.",
+      "description": "Your demons formed a union, demanded hazard pay, and walked out mid-summon. You cannot use a demon pet.",
       "subRolls": [],
       "exclusionGroup": "Demons",
       "friction": 41,
@@ -2888,9 +2819,9 @@
       "name": "Left Hand Free",
       "scope": "class",
       "difficulty": "medium",
-      "description": "A trainer said a shield is just a very large coaster, and you took it as an insult to both. You cannot equip a shield.",
+      "description": "A trainer said a shield is just a very large coaster, and you took it as fact. You cannot equip a shield.",
       "subRolls": [],
-      "exclusionGroup": "Armour",
+      "exclusionGroup": "Armor",
       "friction": 27,
       "rollable": true,
       "className": "Warrior",
@@ -2898,23 +2829,6 @@
       "icon": {
         "source": "blizzard",
         "id": "inv_shield_06"
-      }
-    },
-    {
-      "id": "battle-addiction",
-      "name": "Battle Addiction",
-      "scope": "class",
-      "difficulty": "medium",
-      "description": "You changed stance once, forgot every button, and decided flexibility was a rumour. You may only use Battle Stance.",
-      "subRolls": [],
-      "exclusionGroup": "Stance",
-      "friction": 27,
-      "rollable": true,
-      "className": "Warrior",
-      "specs": [],
-      "icon": {
-        "source": "blizzard",
-        "id": "ability_warrior_offensivestance"
       }
     },
     {
@@ -2939,9 +2853,9 @@
       "name": "Featherweight",
       "scope": "spec",
       "difficulty": "medium",
-      "description": "A tailor convinced you that leather interferes with lunar reception, and you believed them because the robe had stars on it. You may only equip cloth armour.",
+      "description": "A tailor convinced you that leather interferes with lunar reception, and you believed them because the robe had stars on it. You may only equip cloth armor.",
       "subRolls": [],
-      "exclusionGroup": "Armour",
+      "exclusionGroup": "Armor",
       "friction": 35,
       "rollable": true,
       "className": "Druid",
@@ -2996,7 +2910,7 @@
       "name": "Paws and Effect",
       "scope": "spec",
       "difficulty": "medium",
-      "description": "You spent so long communing with nature that nature stopped returning your calls and simply repossessed your humanoid form. Once unlocked, remain in the rolled Cat or Bear form and use only abilities available in that form. If an interaction shifts you out, shift back immediately.",
+      "description": "You spent so long communing with nature that nature stopped returning your calls and simply possessed your body. Once unlocked, remain in the rolled Cat or Bear form and use only abilities available in that form. If an interaction shifts you out, shift back immediately.",
       "subRolls": [
         "Cat form",
         "Bear form"
@@ -3098,7 +3012,7 @@
       "name": "Inner-Hate",
       "scope": "spec",
       "difficulty": "easy",
-      "description": "You told yourself you were worthless, and Innervate agreed. You cannot use Innervate or Tranquility.",
+      "description": "You told yourself you were worthless, and Innervate agreed. You cannot use Innervate.",
       "subRolls": [],
       "exclusionGroup": null,
       "friction": 14,
@@ -3174,7 +3088,7 @@
       "name": "Creature of Habit",
       "scope": "spec",
       "difficulty": "easy",
-      "description": "Your first pet filled in a loyalty card and you have been too polite to shop around. The first pet family you tame is the only family you may use for the rest of the run.",
+      "description": "Your first pet filled in a loyalty card and you have been too polite to shop around. The first pet family you tame after you learn Feed Pet is the only family you may use for the rest of the run.",
       "subRolls": [],
       "exclusionGroup": null,
       "friction": 17,
@@ -3193,7 +3107,7 @@
       "name": "Pet-ition Denied",
       "scope": "spec",
       "difficulty": "hard",
-      "description": "Your last pet kept pulling extra packs and insisting it was “optimal pathing,” so you left it behind. You cannot tame pets.",
+      "description": "Your last pet kept pulling extra packs, insisting it was “optimal pathing,” so you left it behind. You cannot tame pets.",
       "subRolls": [],
       "exclusionGroup": null,
       "friction": 46,
@@ -3212,10 +3126,10 @@
       "name": "Aimless",
       "scope": "spec",
       "difficulty": "medium",
-      "description": "Your last Aimed Shot turned out to be a very expensive warning shot. You cannot use Aimed Shot or Multi-Shot.",
+      "description": "You watched too many action movies and believe aiming is optional. You cannot use Aimed Shot.",
       "subRolls": [],
       "exclusionGroup": null,
-      "friction": 34,
+      "friction": 19,
       "rollable": true,
       "className": "Hunter",
       "specs": [
@@ -3230,11 +3144,11 @@
       "id": "unmarked",
       "name": "Unmarked",
       "scope": "spec",
-      "difficulty": "medium",
-      "description": "A rival hunter told you that marking targets was rude, and you kept the paperwork. You cannot use Hunter’s Mark.",
+      "difficulty": "easy",
+      "description": "A rival hunter told you that marking targets was rude, and you felt guilty. You cannot use Hunter’s Mark.",
       "subRolls": [],
       "exclusionGroup": null,
-      "friction": 22,
+      "friction": 14,
       "rollable": true,
       "className": "Hunter",
       "specs": [
@@ -3288,7 +3202,7 @@
       "name": "Trackless",
       "scope": "spec",
       "difficulty": "easy",
-      "description": "You are so sure of where you are going that you cancelled every tracking ability you own. You cannot use Tracking abilities.",
+      "description": "Your pet keeps telling you to ask for directions and now you refuse out of spite. You cannot use tracking abilities.",
       "subRolls": [],
       "exclusionGroup": null,
       "friction": 12,
@@ -3307,7 +3221,7 @@
       "name": "Purple Reign",
       "scope": "spec",
       "difficulty": "medium",
-      "description": "You studied every school of magic and concluded that colours other than purple are academically unsound. Once Arcane damaging spells become available, you may only deal damage with Arcane spells.",
+      "description": "You studied every school of magic and concluded that colors other than purple are academically unsound. Once Arcane damaging spells become available, you may only deal damage with Arcane spells.",
       "subRolls": [],
       "exclusionGroup": null,
       "friction": 29,
@@ -3366,7 +3280,7 @@
       "difficulty": "medium",
       "description": "Your solution to every magical problem is fire—and your solution to fire is considerably more fire. You may only use Fire damaging spells.",
       "subRolls": [],
-      "exclusionGroup": null,
+      "exclusionGroup": "Fire School",
       "friction": 26,
       "rollable": true,
       "className": "Mage",
@@ -3379,33 +3293,14 @@
       }
     },
     {
-      "id": "hot-potato",
-      "name": "Hot Potato",
-      "scope": "spec",
-      "difficulty": "medium",
-      "description": "You dropped a fireball in a hay barn and the farmer’s insurance has not stopped calling. You cannot use Fireball or Pyroblast.",
-      "subRolls": [],
-      "exclusionGroup": "Fire Spells",
-      "friction": 36,
-      "rollable": true,
-      "className": "Mage",
-      "specs": [
-        "Fire"
-      ],
-      "icon": {
-        "source": "blizzard",
-        "id": "spell_fire_flamebolt"
-      }
-    },
-    {
       "id": "flame-retardant",
       "name": "Flame Retardant",
       "scope": "spec",
-      "difficulty": "medium",
-      "description": "You bought a policy that lists flammable as the only exclusion, so now you are being very careful. You cannot use Fire Blast, Flamestrike, or Scorch.",
+      "difficulty": "hard",
+      "description": "You bought a policy that lists flammable as the only exclusion, so now you are being very careful. You cannot use Fire spells.",
       "subRolls": [],
-      "exclusionGroup": "Fire Spells",
-      "friction": 22,
+      "exclusionGroup": "Fire School",
+      "friction": 46,
       "rollable": true,
       "className": "Mage",
       "specs": [
@@ -3440,10 +3335,10 @@
       "name": "Cold Shoulder",
       "scope": "spec",
       "difficulty": "medium",
-      "description": "Ice Block gave you the cold shoulder, so you returned the favour. You cannot use Ice Block or Cone of Cold.",
+      "description": "Your guild accused you of giving the cold shoulder, so you have committed to opening up. You cannot use Ice Block.",
       "subRolls": [],
       "exclusionGroup": null,
-      "friction": 22,
+      "friction": 19,
       "rollable": true,
       "className": "Mage",
       "specs": [
@@ -3455,11 +3350,11 @@
       }
     },
     {
-      "id": "snow-day-cancelled",
-      "name": "Snow Day Cancelled",
+      "id": "snow-day-canceled",
+      "name": "Snow Day Canceled",
       "scope": "spec",
       "difficulty": "easy",
-      "description": "School was cancelled for a blizzard once, and you have held a grudge against snow ever since. You cannot use Blizzard or Cold Snap.",
+      "description": "School was canceled for a blizzard once, and you have held a grudge against snow ever since. You cannot use Blizzard or Cold Snap.",
       "subRolls": [],
       "exclusionGroup": null,
       "friction": 14,
@@ -3531,25 +3426,6 @@
       }
     },
     {
-      "id": "house-call",
-      "name": "House Call",
-      "scope": "spec",
-      "difficulty": "medium",
-      "description": "You were told the Light works better as a house call, which is not how physics works, but here we are. You cannot heal a target more than 10 yards away.",
-      "subRolls": [],
-      "exclusionGroup": null,
-      "friction": 34,
-      "rollable": true,
-      "className": "Paladin",
-      "specs": [
-        "Holy"
-      ],
-      "icon": {
-        "source": "blizzard",
-        "id": "spell_holy_sealofsacrifice"
-      }
-    },
-    {
       "id": "face-tank",
       "name": "Face Tank",
       "scope": "spec",
@@ -3591,11 +3467,11 @@
       "id": "hand-me-down",
       "name": "Hand Me Down",
       "scope": "spec",
-      "difficulty": "easy",
-      "description": "You were given hand-me-down blessings and have refused to accept charity ever since. You cannot use Blessing of Freedom or Blessing of Sacrifice.",
+      "difficulty": "medium",
+      "description": "You once regifted some blessings, were shamed for it, and have refused to provide charity ever since. You cannot use any blessings.",
       "subRolls": [],
       "exclusionGroup": null,
-      "friction": 9,
+      "friction": 29,
       "rollable": true,
       "className": "Paladin",
       "specs": [
@@ -3611,10 +3487,10 @@
       "name": "Hammer? I Hardly Know Her",
       "scope": "spec",
       "difficulty": "medium",
-      "description": "You heard someone shout “Hammer Time” once, experienced second-hand embarrassment so powerful it shook your faith, and vowed never to be that cringe. You cannot use Hammer of Wrath, Hammer of Justice, or equip maces.",
+      "description": "You heard someone shout “Hammer Time” once, experienced second-hand embarrassment so powerful it shook your faith, and vowed never to be that cringe. You cannot use Hammer of Wrath, Hammer of Justice, or equip maces other than your starter weapon.",
       "subRolls": [],
       "exclusionGroup": null,
-      "friction": 30,
+      "friction": 32,
       "rollable": true,
       "className": "Paladin",
       "specs": [
@@ -3630,10 +3506,10 @@
       "name": "No Command Performance",
       "scope": "spec",
       "difficulty": "medium",
-      "description": "You were asked to give a command performance and delivered a one-man play instead. You cannot use Seal of Command or Repentance.",
+      "description": "You were asked to give a command performance and delivered a one-man play instead. You cannot use Seal of Command.",
       "subRolls": [],
       "exclusionGroup": null,
-      "friction": 25,
+      "friction": 19,
       "rollable": true,
       "className": "Paladin",
       "specs": [
@@ -3687,10 +3563,10 @@
       "name": "Unfocused",
       "scope": "spec",
       "difficulty": "easy",
-      "description": "Your teacher asked you to focus, and you asked if lunch was included. You cannot use Inner Fire, Inner Focus, or Divine Spirit.",
+      "description": "Your teacher asked you to focus after forgetting to rebuff, and you asked if lunch was included. You cannot use Inner Focus, Inner Fire, Power Word: Fortitude, or Divine Spirit.",
       "subRolls": [],
       "exclusionGroup": null,
-      "friction": 17,
+      "friction": 19,
       "rollable": true,
       "className": "Priest",
       "specs": [
@@ -3706,7 +3582,7 @@
       "name": "Mental Block",
       "scope": "spec",
       "difficulty": "easy",
-      "description": "A rival warlock confused Mind Control with minding your own business, and you took it badly. You cannot use Mind Control, Mind Vision, or Mind Soothe.",
+      "description": "You mind controlled a streamer and have never recovered from the horror of their inner thoughts. You cannot use Mind Control, Mind Vision, or Mind Soothe.",
       "subRolls": [],
       "exclusionGroup": null,
       "friction": 7,
@@ -3759,8 +3635,8 @@
       }
     },
     {
-      "id": "group-therapy-cancelled",
-      "name": "Group Therapy Cancelled",
+      "id": "group-therapy-canceled",
+      "name": "Group Therapy Canceled",
       "scope": "spec",
       "difficulty": "easy",
       "description": "Your support group dissolved after you took attendance. You cannot use Prayer of Healing, Holy Nova, or Lightwell.",
@@ -3782,7 +3658,7 @@
       "name": "Holy Ghosted",
       "scope": "spec",
       "difficulty": "hard",
-      "description": "The shadows offered unlimited power and casual Fridays; the Light only offered mandatory choir practice. You cannot use Holy damaging or healing spells.",
+      "description": "The Light is leaving your messages on read and not returning your calls. You cannot use Holy damaging or healing spells.",
       "subRolls": [],
       "exclusionGroup": null,
       "friction": 43,
@@ -3820,7 +3696,7 @@
       "name": "Pain Free Zone",
       "scope": "spec",
       "difficulty": "medium",
-      "description": "You decided pain was rude and have forbidden it in your presence. You cannot use Shadow Word: Pain or Mind Flay.",
+      "description": "You decided pain was rude and have forbidden it in your presence. You cannot use Shadow Word: Pain or Shadow Word: Death.",
       "subRolls": [],
       "exclusionGroup": null,
       "friction": 36,
@@ -3877,10 +3753,10 @@
       "name": "Sliced Out",
       "scope": "spec",
       "difficulty": "medium",
-      "description": "A deli worker called your knife skills a threat to public health. You cannot use Slice and Dice or Expose Armor.",
+      "description": "A deli worker called your knife skills a threat to public health and ordered you to slow down. You cannot use Slice and Dice.",
       "subRolls": [],
       "exclusionGroup": null,
-      "friction": 22,
+      "friction": 19,
       "rollable": true,
       "className": "Rogue",
       "specs": [
@@ -3911,11 +3787,11 @@
       }
     },
     {
-      "id": "flurry-cancelled",
-      "name": "Flurry Cancelled",
+      "id": "flurry-canceled",
+      "name": "Flurry Canceled",
       "scope": "spec",
       "difficulty": "easy",
-      "description": "A forecast of blade flurries was cancelled and you were quietly relieved. You cannot use Blade Flurry or Adrenaline Rush.",
+      "description": "A forecast of blade flurries was canceled and you were quietly relieved. You cannot use Blade Flurry or Adrenaline Rush.",
       "subRolls": [],
       "exclusionGroup": null,
       "friction": 17,
@@ -3991,10 +3867,10 @@
       "name": "Dodge This",
       "scope": "spec",
       "difficulty": "medium",
-      "description": "An instructor shouted Dodge and you stood still and trusted fate. You cannot use Evasion, Feint, or Preparation.",
+      "description": "An instructor shouted Dodge and you stood still and trusted fate. You cannot use Evasion.",
       "subRolls": [],
       "exclusionGroup": null,
-      "friction": 24,
+      "friction": 14,
       "rollable": true,
       "className": "Rogue",
       "specs": [
@@ -4029,7 +3905,7 @@
       "name": "Storm Warning",
       "scope": "spec",
       "difficulty": "hard",
-      "description": "A lightning bolt struck your tent and the spirits recommended counselling. You cannot use Lightning Bolt or Chain Lightning.",
+      "description": "A lightning bolt struck your tent and the spirits recommended counseling. You cannot use Lightning Bolt or Chain Lightning.",
       "subRolls": [],
       "exclusionGroup": null,
       "friction": 41,
@@ -4048,10 +3924,10 @@
       "name": "Sink or Swim",
       "scope": "spec",
       "difficulty": "easy",
-      "description": "A heckler dared you to walk on water and you have tried every time since. You cannot use Water Walking, Water Breathing, or Far Sight.",
+      "description": "You unwittingly started a cult when someone saw you walking on water and vowed never to make that mistake again. You cannot use Water Walking.",
       "subRolls": [],
       "exclusionGroup": null,
-      "friction": 7,
+      "friction": 4,
       "rollable": true,
       "className": "Shaman",
       "specs": [
@@ -4098,25 +3974,6 @@
       "icon": {
         "source": "blizzard",
         "id": "ability_shaman_stormstrike"
-      }
-    },
-    {
-      "id": "one-hand-clapping",
-      "name": "One Hand Clapping",
-      "scope": "spec",
-      "difficulty": "easy",
-      "description": "A master asked you what the sound of one hand was, and now you only have one. You cannot dual wield.",
-      "subRolls": [],
-      "exclusionGroup": "Weapons",
-      "friction": 25,
-      "rollable": true,
-      "className": "Shaman",
-      "specs": [
-        "Enhancement"
-      ],
-      "icon": {
-        "source": "blizzard",
-        "id": "ability_dualwield"
       }
     },
     {
@@ -4181,7 +4038,7 @@
       "name": "Hidebound",
       "scope": "spec",
       "difficulty": "hard",
-      "description": "A spirit wolf sniffed your mail shirt and asked when you had enlisted. You cannot wear Mail armour.",
+      "description": "A spirit wolf sniffed your mail shirt and passed out. You cannot wear Mail armor.",
       "subRolls": [],
       "exclusionGroup": null,
       "friction": 47,
@@ -4215,11 +4072,11 @@
       }
     },
     {
-      "id": "spreading-rumours",
-      "name": "Spreading Rumours",
+      "id": "spreading-rumors",
+      "name": "Spreading Rumors",
       "scope": "spec",
       "difficulty": "medium",
-      "description": "You refuse to start a fight you cannot gossip about. Corruption must be on every enemy you are currently fighting.",
+      "description": "You refuse to start a fight you cannot gossip about. Corruption must be cast on every enemy you are currently fighting before they die.",
       "subRolls": [],
       "exclusionGroup": null,
       "friction": 29,
@@ -4333,7 +4190,7 @@
       "name": "Out of Bolts",
       "scope": "spec",
       "difficulty": "hard",
-      "description": "You ran out of bolts, nuts, and tolerance, and your shadows have gone home. You cannot use Shadow Bolt.",
+      "description": "You ran out of bolts, nuts, and tolerance. You cannot use Shadow Bolt.",
       "subRolls": [],
       "exclusionGroup": "Destruction School",
       "friction": 41,
@@ -4352,7 +4209,7 @@
       "name": "Rain Check",
       "scope": "spec",
       "difficulty": "easy",
-      "description": "Your fire insurance expired and the rain has been postponed indefinitely. You cannot use Rain of Fire, Hellfire, or Shadowburn.",
+      "description": "Your fire insurance expired and the rain has been postponed indefinitely. You cannot use Rain of Fire or Hellfire.",
       "subRolls": [],
       "exclusionGroup": null,
       "friction": 14,
@@ -4371,7 +4228,7 @@
       "name": "Weapon of Choice",
       "scope": "spec",
       "difficulty": "medium",
-      "description": "A travelling weapons expert declared your rolled weapon type \"the thinking warrior’s choice,\" and you built your entire personality around it. Once that weapon type becomes available, you may use only that type.",
+      "description": "A traveling weapons expert declared your rolled weapon type \"the thinking warrior’s choice,\" and you built your entire personality around it. Once that weapon type becomes available, you may use only that type.",
       "subRolls": [
         "Axes",
         "Swords",
@@ -4401,10 +4258,10 @@
       "name": "Mortal Strike Out",
       "scope": "spec",
       "difficulty": "medium",
-      "description": "You missed Mortal Strike so many times the trainer asked for the book back. You cannot use Mortal Strike or Overpower.",
+      "description": "When reviewing the mortal strike policy being capped at 50% you decided it did not go far enough and refused to support it. You cannot use Mortal Strike.",
       "subRolls": [],
       "exclusionGroup": null,
-      "friction": 24,
+      "friction": 19,
       "rollable": true,
       "className": "Warrior",
       "specs": [
@@ -4419,11 +4276,11 @@
       "id": "bleeding-heart",
       "name": "Bleeding Heart",
       "scope": "spec",
-      "difficulty": "easy",
-      "description": "The sight of blood unnerves you, so you ask enemies to bleed somewhere else. You cannot use Rend or Hamstring.",
+      "difficulty": "medium",
+      "description": "The sight of blood unnerves you, so you ask enemies to bleed somewhere else. You cannot use Rend or learn Deep Wounds.",
       "subRolls": [],
       "exclusionGroup": null,
-      "friction": 17,
+      "friction": 24,
       "rollable": true,
       "className": "Warrior",
       "specs": [
@@ -4435,8 +4292,8 @@
       }
     },
     {
-      "id": "sweeping-generalisations",
-      "name": "Sweeping Generalisations",
+      "id": "sweeping-generalizations",
+      "name": "Sweeping Generalizations",
       "scope": "spec",
       "difficulty": "hard",
       "description": "You tried Sweeping Strikes, hit an ally’s pride, and the trainer took the book back. You cannot use Sweeping Strikes.",
@@ -4458,9 +4315,9 @@
       "name": "Conan the Barebarian",
       "scope": "spec",
       "difficulty": "hard",
-      "description": "You believe armour is for warriors who lack dramatic muscles and a strong soundtrack. You cannot equip chest armour.",
+      "description": "You believe armor is for warriors who lack dramatic muscles and a strong soundtrack. You cannot equip chest armor.",
       "subRolls": [],
-      "exclusionGroup": "Armour",
+      "exclusionGroup": "Armor",
       "friction": 42,
       "rollable": true,
       "className": "Warrior",
@@ -4477,10 +4334,10 @@
       "name": "Bloodthirst Quenched",
       "scope": "spec",
       "difficulty": "medium",
-      "description": "You drank a nice cup of tea and your bloodlust went to sleep. You cannot use Bloodthirst or Whirlwind.",
+      "description": "You drank a nice cup of tea and your bloodlust went to sleep. You cannot use Bloodthirst.",
       "subRolls": [],
       "exclusionGroup": null,
-      "friction": 29,
+      "friction": 19,
       "rollable": true,
       "className": "Warrior",
       "specs": [
@@ -4515,7 +4372,7 @@
       "name": "Fight or Fight",
       "scope": "spec",
       "difficulty": "hard",
-      "description": "You once retreated two steps and have been trying to restore your honour ever since. You must never leave a fight initiated by you or a party member.",
+      "description": "You once retreated two steps and have been trying to restore your honor ever since. You must never leave a fight initiated by you or a party member.",
       "subRolls": [],
       "exclusionGroup": null,
       "friction": 45,
@@ -4619,13 +4476,13 @@
       }
     },
     {
-      "id": "nudist",
-      "name": "Nudist",
+      "id": "it-s-spelt-armour-with-a-u",
+      "name": "It's spelt Armour with a U!",
       "scope": "universal",
       "difficulty": "insane",
-      "description": "You sold your armour to fund a suspiciously affordable course called 'Defence Through Confidence' and are now too proud to admit the instructor was just three Goblins in a trench coat. You cannot equip armour in any slot.",
+      "description": "Bitter at having to conform with American spelling conventions, you refuse to wear this so called \"Armor\". You cannot equip armor in any slot.",
       "subRolls": [],
-      "exclusionGroup": "Armour",
+      "exclusionGroup": "Armor",
       "friction": 76,
       "rollable": true,
       "className": null,
@@ -4636,14 +4493,14 @@
       }
     },
     {
-      "id": "weaponised-incompetence",
-      "name": "Weaponised Incompetence",
+      "id": "weaponized-incompetence",
+      "name": "Weaponized Incompetence",
       "scope": "universal",
       "difficulty": "insane",
-      "description": "A weapons trainer asked you to demonstrate the pointy end, and after several hours of debate the guild decided everyone would be safer if you stopped trying. You cannot equip or use weapons.",
+      "description": "A weapons trainer asked you to demonstrate the pointy end, and after several hours watching you decided everyone would be safer if you stopped trying. You cannot equip or use weapons.",
       "subRolls": [],
       "exclusionGroup": "Weapons",
-      "friction": 71,
+      "friction": 76,
       "rollable": true,
       "className": null,
       "specs": [],
@@ -4725,10 +4582,10 @@
       "name": "Arms Race",
       "scope": "universal",
       "difficulty": "easy",
-      "description": "A weapons master called your technique uneven, so you responded by turning every level into a compulsory practical examination. From level 21 onward, whenever you gain a level, every weapon skill your class can learn must be within 10 points of the current maximum before you may continue earning experience.",
+      "description": "A weapons master called your technique uneven, so you responded by turning every level into a compulsory practical examination. From level 20 onward, whenever you gain a level, every weapon skill your class can learn must be within 5 points of the current maximum before you reach the next level.",
       "subRolls": [],
       "exclusionGroup": "Weapons",
-      "friction": 57,
+      "friction": 60,
       "rollable": true,
       "className": null,
       "specs": [],
@@ -4742,7 +4599,7 @@
       "name": "Dungeon Dodger",
       "scope": "universal",
       "difficulty": "easy",
-      "description": "You heard that dungeons contain monsters, confined spaces, and group members with opinions, so you have decided the surface world is quite adventurous enough. You cannot enter or complete dungeons.",
+      "description": "You heard that dungeons contain monsters, confined spaces, and group members with opinions, so you have decided the surface world is quite adventurous enough. You cannot enter dungeons.",
       "subRolls": [],
       "exclusionGroup": "Dungeons",
       "friction": 17,
@@ -4759,10 +4616,10 @@
       "name": "Reel Progress",
       "scope": "universal",
       "difficulty": "easy",
-      "description": "A fisherman told you that patience builds character, and you mistook this for a mandatory levelling system. When you reach levels 10, 20, 30, 40, 50, and 60, your Fishing skill must be at least five times your level before you may continue earning experience.",
+      "description": "A fisherman told you that patience builds character, and you mistook this for a mandatory defense requirement. From level 10, your fishing skill needs to remain higher than your base defense skill before you reach the next level.",
       "subRolls": [],
       "exclusionGroup": "Secondary Professions",
-      "friction": 39,
+      "friction": 50,
       "rollable": true,
       "className": null,
       "specs": [],
@@ -4793,10 +4650,10 @@
       "name": "Trade Embargo",
       "scope": "universal",
       "difficulty": "easy",
-      "description": "You accepted one suspicious trade window too many and now regard all player commerce as an elaborate confidence trick. You cannot trade items or gold with other players, or receive them through player mail.",
+      "description": "You read Blizzard's warning on accepting trades that might be RMT and now you're paranoid about all player trades. You cannot trade items or gold with other players, or receive them through player mail.",
       "subRolls": [],
       "exclusionGroup": "Self Found",
-      "friction": 22,
+      "friction": 24,
       "rollable": true,
       "className": null,
       "specs": [],
@@ -4827,7 +4684,7 @@
       "name": "Mounting Problems",
       "scope": "universal",
       "difficulty": "easy",
-      "description": "Your last riding lesson ended with the mount filing a formal complaint, and the stable masters have agreed to honour it. You cannot learn riding or use mounts.",
+      "description": "Your last riding lesson ended with the mount filing a formal complaint, and the stable masters have agreed to honor it. You cannot learn riding or use mounts.",
       "subRolls": [],
       "exclusionGroup": null,
       "friction": 37,
@@ -4894,11 +4751,11 @@
       "id": "fasting-and-furious",
       "name": "Fasting and Furious",
       "scope": "universal",
-      "difficulty": "hard",
+      "difficulty": "medium",
       "description": "You joined a wellness retreat that promised inner strength, then discovered the meal plan was simply an empty table. You cannot eat food or drink beverages.",
       "subRolls": [],
       "exclusionGroup": "Consumables",
-      "friction": 54,
+      "friction": 41,
       "rollable": true,
       "className": null,
       "specs": [],
@@ -4928,11 +4785,11 @@
       "id": "closed-for-business",
       "name": "Closed for Business",
       "scope": "universal",
-      "difficulty": "insane",
+      "difficulty": "medium",
       "description": "A goblin accountant audited your shopping and declared you a systemic risk to the economy. You cannot buy items or repairs from vendors.",
       "subRolls": [],
       "exclusionGroup": null,
-      "friction": 72,
+      "friction": 57,
       "rollable": true,
       "className": null,
       "specs": [],
@@ -4949,7 +4806,7 @@
       "description": "Your class trainer asked you to demonstrate last week’s homework, then quietly retired. You cannot train new class skills from trainers.",
       "subRolls": [],
       "exclusionGroup": null,
-      "friction": 64,
+      "friction": 69,
       "rollable": true,
       "className": null,
       "specs": [],
@@ -4959,28 +4816,11 @@
       }
     },
     {
-      "id": "poor-taste",
-      "name": "Poor Taste",
-      "scope": "universal",
-      "difficulty": "insane",
-      "description": "A tailor said your outfit had “character,” which you took as a binding contract with the colour beige. You may only equip Poor quality items.",
-      "subRolls": [],
-      "exclusionGroup": "Item Quality",
-      "friction": 77,
-      "rollable": true,
-      "className": null,
-      "specs": [],
-      "icon": {
-        "source": "blizzard",
-        "id": "inv_shirt_grey_01"
-      }
-    },
-    {
       "id": "side-quest-aversion",
       "name": "Side Quest Aversion",
       "scope": "universal",
-      "difficulty": "insane",
-      "description": "You started a quest, saw the golden question mark, and felt personally hunted. You cannot accept or turn in quests. Experience must come from kills, exploration, or dungeons.",
+      "difficulty": "medium",
+      "description": "You completed a quest, saw the golden question mark, and questioned the whole system. You cannot accept or turn in quests. Experience must come from kills, exploration, or dungeons.",
       "subRolls": [],
       "exclusionGroup": "Questing",
       "friction": 67,
@@ -5014,10 +4854,10 @@
       "name": "Red Flag",
       "scope": "universal",
       "difficulty": "insane",
-      "description": "You left PvP on by accident, won an argument about it, and now it is a lifestyle. You must keep War Mode / PvP flagging enabled whenever the game allows it, and you cannot turn it off.",
+      "description": "You left PvP on by accident and were too stubborn to admit it. Now it is a lifestyle. You must keep War Mode / PvP flagging enabled whenever the game allows it, and you cannot turn it off.",
       "subRolls": [],
       "exclusionGroup": null,
-      "friction": 49,
+      "friction": 75,
       "rollable": true,
       "className": null,
       "specs": [],
@@ -5048,10 +4888,10 @@
       "name": "Restless",
       "scope": "universal",
       "difficulty": "easy",
-      "description": "An innkeeper offered you a room and you asked whether that was a scam. You cannot bind at inns or gain rested experience.",
+      "description": "A local innkeeper offered you a room and you asked whether that was a scam. You cannot bind your hearthstone outside capital cities.",
       "subRolls": [],
       "exclusionGroup": null,
-      "friction": 22,
+      "friction": 12,
       "rollable": true,
       "className": null,
       "specs": [],
@@ -5116,7 +4956,7 @@
       "name": "Done with Nature",
       "scope": "universal",
       "difficulty": "easy",
-      "description": "You declared war on the wildlife committee and now keep a tally like it is a second profession. Each time you gain a level, you must kill 20 critters outside capital cities before you may continue earning experience.",
+      "description": "You declared war on the wildlife committee and now keep a tally like it is a second profession. Each time you gain a level, you must kill 20 critters outside capital cities before you reach the next level.",
       "subRolls": [],
       "exclusionGroup": "Critters",
       "friction": 29,

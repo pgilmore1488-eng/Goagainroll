@@ -1,6 +1,23 @@
-import { SiteLink, SiteNav } from './SiteNav.jsx'
+import { LastRollLink, SiteLink, SiteNav } from './SiteNav.jsx'
 
-export function Header({ onReset, showReset = false }) {
+const HEADER_ACTION =
+  'min-h-11 px-3 font-ui text-[11px] tracking-[0.35em] text-chrome/45 uppercase hover:text-gold'
+
+export function Header({
+  onReset,
+  showReset = false,
+  showLastRoll = true,
+  lastRollLabel = 'Go back to your last roll',
+}) {
+  const lastRoll = showLastRoll ? (
+    <LastRollLink className={HEADER_ACTION} label={lastRollLabel} />
+  ) : null
+  const reset = showReset ? (
+    <button type="button" onClick={onReset} className={HEADER_ACTION}>
+      Start over
+    </button>
+  ) : null
+
   return (
     <header className="flex flex-col items-center gap-2 text-center">
       <p className="font-ui text-[11px] tracking-[0.55em] text-gold-dim uppercase">
@@ -13,14 +30,13 @@ export function Header({ onReset, showReset = false }) {
       </h1>
       <SiteNav />
       {showReset ? (
-        <button
-          type="button"
-          onClick={onReset}
-          className="min-h-11 px-3 font-ui text-[11px] tracking-[0.35em] text-chrome/45 uppercase hover:text-gold"
-        >
-          Start over
-        </button>
-      ) : null}
+        <div className="flex flex-wrap items-center justify-center gap-x-8">
+          {lastRoll}
+          {reset}
+        </div>
+      ) : (
+        lastRoll
+      )}
       <p className="mt-3 max-w-xl text-[11px] leading-relaxed text-chrome/40">
         Unofficial fan project. Not affiliated with Blizzard Entertainment.
       </p>

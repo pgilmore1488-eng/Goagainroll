@@ -4,35 +4,35 @@ export const FRICTION_AXES = [
     name: 'Time',
     max: 30,
     meaning:
-      'How much the affix slows the run: detours, gates, walking, waiting. Not whether you die if you take too long.',
+      'How much the affix slows the run: detours, gates, walking, waiting. Not whether you die if you take too long. For example, no hearthstone adds a lot of time to your journey while not increasing danger that much.',
   },
   {
     id: 'death',
     name: 'Death',
     max: 30,
     meaning:
-      'How much more likely a Hardcore death becomes. Missing a panic button lives here. Failing the honour rule does not.',
+      'How much more likely a Hardcore death becomes. Missing a panic button lives here. Failing the honor rule does not. For example, not being able to use health pots increases the danger of the run while not slowing it down.',
   },
   {
     id: 'restriction',
     name: 'Restriction',
     max: 10,
     meaning:
-      'How much of the kit or route is simply banned. Time and Death already count the leftover playstyle, so this axis stays small.',
+      'How much of the kit or route is simply banned. Time and Death already count the leftover playstyle, so this score stays small. For example, the increased death chance of not using bubble is already factored in above and has a minor impact here. Not being able to use secondary professions will be mostly scored here.',
   },
   {
     id: 'maintenance',
     name: 'Maintenance',
     max: 15,
     meaning:
-      'Ongoing homework: counts, upkeep, skill gates, something you must service every level. A tracker helps because the pain is the chore.',
+      "Ongoing homework: counts, upkeep, skill gates, something you must service every level. The contribution is low as it assumes you will be using a tracker, but you'll still need to remember which chores are outstanding. For example, remembering to keep skills up to date or not to equip that shiny new quest item increases this score.",
   },
   {
     id: 'variance',
     name: 'Variance',
     max: 15,
     meaning:
-      'How swingy or easy the affix is to fail by accident, or how much luck and zone decide the pain. Two people can have very different runs.',
+      'How swingy or easy the affix is to fail by accident, or how much luck and zone decide the pain. Two people can have very different runs. For example your luck at having allowed weapons drop or a rogue critter walking into your AoE.',
   },
 ]
 
@@ -53,7 +53,7 @@ export const RUN_RANKS = [
       'No Self Found, no affixes. Just spec, professions, and the fact that Hardcore already wants you dead.',
   },
   {
-    max: 68,
+    max: 70,
     name: 'Making it interesting',
     description: 'Self Found, or light restrictions. You turned a dial, not the whole machine.',
   },

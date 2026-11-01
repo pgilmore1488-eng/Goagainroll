@@ -96,17 +96,17 @@ export const ShareCard = forwardRef(function ShareCard({ run, score }, ref) {
           {run.affixes.map((affix, index) => (
             <li key={`${affix.id}-${index}`} className="flex items-center gap-4">
               <ShareIcon icon={affix.icon} size={40} />
-              <div>
+              <div className="min-w-0">
                 <p
-                  className="text-[22px] font-black tracking-[0.1em] text-[#ffe89a] uppercase"
-                  style={{ fontFamily: 'Cinzel, ui-serif, Georgia, serif' }}
+                  className="whitespace-nowrap text-[22px] font-black tracking-[0.1em] text-[#ffe89a] uppercase"
+                  style={{ fontFamily: 'Cinzel, ui-serif, Georgia, serif', whiteSpace: 'nowrap' }}
                 >
                   {affix.name}
                 </p>
                 {affix.subRoll ? (
                   <p
-                    className="mt-1 text-[12px] tracking-[0.28em] text-[#e8c547] uppercase"
-                    style={{ fontFamily: 'Oswald, ui-sans-serif, sans-serif' }}
+                    className="mt-1 whitespace-nowrap text-[12px] tracking-[0.28em] text-[#e8c547] uppercase"
+                    style={{ fontFamily: 'Oswald, ui-sans-serif, sans-serif', whiteSpace: 'nowrap' }}
                   >
                     {affix.subRoll}
                   </p>

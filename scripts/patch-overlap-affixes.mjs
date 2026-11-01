@@ -44,26 +44,16 @@ const REPLACEMENTS = {
     Description:
       'Your intern told you about the five-second rule for dropped toast, and you applied it to theology. After any spell you cast, you must wait until your mana starts regenerating before you may cast again. Wanding and melee are allowed during the wait.',
   },
-  Uninsured: {
-    Affix: 'Shattered Expectations',
-    Description:
-      'You told a frost elemental that real mages only hit things that are already miserable. You may only deal damage to enemies that are chilled or frozen. If they are neither, apply a chill first.',
-  },
   Demonetised: {
     Affix: 'Playing with Fire',
     'Exclusion Group': 'Destruction School',
     Description:
       'A fire elemental offered you a timeshare and you signed in triplicate. Once Fire damaging spells become available, you may only deal damage with Fire spells.',
   },
-  'Flash Photography': {
-    Affix: 'House Call',
-    Description:
-      'You were told the Light works better as a house call, which is not how physics works, but here we are. You cannot heal a target more than 10 yards away.',
-  },
   'Quiet on Set': {
     Affix: 'Creature of Habit',
     Description:
-      'Your first pet filled in a loyalty card and you have been too polite to shop around. The first pet family you tame is the only family you may use for the rest of the run.',
+      'Your first pet filled in a loyalty card and you have been too polite to shop around. The first pet family you tame after you learn Feed Pet is the only family you may use for the rest of the run.',
   },
   'Breeze Block': {
     Affix: 'Totem Duty',
@@ -78,16 +68,16 @@ const REPLACEMENTS = {
       'The elements clocked you for leaving them idle and put you on a shift. Whenever you are in combat, you must have at least one totem active.',
   },
   'Clean Conscience': {
-    Affix: 'Spreading Rumours',
+    Affix: 'Spreading Rumors',
     Description:
-      'You refuse to start a fight you cannot gossip about. Corruption must be on every enemy you are currently fighting.',
+      'You refuse to start a fight you cannot gossip about. Corruption must be cast on every enemy you are currently fighting before they die.',
   },
 }
 
 const EDITS = {
   Unwarded: {
     Description:
-      'A rival wizard told you that armour spells are for people who plan to be hit, and your pride refuses to plan that far ahead. You cannot use Frost Armor, Ice Armor, or Mage Armor. Ice Block, Ice Barrier, and Mana Shield are still allowed.',
+      'A rival wizard told you that armor spells are for people who plan to be hit, and your pride refuses to plan that far ahead. You cannot use Frost Armor, Ice Armor, or Mage Armor. Ice Block, Ice Barrier, and Mana Shield are still allowed.',
   },
   "Brawler's Code": {
     'Exclusion Group': '',
@@ -97,11 +87,11 @@ const EDITS = {
   'Moonkin Out of Order': {
     'Exclusion Group': 'Shapeshift',
   },
-  'Hot Potato': {
-    'Exclusion Group': 'Fire Spells',
-  },
   'Flame Retardant': {
-    'Exclusion Group': 'Fire Spells',
+    'Exclusion Group': 'Fire School',
+  },
+  'Burn Notice': {
+    'Exclusion Group': 'Fire School',
   },
   'Totem Mismanagement': {
     'Exclusion Group': 'Totems',
@@ -113,12 +103,10 @@ const EDITS = {
 
 const RENAME = {
   'Open Book': 'Take Five',
-  Uninsured: 'Shattered Expectations',
   Demonetised: 'Playing with Fire',
-  'Flash Photography': 'House Call',
   'Quiet on Set': 'Creature of Habit',
   'Breeze Block': 'Totem Duty',
-  'Clean Conscience': 'Spreading Rumours',
+  'Clean Conscience': 'Spreading Rumors',
 }
 
 const DROP_SYNERGIES = new Set([
@@ -131,13 +119,13 @@ const DROP_SYNERGIES = new Set([
   'Self Found; Uninsured',
   'Self Found; Flash Photography',
   'Hot Potato; Flame Retardant',
+  'Self Found; Shattered Expectations',
+  'Self Found; House Call',
+  'Lights Out; House Call',
+  'Shattered Expectations; Cold Spell',
 ])
 
 const ADD_SYNERGIES = [
-  ['Self Found; Shattered Expectations', 8, 'You can only hit chilled targets and Self Found cannot buy extra frost tools.'],
-  ['Self Found; House Call', 6, 'Heals only work at 10 yards and Self Found cannot buy range or safety.'],
-  ['Lights Out; House Call', 8, 'No Holy Light, and the heals you still have only work in melee.'],
-  ['Shattered Expectations; Cold Spell', 8, 'Frost damage only, and you may only hit targets that are already chilled.'],
   ['Playing with Fire; Rain Check', 6, 'Fire damage only, and Rain of Fire, Hellfire, and Shadowburn are gone.'],
   ['Creature of Habit; Furwell, Friend', 6, 'If the pet dies you must tame again, but only from the same family.'],
   ['Party Pooper; Point Blank', 8, 'Always at range and you cannot group. Every pull is a solo kite.'],

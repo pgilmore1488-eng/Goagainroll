@@ -1,10 +1,17 @@
-import { SiteNav } from './SiteNav.jsx'
+import { LastRollLink, SiteNav } from './SiteNav.jsx'
+import { isRollPath, useRoute } from '../hooks/useRoute.js'
 
 export function SiteFooter({ onOverlay }) {
+  const path = useRoute()
   return (
     <footer className="mx-auto max-w-3xl px-2 pb-4 text-center">
       <div className="mb-4">
         <SiteNav />
+        {isRollPath(path) ? null : (
+          <p className="mt-3 text-sm">
+            <LastRollLink />
+          </p>
+        )}
       </div>
       {onOverlay ? (
         <button

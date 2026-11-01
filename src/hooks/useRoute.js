@@ -11,9 +11,11 @@ export function isRollPath(path = currentPath()) {
 
 export function navigate(to) {
   const url = new URL(to, window.location.origin)
-  const next = url.pathname.replace(/\/+$/, '') || '/'
-  if (next === currentPath()) return
-  window.history.pushState(null, '', next)
+  const nextPath = url.pathname.replace(/\/+$/, '') || '/'
+  const nextHref = `${nextPath}${url.hash}`
+  const currentHref = `${currentPath()}${window.location.hash}`
+  if (nextHref === currentHref) return
+  window.history.pushState(null, '', nextHref)
   window.dispatchEvent(new PopStateEvent('popstate'))
 }
 

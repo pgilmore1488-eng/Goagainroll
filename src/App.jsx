@@ -19,7 +19,7 @@ import { isRollPath, useRoute } from './hooks/useRoute.js'
 import { STEPS, useRun } from './hooks/useRun.js'
 
 const TITLES = {
-  '/affixes': 'Affix catalogue — GO AGAIN ROLL',
+  '/affixes': 'Affix catalog — GO AGAIN ROLL',
   '/friction': 'Friction methodology — GO AGAIN ROLL',
 }
 
@@ -119,7 +119,14 @@ export default function App() {
         </button>
       ) : null}
       <div className="mx-auto flex max-w-6xl flex-col gap-8">
-        {overlayLive ? null : <Header onReset={machine.reset} showReset={showRoller} />}
+        {overlayLive ? null : (
+          <Header
+            onReset={machine.reset}
+            showReset={showRoller}
+            showLastRoll={run.step !== STEPS.QUICK_FIRE}
+            lastRollLabel={showRoller ? 'Reload your last roll' : 'Go back to your last roll'}
+          />
+        )}
         {showRoller && !overlayLive && run.step !== STEPS.DONE && run.step !== STEPS.QUICK_FIRE ? (
           <ProgressStrip run={run} />
         ) : null}

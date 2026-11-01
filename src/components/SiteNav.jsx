@@ -1,3 +1,5 @@
+import { useEffect, useState } from 'react'
+import { LAST_RUN_EVENT, readLastRunToken } from '../engine/lastRun.js'
 import { isRollPath, navigate, useRoute } from '../hooks/useRoute.js'
 
 const LINKS = [
@@ -5,6 +7,33 @@ const LINKS = [
   { to: '/affixes', label: 'Affixes', match: (path) => path === '/affixes' },
   { to: '/friction', label: 'Friction', match: (path) => path === '/friction' },
 ]
+
+export function LastRollLink({
+  className = 'text-gold hover:text-gold-bright',
+  label = 'Go back to your last roll',
+}) {
+  const path = useRoute()
+  const [token, setToken] = useState(readLastRunToken)
+
+  useEffect(() => {
+    const sync = () => setToken(readLastRunToken())
+    window.addEventListener(LAST_RUN_EVENT, sync)
+    window.addEventListener('storage', sync)
+    return () => {
+      window.removeEventListener(LAST_RUN_EVENT, sync)
+      window.removeEventListener('storage', sync)
+    }
+  }, [])
+
+  const viewingLast = isRollPath(path) && window.location.hash.replace(/^#/, '') === token
+  if (!token || viewingLast) return null
+
+  return (
+    <SiteLink to={`/#${token}`} className={className}>
+      {label}
+    </SiteLink>
+  )
+}
 
 export function SiteLink({ to, children, className = '' }) {
   return (

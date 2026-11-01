@@ -11,7 +11,9 @@ import {
   viableDifficulties,
 } from '../engine/lookups.js'
 import { buildQuickSequence, resolveQuickRun, selfFoundDisplay } from '../engine/quickRoll.js'
+import { saveLastRunToken } from '../engine/lastRun.js'
 import { decodeRun, encodeRun, fetchSharedToken, replaceLocation, shortIdFromPath } from '../engine/share.js'
+import { isRollPath } from './useRoute.js'
 import { evenPick, sleep, weightedPick } from '../engine/weighted.js'
 
 export const STEPS = {
@@ -97,14 +99,22 @@ export function useRun(catalog, { pauseBetween = false } = {}) {
   useEffect(() => () => abortRef.current?.abort(), [])
 
   useEffect(() => {
-    const onHashChange = () => {
+    const applyHash = () => {
       const token = window.location.hash.replace(/^#/, '')
       if (!token) return
       const shared = decodeRun(catalog, token)
-      if (shared) setRun({ ...emptyRun(), ...shared, step: STEPS.DONE })
+      if (!shared) return
+      abortRef.current?.abort()
+      quickGenRef.current += 1
+      setSpinning(false)
+      setRun({ ...emptyRun(), ...shared, step: STEPS.DONE })
     }
-    window.addEventListener('hashchange', onHashChange)
-    return () => window.removeEventListener('hashchange', onHashChange)
+    window.addEventListener('hashchange', applyHash)
+    window.addEventListener('popstate', applyHash)
+    return () => {
+      window.removeEventListener('hashchange', applyHash)
+      window.removeEventListener('popstate', applyHash)
+    }
   }, [catalog])
 
   useEffect(() => {
@@ -136,7 +146,8 @@ export function useRun(catalog, { pauseBetween = false } = {}) {
     if (run.step !== STEPS.DONE || run.shareLoading) return
     if (shortIdFromPath()) return
     const token = encodeRun(run)
-    if (token && window.location.hash.replace(/^#/, '') !== token) {
+    if (token) saveLastRunToken(token)
+    if (token && isRollPath() && window.location.hash.replace(/^#/, '') !== token) {
       replaceLocation({ hash: `#${token}` })
     }
   }, [run])

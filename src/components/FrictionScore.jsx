@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { SiteLink } from './SiteNav.jsx'
 
 const RELATED = {
   related: 'Class professions',
@@ -79,6 +80,14 @@ export function FrictionScore({ score, compact = false }) {
               ))}
             </ul>
           ) : null}
+          <p className="mt-4">
+            <SiteLink
+              to="/friction"
+              className="font-ui text-[11px] tracking-[0.28em] text-gold/70 uppercase hover:text-gold"
+            >
+              What is friction?
+            </SiteLink>
+          </p>
         </div>
       ) : null}
     </section>

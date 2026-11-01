@@ -47,7 +47,7 @@ export function AffixCatalogue() {
       <div className="text-center">
         <p className="font-ui text-[11px] tracking-[0.35em] text-gold-dim uppercase">Reference</p>
         <h2 className="mt-2 font-display text-3xl font-black tracking-[0.12em] text-gold-bright uppercase">
-          Affix catalogue
+          Affix catalog
         </h2>
         <p className="mx-auto mt-3 max-w-xl text-sm leading-relaxed text-chrome/70">
           Every rollable affix, with its friction score and rules text. Mutex groups cannot be stacked.
